@@ -8,8 +8,6 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
@@ -18,7 +16,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var editPassword: EditText
     private lateinit var btnLogin: Button
     private lateinit var conexion: FirebaseAuth
-    private lateinit var txtRecuperar: TextView
+    private lateinit var linkRecuperar: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +30,7 @@ class MainActivity : AppCompatActivity() {
         editEmail=findViewById(R.id.editEmail)
         editPassword=findViewById(R.id.editPassword)
         btnLogin=findViewById(R.id.btnLogin)
-        txtRecuperar =findViewById(R.id.txtRecuperar)
+        linkRecuperar =findViewById(R.id.txtRecuperar)
 
         //Acción del botón login
         btnLogin.setOnClickListener{
@@ -49,7 +47,7 @@ class MainActivity : AppCompatActivity() {
                 if (task.isSuccessful){
                     val user=conexion.currentUser
                     if (user?.isEmailVerified == true){
-                        startActivity(Intent(this, InicioActivity::class.java))
+                        startActivity(Intent(this, RecoverPassActivity::class.java))
                         finish()
                     }else{
                         Toast.makeText(this,"La información que ingresaste no es válida. Revisa el correo o la contraseña e intentalo nuevamente.",Toast.LENGTH_SHORT).show()
@@ -62,21 +60,9 @@ class MainActivity : AppCompatActivity() {
         }
 
         //Acción del link ¿Olvidaste la contraseña?
-        txtRecuperar.setOnClickListener {
-            val email = editEmail.text.toString().trim()
-            //Valida que el email esté ya escrito en el textfield
-            if (email.isEmpty()){
-                conexion.sendPasswordResetEmail(email)
-                    .addOnSuccessListener {
-                        Toast.makeText(this, "Correo de recuperacion enviado", Toast.LENGTH_SHORT).show()
-                    }
-                    .addOnFailureListener{
-                        Toast.makeText(this,"Error: ${it.message}", Toast.LENGTH_SHORT).show()
-                    }
-            } else  {
-                Toast.makeText(this,"Ingresa tu correo para continuar", Toast.LENGTH_SHORT).show()
-            }
+        linkRecuperar.setOnClickListener {
+            startActivity(Intent(this, RecoverPassActivity::class.java))
+            finish()
         }
-
     }
 }
