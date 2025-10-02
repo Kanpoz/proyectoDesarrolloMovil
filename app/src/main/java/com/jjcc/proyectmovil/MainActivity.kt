@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity() {
                 if (task.isSuccessful){
                     val user=conexion.currentUser
                     if (user?.isEmailVerified == true){
-                        startActivity(Intent(this, RecoverPassActivity::class.java))
+                        startActivity(Intent(this, ChatActivity::class.java))
                         finish()
                     }else{
                         Toast.makeText(this,"La información que ingresaste no es válida. Revisa el correo o la contraseña e intentalo nuevamente.",Toast.LENGTH_SHORT).show()
