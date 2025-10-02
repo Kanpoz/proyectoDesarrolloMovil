@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
 
+        //Instancia la conección a la base de datos
         conexion=FirebaseAuth.getInstance()
 
         //Inicializa todos los elementos de la lista
@@ -35,28 +36,47 @@ class MainActivity : AppCompatActivity() {
 
         //Acción del botón login
         btnLogin.setOnClickListener{
+            //Validación de email y contraseña
             val email=editEmail.text.toString().trim()
             val password=editPassword.text.toString().trim()
             if (email.isEmpty() || password.isEmpty()){
-                Toast.makeText(this,"Complete los campos",Toast.LENGTH_SHORT).show()
+                Toast.makeText(this,"Porfavor complete todos los campos",Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
-            conexion.signInWithEmailAndPassword(email,password)
-                .addOnCompleteListener{ task ->
-                    if (task.isSuccessful){
-                        val user=conexion.currentUser
-                        if (user?.isEmailVerified == true){
-                            startActivity(Intent(this, InicioActivity::class.java))
-                            finish()
-                        }else{
-                            Toast.makeText(this,"Debes verificar tu email",Toast.LENGTH_SHORT).show()
-                        }
 
+            //Conexion con la base de datos para validar el inicio de sesion
+            conexion.signInWithEmailAndPassword(email,password).addOnCompleteListener{ task ->
+                if (task.isSuccessful){
+                    val user=conexion.currentUser
+                    if (user?.isEmailVerified == true){
+                        startActivity(Intent(this, InicioActivity::class.java))
+                        finish()
                     }else{
-                        Toast.makeText(this,"Error: ${task.exception?.message}",Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this,"La información que ingresaste no es válida. Revisa el correo o la contraseña e intentalo nuevamente.",Toast.LENGTH_SHORT).show()
                     }
-                }
 
+                }else{
+                    Toast.makeText(this,"Error: ${task.exception?.message}",Toast.LENGTH_SHORT).show()
+                }
+            }
         }
+
+        //Acción del link ¿Olvidaste la contraseña?
+        txtRecuperar.setOnClickListener {
+            val email = editEmail.text.toString().trim()
+            //Valida que el email esté ya escrito en el textfield
+            if (email.isEmpty()){
+                conexion.sendPasswordResetEmail(email)
+                    .addOnSuccessListener {
+                        Toast.makeText(this, "Correo de recuperacion enviado", Toast.LENGTH_SHORT).show()
+                    }
+                    .addOnFailureListener{
+                        Toast.makeText(this,"Error: ${it.message}", Toast.LENGTH_SHORT).show()
+                    }
+            } else  {
+                Toast.makeText(this,"Ingresa tu correo para continuar", Toast.LENGTH_SHORT).show()
+            }
+        }
+
     }
 }

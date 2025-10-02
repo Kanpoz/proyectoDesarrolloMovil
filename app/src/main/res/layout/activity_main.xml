@@ -74,7 +74,7 @@
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
         android:backgroundTint="@color/AzulInstitucional"
-        android:text="@string/entrar"
+        android:text="ENTRAR"
         app:cornerRadius="8dp" />
 
     <TextView
@@ -121,14 +121,18 @@
             android:background="#000000" />
     </LinearLayout>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnSoporte"
         android:layout_width="match_parent"
         android:layout_height="55dp"
-        android:text="@string/contactar_soporte"
+        app:icon="@drawable/help_circle"
+        app:iconTint="@null"
+        app:iconGravity="textEnd"
+        app:iconPadding="10dp"
+        app:iconSize="25dp"
+        android:text="CONTACTAR SOPORTE"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
-        android:layout_marginTop="10dp"
         android:textColor="@color/black"
         app:cornerRadius="8dp"
         android:backgroundTint="#D9D9D9"/>
