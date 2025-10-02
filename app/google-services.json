@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "584471586547",
+    "project_id": "proyecto-movil-31e5f",
+    "storage_bucket": "proyecto-movil-31e5f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:584471586547:android:0673f57588c8578fd97986",
+        "android_client_info": {
+          "package_name": "com.jjcc.proyectmovil"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA8w2J59vh3F64swdukD-ndWQS4ETNEzHA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
