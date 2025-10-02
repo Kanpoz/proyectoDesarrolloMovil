@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">ProyectMovil</string>
+    <string name="contactar_soporte">CONTACTAR SOPORTE</string>
+    <string name="bienvenido">¡Bienvenido!</string>
+    <string name="porfavor_inicia_sesi_n_para_continuar">Porfavor inicia sesión para continuar</string>
+    <string name="correo_electr_nico">Correo electrónico</string>
+    <string name="contrase_a">Contraseña</string>
+    <string name="entrar">ENTRAR</string>
+    <string name="olvidaste_la_contrase_a">¿Olvidaste la contraseña?</string>
+    <string name="necesitas_ayuda">¿Necesitas ayuda?</string>
 </resources>
