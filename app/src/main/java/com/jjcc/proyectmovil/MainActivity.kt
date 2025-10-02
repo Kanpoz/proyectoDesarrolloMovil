@@ -17,6 +17,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var btnLogin: Button
     private lateinit var conexion: FirebaseAuth
     private lateinit var linkRecuperar: TextView
+    private lateinit var btnSoporte: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,10 +28,11 @@ class MainActivity : AppCompatActivity() {
         conexion=FirebaseAuth.getInstance()
 
         //Inicializa todos los elementos de la lista
-        editEmail=findViewById(R.id.editEmail)
-        editPassword=findViewById(R.id.editPassword)
-        btnLogin=findViewById(R.id.btnLogin)
-        linkRecuperar =findViewById(R.id.txtRecuperar)
+        editEmail= findViewById(R.id.editEmail)
+        editPassword= findViewById(R.id.editPassword)
+        btnLogin= findViewById(R.id.btnLogin)
+        linkRecuperar= findViewById(R.id.txtRecuperar)
+        btnSoporte= findViewById(R.id.btnSoporte)
 
         //Acción del botón login
         btnLogin.setOnClickListener{
@@ -62,6 +64,11 @@ class MainActivity : AppCompatActivity() {
         //Acción del link ¿Olvidaste la contraseña?
         linkRecuperar.setOnClickListener {
             startActivity(Intent(this, RecoverPassActivity::class.java))
+            finish()
+        }
+
+        btnSoporte.setOnClickListener {
+            startActivity(Intent(this, NewUserActivity::class.java))
             finish()
         }
     }
