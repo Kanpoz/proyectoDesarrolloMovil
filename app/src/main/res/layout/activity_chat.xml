@@ -5,7 +5,6 @@
     android:id="@+id/scrollChat"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
     android:orientation="vertical"
     tools:context=".ChatActivity">
 
@@ -14,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:layout_gravity="bottom"
-        android:background="#d9d9d9"
+        android:background="#ffffff"
         android:layout_marginBottom="-15dp"
         app:labelVisibilityMode="labeled"
         app:menu="@menu/bottom_nav_menu"
