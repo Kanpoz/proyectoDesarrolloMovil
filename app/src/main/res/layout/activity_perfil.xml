@@ -192,16 +192,6 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <!-- Botón editar -->
-            <Button
-                android:id="@+id/btnEditar"
-                android:layout_marginBottom="25dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="EDITAR DATOS PERSONALES"
-                android:backgroundTint="@color/verde"
-                android:textColor="@color/white"
-                android:layout_marginTop="16dp"/>
 
             <!-- Botón configuración -->
             <Button
@@ -211,7 +201,7 @@
                 android:text="CONFIGURACIÓN"
                 android:backgroundTint="@color/gris"
                 android:textColor="@color/black"
-                android:layout_marginTop="8dp"/>
+                android:layout_marginTop="95dp"/>
 
             <!-- Botón cerrar sesión -->
             <Button
