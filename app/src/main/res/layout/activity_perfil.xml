@@ -235,7 +235,7 @@
         android:background="#FFFFFF"
         app:menu="@menu/bottom_nav_menu"
         app:labelVisibilityMode="labeled"
-        app:paddingTop="-2dp"
+        android:paddingTop="-2dp"
         android:layout_marginBottom="-15dp"
         app:itemIconSize="50dp" />
 
