@@ -3,4 +3,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="AzulInstitucional">#0B63C6</color>
+    <color name="verde">#1EAD69</color>
+    <color name="gris">#D9D9D9</color>
+    <color name="azulFondo">#E9F2FF</color>
+    <color name="grisSecundario">#555555</color>
 </resources>
