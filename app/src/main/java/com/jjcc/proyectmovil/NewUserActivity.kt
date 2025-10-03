@@ -33,14 +33,20 @@ class NewUserActivity : AppCompatActivity(){
         val editEmail = findViewById<EditText>(R.id.editCorreo)
         val editPassword = findViewById<EditText>(R.id.editContraseña)
         val btnRegistrar = findViewById<Button>(R.id.btnGuardar)
+        val spinnerTipoRol = findViewById<Spinner>(R.id.spinnerTipoRol)
 
         // Lista de tipos de documentos
         val tipoDocumento = listOf("CC", "TI", "CE", "PASAPORTE")
+        val tipoRol = listOf("ESTUDIANTE","RECTOR","ACUDIENTE","DOCENTE","ADMINISTRADOR","COORDINADOR")
 
         // Adaptador para el Spinner
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, tipoDocumento)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinnerTipoDocumento.adapter =adapter
+
+        val adapter1 = ArrayAdapter(this, android.R.layout.simple_spinner_item, tipoRol)
+        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinnerTipoRol.adapter =adapter1
 
         btnRegistrar.setOnClickListener {
             val nombres = editNombres.text.toString().trim()
@@ -51,6 +57,7 @@ class NewUserActivity : AppCompatActivity(){
             val direccion = editDireccion.text.toString().trim()
             val email = editEmail.text.toString().trim()
             val password = editPassword.text.toString().trim()
+            val tipoRol = spinnerTipoDocumento.selectedItem.toString()
 
             if(nombres.isEmpty() || apellidos.isEmpty() || tipoDocumento.isEmpty() || documento.isEmpty()
                 || celular.isEmpty() || direccion.isEmpty() || email.isEmpty() || password.isEmpty()){
@@ -76,6 +83,7 @@ class NewUserActivity : AppCompatActivity(){
                                         "celular" to celular,
                                         "direccion" to  direccion,
                                         "email" to email,
+                                        "rol" to tipoRol,
                                         "password" to password
                                     )
 

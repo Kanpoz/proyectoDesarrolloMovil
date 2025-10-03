@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 
 class MainActivity : AppCompatActivity() {
 
@@ -49,6 +50,15 @@ class MainActivity : AppCompatActivity() {
                 if (task.isSuccessful){
                     val user=conexion.currentUser
                     if (user?.isEmailVerified == true){
+
+                        //Forma de hallar en que rol en tiempo real
+                        val uid = user.uid
+                        val rolRef = FirebaseDatabase.getInstance()
+                            .getReference("usuarios")   // <-- cambia a tu nodo real si es distinto
+                            .child(uid)
+                            .child("rol")
+
+
                         startActivity(Intent(this, ChatActivity::class.java))
                         finish()
                     }else{
