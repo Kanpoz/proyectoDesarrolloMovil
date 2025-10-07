@@ -27,6 +27,15 @@ class MainChatActivity : AppCompatActivity() {
     private lateinit var mAuth: FirebaseAuth
     private lateinit var mDbRef: DatabaseReference
 
+    private val requestPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestMultiplePermissions()
+    ) { permissions ->
+        if (permissions[Manifest.permission.ACCESS_FINE_LOCATION] == true &&
+            permissions[Manifest.permission.ACCESS_BACKGROUND_LOCATION] == true) {
+            startGeofenceService()
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_chat)
@@ -45,12 +54,12 @@ class MainChatActivity : AppCompatActivity() {
         // MEJORA: Agregado logs para debug
         Log.d("ChatMain", "Usuario actual: ${mAuth.currentUser?.uid}")
 
-        mDbRef.child("usuarios").addValueEventListener(object : ValueEventListener {
+        mDbRef.child("usuarios").addValueEventListener(object: ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 Log.d("ChatMain", "Total usuarios en Firebase: ${snapshot.childrenCount}")
 
                 userList.clear()
-                for (post in snapshot.children) {
+                for(post in snapshot.children){
                     Log.d("ChatMain", "Procesando usuario: ${post.key}")
 
                     // MEJORA: Mejor manejo de errores al convertir datos
@@ -58,10 +67,7 @@ class MainChatActivity : AppCompatActivity() {
                         val u = post.getValue(User::class.java)
                         if (u != null) {
                             u.uid = post.key
-                            Log.d(
-                                "ChatMain",
-                                "Usuario cargado: ${u.nombres} ${u.apellidos}, UID: ${u.uid}"
-                            )
+                            Log.d("ChatMain", "Usuario cargado: ${u.nombres} ${u.apellidos}, UID: ${u.uid}")
 
                             // Solo agregar usuarios que no sean el actual
                             if (mAuth.currentUser?.uid != u.uid) {
@@ -86,5 +92,23 @@ class MainChatActivity : AppCompatActivity() {
                 Log.e("ChatMain", "Error al cargar usuarios: ${error.message}")
             }
         })
+
+        // Permisos de ubicación
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
+            ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_BACKGROUND_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            startGeofenceService()
+        } else {
+            requestPermissionLauncher.launch(
+                arrayOf(
+                    Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.ACCESS_BACKGROUND_LOCATION
+                )
+            )
+        }
+    }
+
+    private fun startGeofenceService() {
+        val serviceIntent = Intent(this, GeofenceService::class.java)
+        startService(serviceIntent)
     }
 }

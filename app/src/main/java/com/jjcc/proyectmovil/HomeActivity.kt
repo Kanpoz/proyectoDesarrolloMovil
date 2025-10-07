@@ -32,7 +32,7 @@ class HomeActivity : AppCompatActivity() {
                     true
                 }
                 R.id.nav_messages -> {
-                    startActivity(Intent(this, ChatActivity::class.java))
+                    startActivity(Intent(this, MainChatActivity::class.java))
                     true
                 }
                 R.id.nav_profile -> {

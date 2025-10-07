@@ -12,6 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProyectMovil">
         <activity
+            android:name=".Menu"
+            android:exported="false" />
+        <activity
+            android:name=".GeofenceService"
+            android:exported="false" />
+        <activity
             android:name=".UserAdapter"
             android:exported="false" />
         <activity
