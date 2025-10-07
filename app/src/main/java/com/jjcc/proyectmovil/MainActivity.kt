@@ -59,7 +59,7 @@ class MainActivity : AppCompatActivity() {
                             .child("rol")
 
 
-                        startActivity(Intent(this, ChatActivity::class.java))
+                        startActivity(Intent(this, HomeActivity::class.java))
                         finish()
                     }else{
                         Toast.makeText(this,"La información que ingresaste no es válida. Revisa el correo o la contraseña e intentalo nuevamente.",Toast.LENGTH_SHORT).show()

@@ -16,24 +16,27 @@
         tools:context=".PerfilActivity">
 
         <LinearLayout
+            android:layout_marginTop="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="16dp">
 
             <!-- Rol de la persona -->
+
+            <!-- Foto de perfil -->
             <TextView
                 android:id="@+id/tvRol"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Cargando..."
-                android:textSize="14sp"
-                android:textStyle="bold"
-                android:textColor="@color/black"
                 android:layout_gravity="center_horizontal"
-                android:paddingBottom="8dp"/>
+                android:layout_marginTop="20dp"
+                android:paddingBottom="8dp"
+                android:text="Cargando..."
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold" />
 
-            <!-- Foto de perfil -->
             <ImageView
                 android:id="@+id/imgPerfil"
                 android:layout_width="100dp"
@@ -201,7 +204,7 @@
                 android:text="CONFIGURACIÓN"
                 android:backgroundTint="@color/gris"
                 android:textColor="@color/black"
-                android:layout_marginTop="95dp"/>
+                android:layout_marginTop="60dp"/>
 
             <!-- Botón cerrar sesión -->
             <Button
