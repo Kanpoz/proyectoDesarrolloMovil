@@ -12,6 +12,27 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProyectMovil">
         <activity
+            android:name=".UserAdapter"
+            android:exported="false" />
+        <activity
+            android:name=".MainChatActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Receive"
+            android:exported="false" />
+        <activity
+            android:name=".MessageAdapter"
+            android:exported="false" />
+        <activity
+            android:name=".Sent"
+            android:exported="false" />
+        <activity
+            android:name=".Message"
+            android:exported="false" />
+        <activity
+            android:name=".User"
+            android:exported="false" />
+        <activity
             android:name=".PerfilActivity"
             android:exported="false" />
         <activity
