@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:background="?android:attr/selectableItemBackground"
+    android:padding="16dp"
+    android:layout_marginTop="20dp">
+
+    <!-- Avatar simple -->
+    <ImageView
+        android:id="@+id/profile_image"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_centerVertical="true"
+        android:src="@drawable/colegio"
+        android:layout_alignParentStart="true"
+        android:background="#ffffff"
+        android:padding="8dp"
+        android:scaleType="centerInside" />
+
+    <!-- Contenedor de texto -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@id/profile_image"
+        android:layout_marginStart="16dp"
+        android:orientation="vertical">
+
+        <!-- Nombre del usuario - ESTE ES EL ID QUE BUSCA TU CÓDIGO -->
+        <TextView
+            android:id="@+id/txt_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nombre Usuario"
+            android:textColor="#333333"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:maxLines="1"
+            android:ellipsize="end" />
+
+        <!-- Información adicional - ESTE ES EL OTRO ID QUE BUSCA TU CÓDIGO -->
+        <TextView
+            android:id="@+id/txt_last_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Rol - Email"
+            android:textColor="#666666"
+            android:textSize="14sp"
+            android:maxLines="1"
+            android:ellipsize="end" />
+
+    </LinearLayout>
+
+    <!-- Línea separadora -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="72dp"
+        android:background="#E0E0E0" />
+
+</RelativeLayout>

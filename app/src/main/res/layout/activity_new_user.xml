@@ -1,50 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-
-    android:id="@+id/scrollNewUser"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:id="@+id/layoutNewUser"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    android:padding="24dp">
+    tools:context=".NewUserActivity">
 
     <LinearLayout
-        android:layout_marginTop="12dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:gravity="center_horizontal">
+        android:gravity="center">
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="REGISTRO DE USUARIO"
             android:textColor="@color/black"
-            android:textSize="20sp"/>
+            android:layout_marginTop="50dp"
+            android:textSize="20sp"
+            tools:ignore="HardcodedText" />
 
         <EditText
             android:id="@+id/editNombres"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:autofillHints=""
             android:hint="Nombres"
             android:inputType="textPersonName"
             android:padding="12dp"
             android:layout_marginBottom="13dp"
-            android:layout_marginTop="20dp" />
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="35dp"
+            android:layout_marginRight="35dp"
+            tools:ignore="HardcodedText" />
 
         <EditText
             android:id="@+id/editApellidos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:autofillHints=""
             android:hint="Apellidos"
             android:inputType="textPersonName"
             android:padding="12dp"
-            android:layout_marginBottom="13dp" />
+            android:layout_marginBottom="13dp"
+            android:layout_marginLeft="35dp"
+            android:layout_marginRight="35dp"
+            tools:ignore="HardcodedText" />
 
         <Spinner
             android:id="@+id/spinnerTipoDocumento"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="35dp"
+            android:layout_marginRight="35dp"
             android:layout_marginBottom="16dp"
             android:padding="12dp"
             android:textColor="@color/black"
@@ -54,33 +68,47 @@
             android:id="@+id/editDocumento"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:autofillHints=""
             android:hint="Numero de identificación"
             android:inputType="number"
             android:padding="12dp"
-            android:layout_marginBottom="13dp" />
+            android:layout_marginBottom="13dp"
+            android:layout_marginLeft="35dp"
+            android:layout_marginRight="35dp"
+            tools:ignore="HardcodedText" />
 
         <EditText
             android:id="@+id/editCelular"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:autofillHints=""
             android:hint="Celular"
             android:inputType="number"
             android:padding="12dp"
-            android:layout_marginBottom="13dp" />
+            android:layout_marginBottom="13dp"
+            android:layout_marginLeft="35dp"
+            android:layout_marginRight="35dp"
+            tools:ignore="HardcodedText" />
 
         <EditText
             android:id="@+id/editDireccion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:autofillHints=""
             android:hint="Dirección"
             android:inputType="textPostalAddress"
             android:padding="12dp"
-            android:layout_marginBottom="13dp" />
+            android:layout_marginBottom="13dp"
+            android:layout_marginLeft="35dp"
+            android:layout_marginRight="35dp"
+            tools:ignore="HardcodedText" />
 
         <Spinner
             android:id="@+id/spinnerTipoRol"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="35dp"
+            android:layout_marginRight="35dp"
             android:layout_marginBottom="16dp"
             android:padding="12dp"
             android:textColor="@color/black"
@@ -90,26 +118,39 @@
             android:id="@+id/editCorreo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:autofillHints=""
             android:hint="Correo electrónico"
             android:inputType="textEmailAddress"
             android:padding="12dp"
-            android:layout_marginBottom="16dp" />
+            android:layout_marginBottom="16dp"
+            android:layout_marginLeft="35dp"
+            android:layout_marginRight="35dp"
+            tools:ignore="HardcodedText" />
 
         <EditText
             android:id="@+id/editContraseña"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:autofillHints=""
             android:hint="Contraseña"
             android:inputType="textPassword"
             android:padding="12dp"
-            android:layout_marginBottom="13dp" />
+            android:layout_marginBottom="13dp"
+            android:layout_marginLeft="35dp"
+            android:layout_marginRight="35dp"
+            tools:ignore="HardcodedText" />
 
         <Button
             android:id="@+id/btnGuardar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="55dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
             android:backgroundTint="@color/AzulInstitucional"
-            android:text="GUARDAR DATOS" />
+            android:text="GUARDAR DATOS"
+            app:cornerRadius="8dp"
+            android:layout_marginTop="15dp"
+            tools:ignore="HardcodedText" />
     </LinearLayout>
 
 </ScrollView>
