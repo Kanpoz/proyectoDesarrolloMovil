@@ -17,6 +17,14 @@ class HomeActivity : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+
+            val btnCalendar = findViewById<Button>(R.id.btnCalendar)
+            btnCalendar.setOnClickListener {
+                startActivity(Intent(this, CalendarActivity::class.java))
+            }
+
+
+
         }
 
 

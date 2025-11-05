@@ -12,6 +12,33 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProyectMovil">
         <activity
+            android:name=".ListaDeCursosActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CursoAdapter"
+            android:exported="false" />
+        <activity
+            android:name=".Asistencia"
+            android:exported="false" />
+        <activity
+            android:name=".Nota"
+            android:exported="false" />
+        <activity
+            android:name=".Horario"
+            android:exported="false" />
+        <activity
+            android:name=".Asignatura"
+            android:exported="false" />
+        <activity
+            android:name=".Curso"
+            android:exported="false" />
+        <activity
+            android:name=".RegistrarAsistenciaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AsistenciasActivity"
+            android:exported="false" />
+        <activity
             android:name=".Menu"
             android:exported="false" />
         <activity
@@ -40,6 +67,15 @@
             android:exported="false" />
         <activity
             android:name=".PerfilActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ChatAdapter"
+            android:exported="false" />
+        <activity
+            android:name=".ChatMessage"
+            android:exported="false" />
+        <activity
+            android:name=".Calendar"
             android:exported="false" />
         <activity
             android:name=".ChatActivity"
