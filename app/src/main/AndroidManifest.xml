@@ -12,7 +12,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProyectMovil">
         <activity
-            android:name=".Asignatura"
+            android:name=".MisCursos"
+            android:exported="false" />
+        <activity
+            android:name=".AsignaturaAdapter"
+            android:exported="false" />
+        <activity
+            android:name=".MisAsignaturas"
+            android:exported="false" />
+        <activity
+            android:name=".ItemAsignatura"
             android:exported="false" />
         <activity
             android:name=".HomeAcudiente"

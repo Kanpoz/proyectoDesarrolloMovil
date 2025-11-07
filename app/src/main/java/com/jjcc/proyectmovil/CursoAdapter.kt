@@ -7,7 +7,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class CursoAdapter(private val courseList: List<Curso>) :
+class CursoAdapter(private val courseList: List<ItemCurso>) :
     RecyclerView.Adapter<CursoAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -25,7 +25,7 @@ class CursoAdapter(private val courseList: List<Curso>) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val course = courseList[position]
         holder.tvCursoNombre.text = "${course.grado}° ${course.seccion}"
-        holder.tvCupo.text = "${course.estudiantesInscritos.size}/30"
+        holder.tvCupo.text = "${course.estudiantesInscritos?.size}/30"
     }
 
     override fun getItemCount(): Int = courseList.size

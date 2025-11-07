@@ -27,7 +27,7 @@ class HomeActivity : AppCompatActivity() {
 
         //Botón de cursos
         btnCursos.setOnClickListener {
-            startActivity(Intent(this, Curso::class.java))
+            startActivity(Intent(this, MisCursos::class.java))
         }
 
         //Botón de asistencias
@@ -37,7 +37,7 @@ class HomeActivity : AppCompatActivity() {
 
         //Botón de asignaturas
         btnAsignaturas.setOnClickListener {
-            startActivity(Intent(this, Asignatura::class.java))
+            startActivity(Intent(this, MisAsignaturas::class.java))
         }
 
         // Seleccionar "home" al entrar

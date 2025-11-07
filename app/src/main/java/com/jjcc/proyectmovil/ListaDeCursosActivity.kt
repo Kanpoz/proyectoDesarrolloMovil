@@ -6,13 +6,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.FirebaseFirestore
 import com.jjcc.proyectmovil.R
-import com.jjcc.proyectmovil.Curso
+import com.jjcc.proyectmovil.ItemCurso
 import com.jjcc.proyectmovil.CursoAdapter
 
 class ListaDeCursosActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private val db = FirebaseFirestore.getInstance()
-    private val courseList = mutableListOf<Curso>()
+    private val courseList = mutableListOf<ItemCurso>()
     private lateinit var adapter: CursoAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,7 +26,7 @@ class ListaDeCursosActivity : AppCompatActivity() {
 
         db.collection("cursos").get().addOnSuccessListener {
             courseList.clear()
-            courseList.addAll(it.toObjects(Curso::class.java))
+            courseList.addAll(it.toObjects(ItemCurso::class.java))
             adapter.notifyDataSetChanged()
         }
     }
