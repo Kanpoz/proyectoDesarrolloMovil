@@ -46,6 +46,7 @@
 
         <!-- Botón CALIFICACIONES -->
         <LinearLayout
+            android:id="@+id/btnCalificaciones"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_columnWeight="1"
@@ -74,6 +75,7 @@
 
         <!-- Botón MATERIAS -->
         <LinearLayout
+            android:id="@+id/btnMaterias"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_columnWeight="1"
@@ -102,6 +104,7 @@
 
         <!-- Botón OBSERVACIONES -->
         <LinearLayout
+            android:id="@+id/btnObservaciones"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_columnWeight="1"
@@ -130,6 +133,7 @@
 
         <!-- Botón TAREAS -->
         <LinearLayout
+            android:id="@+id/btnTareas"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_columnWeight="1"
