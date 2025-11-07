@@ -1,193 +1,171 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/layoutHome"
-    android:orientation="vertical"
     android:background="#F8F9FA"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="match_parent">
 
-    <!-- Título superior -->
+    <!-- 🔹 Título superior -->
     <TextView
         android:id="@+id/tvBienvenida"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Bienvenido(a), Usuario"
         android:textColor="#212121"
         android:textSize="22sp"
         android:textStyle="bold"
         android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="24dp"
         android:layout_marginBottom="16dp" />
 
-    <!-- Imagen de perfil o logo -->
+    <!-- 🔹 Imagen de perfil -->
     <ImageView
         android:id="@+id/imgPerfilHome"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_gravity="center_horizontal"
         android:src="@drawable/colegio"
         android:padding="16dp"
         android:elevation="10dp"
-        android:layout_marginBottom="20dp" />
+        android:layout_marginTop="12dp"
+        app:layout_constraintTop_toBottomOf="@id/tvBienvenida"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Sección principal con botones -->
+    <!-- 🔹 Scroll con botones -->
     <ScrollView
-        android:layout_marginTop="-40dp"
-        android:layout_width="match_parent"
+        android:id="@+id/scrollBotones"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:fillViewport="true"
         android:overScrollMode="never"
-        android:padding="25dp">
+        android:padding="25dp"
+        app:layout_constraintTop_toBottomOf="@id/imgPerfilHome"
+        app:layout_constraintBottom_toTopOf="@id/tvRolUsuario"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
+        <!-- Contenedor interno para los botones -->
         <LinearLayout
             android:id="@+id/containerBotones"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:dividerPadding="8dp">
+            android:gravity="center_horizontal">
 
-            <!-- Botón de Cursos -->
-            <LinearLayout
+            <!-- 🔹 BOTONES REALES -->
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnCursos"
-                style="@style/MenuButtonStyle"
-                android:backgroundTint="#4CAF50"
-                android:layout_marginBottom="8dp">
+                style="@style/Widget.MaterialComponents.Button"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:text="Cursos"
+                android:textAllCaps="false"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="8dp"
+                app:icon="@drawable/ic_curso"
+                app:iconTint="@android:color/white"
+                app:backgroundTint="#4CAF50"
+                app:iconGravity="textStart"
+                app:iconPadding="16dp" />
 
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_marginEnd="8dp"
-                    android:src="@drawable/ic_curso"
-                    app:tint="@android:color/white" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Cursos"
-                    android:textColor="@android:color/white"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <!-- Botón de Asignaturas -->
-            <LinearLayout
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnAsignaturas"
-                style="@style/MenuButtonStyle"
-                android:backgroundTint="#2196F3"
-                android:layout_marginBottom="8dp">
+                style="@style/Widget.MaterialComponents.Button"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:text="Asignaturas"
+                android:textAllCaps="false"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="8dp"
+                app:icon="@drawable/ic_book"
+                app:iconTint="@android:color/white"
+                app:backgroundTint="#2196F3"
+                app:iconGravity="textStart"
+                app:iconPadding="16dp" />
 
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_marginEnd="8dp"
-                    android:src="@drawable/ic_book"
-                    app:tint="@android:color/white" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Asignaturas"
-                    android:textColor="@android:color/white"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <!-- Botón de Notas -->
-            <LinearLayout
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnNotas"
-                style="@style/MenuButtonStyle"
-                android:backgroundTint="#FFC107"
-                android:layout_marginBottom="8dp">
+                style="@style/Widget.MaterialComponents.Button"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:text="Notas"
+                android:textAllCaps="false"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="8dp"
+                app:icon="@drawable/ic_grades"
+                app:iconTint="@android:color/white"
+                app:backgroundTint="#FFC107"
+                app:iconGravity="textStart"
+                app:iconPadding="16dp" />
 
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_marginEnd="8dp"
-                    android:src="@drawable/ic_grades"
-                    app:tint="@android:color/white" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Notas"
-                    android:textColor="@android:color/white"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <!-- Botón de Asistencia / Calendario -->
-            <LinearLayout
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnAsistencias"
-                style="@style/MenuButtonStyle"
-                android:backgroundTint="#8BC34A"
-                android:layout_marginBottom="8dp">
+                style="@style/Widget.MaterialComponents.Button"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:text="Asistencias"
+                android:textAllCaps="false"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="8dp"
+                app:icon="@drawable/ic_calendar"
+                app:iconTint="@android:color/white"
+                app:backgroundTint="#8BC34A"
+                app:iconGravity="textStart"
+                app:iconPadding="16dp" />
 
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_marginEnd="8dp"
-                    android:src="@drawable/ic_calendar"
-                    app:tint="@android:color/white" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Asistencia / Calendario"
-                    android:textColor="@android:color/white"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:clickable="true"
-                android:focusable="true"
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnCalendar"
-                style="@style/MenuButtonStyle"
-                android:backgroundTint="#2196F3">
+                style="@style/Widget.MaterialComponents.Button"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:text="Calendario"
+                android:textAllCaps="false"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                app:icon="@drawable/ic_calendar"
+                app:iconTint="@android:color/white"
+                app:backgroundTint="#607D8B"
+                app:iconGravity="textStart"
+                app:iconPadding="16dp" />
 
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_marginEnd="8dp"
-                    android:src="@drawable/ic_calendar"
-                    app:tint="@android:color/white" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Calendario"
-                    android:textColor="@android:color/white"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 
+    <!-- 🔹 Rol del usuario -->
     <TextView
         android:id="@+id/tvRolUsuario"
         android:text="Rol: Estudiante"
         android:textSize="15sp"
-        android:layout_marginBottom="15dp"
         android:textColor="#757575"
         android:gravity="center"
-        android:layout_width="match_parent"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@id/bottomNavigation"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content" />
 
-    <!-- Menú de navegación inferior -->
+    <!-- 🔹 Menú inferior -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigation"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
         android:background="#FFFFFF"
         app:menu="@menu/bottom_nav_menu"
         app:labelVisibilityMode="labeled"
-        android:paddingTop="-2dp"
-        android:layout_marginBottom="-69dp"
-        app:itemIconSize="50dp" />
+        app:itemIconSize="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="-15dp" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

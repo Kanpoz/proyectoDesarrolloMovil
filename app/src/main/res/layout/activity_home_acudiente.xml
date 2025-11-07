@@ -42,9 +42,7 @@
         android:rowCount="2"
         android:alignmentMode="alignMargins"
         android:columnOrderPreserved="false"
-        android:padding="16dp"
-        android:rowSpacing="16dp"
-        android:columnSpacing="16dp">
+        android:padding="16dp">
 
         <!-- Botón CALIFICACIONES -->
         <LinearLayout
