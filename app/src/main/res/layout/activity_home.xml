@@ -6,7 +6,7 @@
     android:background="#F8F9FA"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
+    
     <!-- 🔹 Título superior -->
     <TextView
         android:id="@+id/tvBienvenida"
@@ -68,6 +68,7 @@
                 android:textAllCaps="false"
                 android:textStyle="bold"
                 android:textColor="@android:color/white"
+                android:textAlignment="textStart"
                 android:layout_marginBottom="8dp"
                 app:icon="@drawable/ic_curso"
                 app:iconTint="@android:color/white"
@@ -84,6 +85,7 @@
                 android:textAllCaps="false"
                 android:textStyle="bold"
                 android:textColor="@android:color/white"
+                android:textAlignment="textStart"
                 android:layout_marginBottom="8dp"
                 app:icon="@drawable/ic_book"
                 app:iconTint="@android:color/white"
@@ -100,6 +102,7 @@
                 android:textAllCaps="false"
                 android:textStyle="bold"
                 android:textColor="@android:color/white"
+                android:textAlignment="textStart"
                 android:layout_marginBottom="8dp"
                 app:icon="@drawable/ic_grades"
                 app:iconTint="@android:color/white"
@@ -116,6 +119,7 @@
                 android:textAllCaps="false"
                 android:textStyle="bold"
                 android:textColor="@android:color/white"
+                android:textAlignment="textStart"
                 android:layout_marginBottom="8dp"
                 app:icon="@drawable/ic_calendar"
                 app:iconTint="@android:color/white"
@@ -132,6 +136,7 @@
                 android:textAllCaps="false"
                 android:textStyle="bold"
                 android:textColor="@android:color/white"
+                android:textAlignment="textStart"
                 app:icon="@drawable/ic_calendar"
                 app:iconTint="@android:color/white"
                 app:backgroundTint="#607D8B"

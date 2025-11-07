@@ -8,6 +8,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class HomeAcudiente : AppCompatActivity() {
 
+    private lateinit var bottomNav: BottomNavigationView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_acudiente)
@@ -17,7 +19,15 @@ class HomeAcudiente : AppCompatActivity() {
         val btnMaterias = findViewById<LinearLayout>(R.id.btnMaterias)
         val btnObservaciones = findViewById<LinearLayout>(R.id.btnObservaciones)
         val btnTareas = findViewById<LinearLayout>(R.id.btnTareas)
-        val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNavigation)
+        bottomNav = findViewById(R.id.bottomNavigation)
+
+        bottomNav.selectedItemId = R.id.nav_home
+
+        //Desactiva el efecto "ripple" (el círculo que se expande al tocar)
+        bottomNav.itemRippleColor = null
+
+        //Evita la animación o salto brusco al re-seleccionar
+        bottomNav.setOnItemReselectedListener {}
 
         btnMaterias.setOnClickListener {
             //val intent = Intent(this, MateriasActivity::class.java)
@@ -36,6 +46,15 @@ class HomeAcudiente : AppCompatActivity() {
 
         // Manejo de clics en el menú
         bottomNav.setOnItemSelectedListener { item ->
+            bottomNav.animate()
+                .scaleX(1.1f)
+                .scaleY(1.1f)
+                .setDuration(120)
+                .withEndAction {
+                    bottomNav.animate().scaleX(1f).scaleY(1f).setDuration(120).start()
+                }
+                .start()
+
             when (item.itemId) {
                 R.id.nav_home -> {
                     true
@@ -53,7 +72,5 @@ class HomeAcudiente : AppCompatActivity() {
                 else -> false
             }
         }
-
-
-}
+    }
 }

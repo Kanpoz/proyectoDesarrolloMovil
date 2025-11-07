@@ -17,6 +17,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import android.Manifest
 import android.content.pm.PackageManager
+import android.view.View
 import androidx.core.app.ActivityCompat
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -42,19 +43,22 @@ class MainChatActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_chat)
 
+        bottomNav = findViewById(R.id.bottomNavigation)
         mAuth = FirebaseAuth.getInstance()
         mDbRef = FirebaseDatabase.getInstance().getReference()
-
         userList = ArrayList()
         adapter = UserAdapter(this, userList)
-
         userRecyclerView = findViewById(R.id.userRecyclerview)
 
         userRecyclerView.layoutManager = LinearLayoutManager(this)
         userRecyclerView.adapter = adapter
 
-        // Seleccionar "home" al entrar
-        bottomNav = findViewById(R.id.bottomNavigation)
+        //Desactiva el efecto "ripple" (el círculo que se expande al tocar)
+        bottomNav.itemRippleColor = null
+
+        //Evita la animación o salto brusco al re-seleccionar
+        bottomNav.setOnItemReselectedListener {}
+
         bottomNav.selectedItemId = R.id.nav_messages
 
         // MEJORA: Agregado logs para debug
@@ -114,6 +118,15 @@ class MainChatActivity : AppCompatActivity() {
 
         // Manejo de clics en el menú
         bottomNav.setOnItemSelectedListener { item ->
+            bottomNav.animate()
+                .scaleX(1.1f)
+                .scaleY(1.1f)
+                .setDuration(120)
+                .withEndAction {
+                    bottomNav.animate().scaleX(1f).scaleY(1f).setDuration(120).start()
+                }
+                .start()
+
             when (item.itemId) {
                 R.id.nav_home -> {
                     startActivity(Intent(this, HomeActivity::class.java))

@@ -23,6 +23,7 @@ class PerfilActivity : AppCompatActivity() {
     private lateinit var tvDireccion: TextView
     private lateinit var btnLogout: Button
     private lateinit var mAuth: FirebaseAuth
+    private lateinit var bottomNav: BottomNavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +37,7 @@ class PerfilActivity : AppCompatActivity() {
         tvTelefono=findViewById(R.id.tvTelefono)
         tvDireccion=findViewById(R.id.tvDireccion)
         btnLogout=findViewById(R.id.btnCerrarSesion)
+        bottomNav = findViewById(R.id.bottomNavigation)
 
         cargarDatosUsuario()
 
@@ -46,14 +48,26 @@ class PerfilActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        //uso de los botones de abajo
-        val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNavigation)
+        //Desactiva el efecto "ripple" (el círculo que se expande al tocar)
+        bottomNav.itemRippleColor = null
+
+        //Evita la animación o salto brusco al re-seleccionar
+        bottomNav.setOnItemReselectedListener {}
 
         // Seleccionar "perfil" al entrar
         bottomNav.selectedItemId = R.id.nav_profile
 
         // Manejo de clics en el menú
         bottomNav.setOnItemSelectedListener { item ->
+            bottomNav.animate()
+                .scaleX(1.1f)
+                .scaleY(1.1f)
+                .setDuration(120)
+                .withEndAction {
+                    bottomNav.animate().scaleX(1f).scaleY(1f).setDuration(120).start()
+                }
+                .start()
+
             when (item.itemId) {
                 R.id.nav_home -> {
                     startActivity(Intent(this, HomeActivity::class.java))

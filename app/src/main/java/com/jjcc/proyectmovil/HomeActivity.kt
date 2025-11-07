@@ -9,6 +9,8 @@ import com.google.android.material.button.MaterialButton
 
 class HomeActivity : AppCompatActivity() {
 
+    private lateinit var bottomNav: BottomNavigationView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)
@@ -18,7 +20,13 @@ class HomeActivity : AppCompatActivity() {
         val btnCursos = findViewById<MaterialButton>(R.id.btnCursos)
         val btnAsignaturas = findViewById<MaterialButton>(R.id.btnAsignaturas)
         val btnAsistencias = findViewById<MaterialButton>(R.id.btnAsistencias)
-        val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNavigation)
+        bottomNav = findViewById(R.id.bottomNavigation)
+
+        //Desactiva el efecto "ripple" (el círculo que se expande al tocar)
+        bottomNav.itemRippleColor = null
+
+        //Evita la animación o salto brusco al re-seleccionar
+        bottomNav.setOnItemReselectedListener {}
 
         //Botón de calendario
         btnCalendar.setOnClickListener {
@@ -45,6 +53,15 @@ class HomeActivity : AppCompatActivity() {
 
         // Manejo de clics en el menú
         bottomNav.setOnItemSelectedListener { item ->
+            bottomNav.animate()
+                .scaleX(1.1f)
+                .scaleY(1.1f)
+                .setDuration(120)
+                .withEndAction {
+                    bottomNav.animate().scaleX(1f).scaleY(1f).setDuration(120).start()
+                }
+                .start()
+
             when (item.itemId) {
                 R.id.nav_home -> {
                     true
