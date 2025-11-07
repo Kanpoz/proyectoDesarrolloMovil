@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="800dp"
-    android:background="?android:attr/selectableItemBackground"
-    android:padding="16dp"
-    android:layout_marginTop="-330dp">
+    android:layout_height="wrap_content"
+    android:padding="16dp">
 
     <!-- Avatar simple -->
     <ImageView
@@ -58,23 +56,6 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="72dp"
         android:background="#E0E0E0" />
-
-    <Button
-        android:id="@+id/btnAsistencias"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="VER ASISTENCIAS"
-        android:textAllCaps="false"
-        android:textColor="@android:color/white"
-        android:backgroundTint="#4CAF50"
-        android:layout_marginTop="100dp"
-        android:layout_below="@id/profile_image"
-        android:layout_centerHorizontal="true"
-        android:padding="12dp"
-        android:layout_marginHorizontal="32dp"
-        android:background="@drawable/bg_green_button"/>
-
 
 </RelativeLayout>
