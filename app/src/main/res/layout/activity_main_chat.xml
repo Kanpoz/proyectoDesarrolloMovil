@@ -20,4 +20,19 @@
         app:layout_constraintVertical_bias="1.0"
         tools:listitem="@layout/activity_user" />
 
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="#FFFFFF"
+        app:menu="@menu/bottom_nav_menu"
+        app:labelVisibilityMode="selected"
+        android:layout_gravity="bottom"
+        app:itemIconSize="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="-15dp"
+        />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

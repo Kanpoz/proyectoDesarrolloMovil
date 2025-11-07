@@ -57,10 +57,6 @@ class HomeActivity : AppCompatActivity() {
                     startActivity(Intent(this, PerfilActivity::class.java))
                     true
                 }
-                R.id.nav_menu -> {
-                    startActivity(Intent(this, Menu::class.java))
-                    true
-                }
                 else -> false
             }
         }

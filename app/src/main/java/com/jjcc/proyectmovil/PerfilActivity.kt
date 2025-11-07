@@ -21,12 +21,8 @@ class PerfilActivity : AppCompatActivity() {
     private lateinit var tvCorreo: TextView
     private lateinit var tvTelefono: TextView
     private lateinit var tvDireccion: TextView
-
     private lateinit var btnLogout: Button
-
     private lateinit var mAuth: FirebaseAuth
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,7 +46,6 @@ class PerfilActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-
         //uso de los botones de abajo
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNavigation)
 
@@ -65,22 +60,15 @@ class PerfilActivity : AppCompatActivity() {
                     true
                 }
                 R.id.nav_messages -> {
-                    startActivity(Intent(this, ChatActivity::class.java))
+                    startActivity(Intent(this, MainChatActivity::class.java))
                     true
                 }
                 R.id.nav_profile -> {
-                    // Ya estamos aquí, no hace nada
-                    true
-                }
-                R.id.nav_menu -> {
-                    // Aquí va la Activity para menú si la tienes
                     true
                 }
                 else -> false
             }
         }
-
-
     }
 
     private fun cargarDatosUsuario() {
@@ -115,7 +103,4 @@ class PerfilActivity : AppCompatActivity() {
             Toast.makeText(this, "Error al cargar datos: ${it.message}", Toast.LENGTH_SHORT).show()
         }
     }
-
-
-
 }

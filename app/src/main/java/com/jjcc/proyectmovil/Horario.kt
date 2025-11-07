@@ -1,4 +1,4 @@
-package com.jjcc.proyectmovil.models
+package com.jjcc.proyectmovil
 
 data class Horario(
     var dia: String = "",

@@ -18,6 +18,7 @@ import com.google.firebase.database.ValueEventListener
 import android.Manifest
 import android.content.pm.PackageManager
 import androidx.core.app.ActivityCompat
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainChatActivity : AppCompatActivity() {
 
@@ -26,6 +27,7 @@ class MainChatActivity : AppCompatActivity() {
     private lateinit var adapter: UserAdapter
     private lateinit var mAuth: FirebaseAuth
     private lateinit var mDbRef: DatabaseReference
+    private lateinit var bottomNav: BottomNavigationView
 
     private val requestPermissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestMultiplePermissions()
@@ -50,6 +52,10 @@ class MainChatActivity : AppCompatActivity() {
 
         userRecyclerView.layoutManager = LinearLayoutManager(this)
         userRecyclerView.adapter = adapter
+
+        // Seleccionar "home" al entrar
+        bottomNav = findViewById(R.id.bottomNavigation)
+        bottomNav.selectedItemId = R.id.nav_messages
 
         // MEJORA: Agregado logs para debug
         Log.d("ChatMain", "Usuario actual: ${mAuth.currentUser?.uid}")
@@ -104,6 +110,24 @@ class MainChatActivity : AppCompatActivity() {
                     Manifest.permission.ACCESS_BACKGROUND_LOCATION
                 )
             )
+        }
+
+        // Manejo de clics en el menú
+        bottomNav.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_home -> {
+                    startActivity(Intent(this, PerfilActivity::class.java))
+                    true
+                }
+                R.id.nav_messages -> {
+                    true
+                }
+                R.id.nav_profile -> {
+                    startActivity(Intent(this, PerfilActivity::class.java))
+                    true
+                }
+                else -> false
+            }
         }
     }
 

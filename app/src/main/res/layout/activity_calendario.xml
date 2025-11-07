@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginBottom="25dp"
     android:background="#E9F0FB"
     tools:context=".MainActivity">
 
@@ -69,71 +70,30 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
+        <!-- Título de eventos -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Eventos"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:layout_marginTop="10dp"
+            android:textColor="@android:color/black"
+            android:layout_gravity="center_horizontal"/>
+
         <!-- ScrollView para la lista de eventos -->
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fillViewport="true"
-            android:padding="16dp">
+            android:layout_marginTop="30dp"
+            android:padding="15dp">
 
             <LinearLayout
                 android:id="@+id/layoutEventos"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-
-                <!-- Título de eventos -->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Eventos"
-                    android:textStyle="bold"
-                    android:textSize="18sp"
-                    android:textColor="@android:color/black"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginBottom="12dp"/>
-
-                <!-- Lista de eventos -->
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:layout_marginBottom="12dp"
-                    app:cardCornerRadius="24dp"
-                    app:cardElevation="2dp"
-                    android:backgroundTint="@android:color/white"/>
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:layout_marginBottom="12dp"
-                    app:cardCornerRadius="24dp"
-                    app:cardElevation="2dp"
-                    android:backgroundTint="@android:color/white"/>
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:layout_marginBottom="12dp"
-                    app:cardCornerRadius="24dp"
-                    app:cardElevation="2dp"
-                    android:backgroundTint="@android:color/white"/>
-
-                <!-- Más tarjetas de ejemplo -->
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:layout_marginBottom="12dp"
-                    app:cardCornerRadius="24dp"
-                    app:cardElevation="2dp"
-                    android:backgroundTint="@android:color/white"/>
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:layout_marginBottom="12dp"
-                    app:cardCornerRadius="24dp"
-                    app:cardElevation="2dp"
-                    android:backgroundTint="@android:color/white"/>
 
             </LinearLayout>
         </ScrollView>
