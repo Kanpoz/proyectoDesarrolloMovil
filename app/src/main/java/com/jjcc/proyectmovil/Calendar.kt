@@ -20,7 +20,7 @@ class Calendar : AppCompatActivity() {
         // Detecta cuando el usuario hace clic en un día del calendario
         calendarView.setOnDateChangeListener { _, year, month, dayOfMonth ->
             // Ojo: en Android el mes empieza en 0 (Enero=0, Febrero=1...)
-            val fecha = "$dayOfMonth/${month + 1}/$year"
+            val fecha = "$dayOfMonth de ${month + 1} del $year"
 
             // Muestra la fecha seleccionada
             tvFechaSeleccionada.text = "Seleccionaste: $fecha"
