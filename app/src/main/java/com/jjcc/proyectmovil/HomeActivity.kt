@@ -11,8 +11,6 @@ import com.google.android.material.button.MaterialButton
 
 class HomeActivity : AppCompatActivity() {
 
-    lateinit var calendar: Calendar
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
