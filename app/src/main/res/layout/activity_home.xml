@@ -6,7 +6,7 @@
     android:background="#F8F9FA"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    
+
     <!-- 🔹 Título superior -->
     <TextView
         android:id="@+id/tvBienvenida"

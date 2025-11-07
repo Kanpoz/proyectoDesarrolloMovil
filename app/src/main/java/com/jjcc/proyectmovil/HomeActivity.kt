@@ -10,6 +10,7 @@ import com.google.android.material.button.MaterialButton
 class HomeActivity : AppCompatActivity() {
 
     private lateinit var bottomNav: BottomNavigationView
+    private lateinit var btnNotas: MaterialButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()
@@ -20,6 +21,7 @@ class HomeActivity : AppCompatActivity() {
         val btnCursos = findViewById<MaterialButton>(R.id.btnCursos)
         val btnAsignaturas = findViewById<MaterialButton>(R.id.btnAsignaturas)
         val btnAsistencias = findViewById<MaterialButton>(R.id.btnAsistencias)
+        btnNotas = findViewById(R.id.btnNotas)
         bottomNav = findViewById(R.id.bottomNavigation)
 
         //Desactiva el efecto "ripple" (el círculo que se expande al tocar)
@@ -48,7 +50,11 @@ class HomeActivity : AppCompatActivity() {
             startActivity(Intent(this, MisAsignaturas::class.java))
         }
 
-        // Seleccionar "home" al entrar
+        btnNotas.setOnClickListener {
+            startActivity(Intent(this, MisNotas::class.java))
+        }
+
+        // Seleccionar "home" en el menu de navegación al entrar
         bottomNav.selectedItemId = R.id.nav_home
 
         // Manejo de clics en el menú

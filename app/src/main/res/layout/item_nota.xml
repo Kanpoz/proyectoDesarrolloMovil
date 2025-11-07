@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="12dp"
-    app:cardCornerRadius="16dp"
+    app:cardCornerRadius="20dp"
     app:cardElevation="4dp"
     android:backgroundTint="@android:color/white">
 
@@ -15,31 +15,30 @@
         android:padding="16dp">
 
         <TextView
-            android:id="@+id/tvNombreAsignatura"
+            android:id="@+id/tvAsignatura"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sociales 10° A"
+            android:text="Asignatura: "
             android:textStyle="bold"
-            android:textSize="18sp"
-            android:textColor="@android:color/black" />
+            android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/tvAula"
+            android:id="@+id/tvNotaFinal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Aula 202"
-            android:textSize="14sp"
-            android:textColor="#555555"
+            android:text="Nota Final: 4.5"
+            android:textSize="16sp"
             android:layout_marginTop="4dp" />
 
         <TextView
-            android:id="@+id/tvGrado"
-            android:layout_width="wrap_content"
+            android:id="@+id/tvPeriodo"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Grado 10° - Sección A"
-            android:textSize="14sp"
-            android:textColor="#777777"
-            android:layout_marginTop="2dp" />
+            android:text="Periodo: 2025-1"
+            android:textSize="13sp"
+            android:textColor="#666"
+            android:gravity="end"
+            android:layout_marginTop="10dp" />
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>
