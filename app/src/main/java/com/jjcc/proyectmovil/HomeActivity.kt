@@ -8,6 +8,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.button.MaterialButton
+import com.jjcc.proyectmovil.models.Asignatura
 
 class HomeActivity : AppCompatActivity() {
 
@@ -23,11 +24,29 @@ class HomeActivity : AppCompatActivity() {
         }
 
         val btnCalendar = findViewById<MaterialButton>(R.id.btnCalendar)
+        val btnCursos = findViewById<MaterialButton>(R.id.btnCursos)
+        val btnAsignaturas = findViewById<MaterialButton>(R.id.btnAsignaturas)
+        val btnAsistencias = findViewById<MaterialButton>(R.id.btnAsistencias)
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNavigation)
 
         //Botón de calendario
         btnCalendar.setOnClickListener {
             startActivity(Intent(this, Calendar::class.java))
+        }
+
+        //Botón de cursos
+        btnCursos.setOnClickListener {
+            startActivity(Intent(this, Curso::class.java))
+        }
+
+        //Botón de asistencias
+        btnAsistencias.setOnClickListener {
+            startActivity(Intent(this, AsistenciasActivity::class.java))
+        }
+
+        //Botón de asignaturas
+        btnAsignaturas.setOnClickListener {
+            startActivity(Intent(this, Asignatura::class.java))
         }
 
         // Seleccionar "home" al entrar
