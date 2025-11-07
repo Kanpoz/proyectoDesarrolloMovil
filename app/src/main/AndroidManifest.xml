@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProyectMovil">
         <activity
+            android:name=".AsistenciaAdapter"
+            android:exported="false" />
+        <activity
             android:name=".MisNotas"
             android:exported="false" />
         <activity
@@ -39,13 +42,13 @@
             android:name=".ui.courses.ListaDeCursosActivity"
             android:exported="false" />
         <activity
-            android:name=".Asistencia"
+            android:name=".ItemAsistencia"
             android:exported="false" />
         <activity
             android:name=".RegistrarAsistenciaActivity"
             android:exported="false" />
         <activity
-            android:name=".AsistenciasActivity"
+            android:name=".MisAsistencias"
             android:exported="false" />
         <activity
             android:name=".Menu"

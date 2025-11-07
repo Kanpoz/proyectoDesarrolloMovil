@@ -42,7 +42,7 @@ class HomeActivity : AppCompatActivity() {
 
         //Botón de asistencias
         btnAsistencias.setOnClickListener {
-            startActivity(Intent(this, AsistenciasActivity::class.java))
+            startActivity(Intent(this, MisAsistencias::class.java))
         }
 
         //Botón de asignaturas

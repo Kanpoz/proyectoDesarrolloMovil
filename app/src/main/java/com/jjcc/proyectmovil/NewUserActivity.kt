@@ -7,10 +7,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
@@ -36,16 +33,18 @@ class NewUserActivity : AppCompatActivity(){
         val spinnerTipoRol = findViewById<Spinner>(R.id.spinnerTipoRol)
 
         // Lista de tipos de documentos
-        val tipoDocumento = listOf("CC", "TI", "CE", "PASAPORTE")
-        val tipoRol = listOf("ESTUDIANTE","RECTOR","ACUDIENTE","DOCENTE","ADMINISTRADOR","COORDINADOR")
+        val tipoDocumento = listOf("Selecciona un tipo de documento", "CC", "TI", "CE", "PASAPORTE")
+        val tipoRol = listOf("Selecciona un rol", "ESTUDIANTE", "RECTOR", "ACUDIENTE", "DOCENTE", "ADMINISTRADOR", "COORDINADOR")
 
-        //Adaptador para el spinner
+        //Adaptador para el spinner 1
         val adapter = ArrayAdapter(this,android.R.layout.simple_spinner_dropdown_item,tipoDocumento)
-        val adapter1 = ArrayAdapter(this,android.R.layout.simple_spinner_dropdown_item,tipoRol)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinnerTipoDocumento.adapter= adapter
+
+        //Adaptador para el spinner 2
+        val adapter1 = ArrayAdapter(this,android.R.layout.simple_spinner_dropdown_item,tipoRol)
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spinnerTipoDocumento.adapter=adapter
-        spinnerTipoRol.adapter=adapter1
+        spinnerTipoRol.adapter= adapter1
 
         btnRegistrar.setOnClickListener {
             val nombres = editNombres.text.toString().trim()
@@ -58,9 +57,19 @@ class NewUserActivity : AppCompatActivity(){
             val password = editPassword.text.toString().trim()
             val tipoRol = spinnerTipoRol.selectedItem.toString()
 
-            if(nombres.isEmpty() || apellidos.isEmpty() || tipoDocumento.isEmpty() || documento.isEmpty()
-                || celular.isEmpty() || direccion.isEmpty() || email.isEmpty() || password.isEmpty() || tipoRol.isEmpty()){
+            if(nombres.isEmpty() || apellidos.isEmpty() || documento.isEmpty()
+                || celular.isEmpty() || direccion.isEmpty() || email.isEmpty() || password.isEmpty()){
                 Toast.makeText(this, "Complete todos los campos", Toast.LENGTH_SHORT). show()
+                return@setOnClickListener
+            }
+
+            if(tipoDocumento == "Selecciona un tipo de documento"){
+                Toast.makeText(this, "Seleccione un tipo de documento", Toast.LENGTH_SHORT). show()
+                return@setOnClickListener
+            }
+
+            if(tipoRol == "Selecciona un rol"){
+                Toast.makeText(this, "Seleccione un rol", Toast.LENGTH_SHORT). show()
                 return@setOnClickListener
             }
 

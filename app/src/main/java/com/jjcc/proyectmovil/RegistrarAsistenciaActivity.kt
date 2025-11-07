@@ -51,7 +51,7 @@ class RegistrarAsistenciaActivity : AppCompatActivity() {
         val datos = mapOf("porcentaje" to porcentaje)
         dbRef.child(semanaSeleccionada).setValue(datos)
             .addOnSuccessListener {
-                Toast.makeText(this, "Asistencia guardada correctamente", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "ItemAsistencia guardada correctamente", Toast.LENGTH_SHORT).show()
                 finish() // Cierra la activity y vuelve al dashboard
             }
             .addOnFailureListener {
