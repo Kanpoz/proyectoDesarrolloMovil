@@ -58,9 +58,32 @@ class MainActivity : AppCompatActivity() {
                             .child(uid)
                             .child("rol")
 
+                        rolRef.get()
+                            .addOnSuccessListener { snap ->
+                                val rol = snap.getValue(String::class.java) ?: ""
+                                Toast.makeText(this, "El rol es: $rol", Toast.LENGTH_SHORT)
+                                    .show()
 
-                        startActivity(Intent(this, HomeActivity::class.java))
-                        finish()
+                                val destino = if (rol.equals("DOCENTE", ignoreCase = true)) {
+                                    Intent(this, HomeDocente::class.java)
+                                } else if (rol.equals("ACUDIENTE", ignoreCase = true)) {
+                                    Intent(this, HomeAcudiente::class.java)
+                                } else if (rol.equals("ADMINISTRADOR", ignoreCase = true)) {
+                                    Intent(this, HomeAdmin::class.java)
+                                }else{
+                                    Intent(this, HomeActivity::class.java)
+                                }
+
+                                startActivity(destino)
+                                finish()
+                            }
+                            .addOnFailureListener { e ->
+                                Toast.makeText(
+                                    this,
+                                    "No se pudo leer el rol: ${e.message}",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
                     }else{
                         Toast.makeText(this,"La información que ingresaste no es válida. Revisa el correo o la contraseña e intentalo nuevamente.",Toast.LENGTH_SHORT).show()
                     }
