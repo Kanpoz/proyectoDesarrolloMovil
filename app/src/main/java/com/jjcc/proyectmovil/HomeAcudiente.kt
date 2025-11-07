@@ -42,10 +42,12 @@ class HomeAcudiente : AppCompatActivity() {
                 }
                 R.id.nav_messages -> {
                     startActivity(Intent(this, MainChatActivity::class.java))
+                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
                     true
                 }
                 R.id.nav_profile -> {
                     startActivity(Intent(this, PerfilActivity::class.java))
+                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
                     true
                 }
                 else -> false

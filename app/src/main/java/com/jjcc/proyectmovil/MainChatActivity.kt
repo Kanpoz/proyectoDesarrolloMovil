@@ -116,7 +116,8 @@ class MainChatActivity : AppCompatActivity() {
         bottomNav.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_home -> {
-                    startActivity(Intent(this, PerfilActivity::class.java))
+                    startActivity(Intent(this, HomeActivity::class.java))
+                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
                     true
                 }
                 R.id.nav_messages -> {
@@ -124,6 +125,7 @@ class MainChatActivity : AppCompatActivity() {
                 }
                 R.id.nav_profile -> {
                     startActivity(Intent(this, PerfilActivity::class.java))
+                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
                     true
                 }
                 else -> false
