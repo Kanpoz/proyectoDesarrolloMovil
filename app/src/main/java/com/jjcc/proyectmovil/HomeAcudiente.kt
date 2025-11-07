@@ -19,13 +19,6 @@ class HomeAcudiente : AppCompatActivity() {
         val btnTareas = findViewById<LinearLayout>(R.id.btnTareas)
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNavigation)
 
-        // === Acciones al presionar cada botón ===
-        btnCalificaciones.setOnClickListener {
-            // Aquí puedes abrir otra Activity
-            //val intent = Intent(this, CalificacionesActivity::class.java)
-            startActivity(intent)
-        }
-
         btnMaterias.setOnClickListener {
             //val intent = Intent(this, MateriasActivity::class.java)
             startActivity(intent)
