@@ -23,7 +23,7 @@ class HomeActivity : AppCompatActivity() {
 
         //Botón de calendario
         btnCalendar.setOnClickListener {
-            startActivity(Intent(this, Calendar::class.java))
+            startActivity(Intent(this, Calendario::class.java))
         }
 
         //Botón de cursos

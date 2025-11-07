@@ -2,8 +2,12 @@ package com.jjcc.proyectmovil
 
 data class Curso(
     var id: String = "",
-    var grado: Int = 1,
-    var seccion: String = "A",
-    var capacidad: Int = 30,
-    var estudiantesInscritos: MutableList<String> = mutableListOf()
+    var nombre: String = "",
+    var grado: String = "",
+    var seccion: String = "",
+    var capacidad: String = "",
+    var aula: String = "",
+    var estudiantesInscritos: MutableList<String> = mutableListOf(),
+    var horaInicio: String = "",
+    var horaFin: String = ""
 )

@@ -8,4 +8,11 @@
     <string name="entrar">ENTRAR</string>
     <string name="olvidaste_la_contrase_a">¿Olvidaste la contraseña?</string>
     <string name="necesitas_ayuda">¿Necesitas ayuda?</string>
+    <string-array name="dias_semana">
+        <item>Lunes</item>
+        <item>Martes</item>
+        <item>Miércoles</item>
+        <item>Jueves</item>
+        <item>Viernes</item>
+    </string-array>
 </resources>
