@@ -1,4 +1,4 @@
-package com.jjcc.proyectmovil.ui.courses
+package com.jjcc.proyectmovil
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,8 +6,6 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.jjcc.proyectmovil.Curso
-import com.jjcc.proyectmovil.R
 
 class CursoAdapter(private val courseList: List<Curso>) :
     RecyclerView.Adapter<CursoAdapter.ViewHolder>() {

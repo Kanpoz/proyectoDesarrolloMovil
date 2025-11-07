@@ -1,4 +1,4 @@
-package com.jjcc.proyectmovil.ui.attendance
+package com.jjcc.proyectmovil
 
 import android.graphics.Color
 import android.os.Bundle
@@ -16,7 +16,7 @@ class AsistenciasActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_attendance_dashboard)
+        setContentView(R.layout.activity_asistencias)
 
         barChart = findViewById(R.id.barChart)
         loadAttendanceData()

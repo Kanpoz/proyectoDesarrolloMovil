@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.FirebaseFirestore
 import com.jjcc.proyectmovil.R
 import com.jjcc.proyectmovil.Curso
+import com.jjcc.proyectmovil.CursoAdapter
 
 class ListaDeCursosActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView

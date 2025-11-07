@@ -1,6 +1,5 @@
 package com.jjcc.proyectmovil
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.EditText
@@ -22,8 +21,6 @@ class ChatActivity : AppCompatActivity() {
     private lateinit var messageAdapter: MessageAdapter
     private lateinit var messageList: ArrayList<Message>
     private lateinit var mDbRef: DatabaseReference
-
-
     var receiveRoom: String? = null
     var senderRoom: String? = null
 
