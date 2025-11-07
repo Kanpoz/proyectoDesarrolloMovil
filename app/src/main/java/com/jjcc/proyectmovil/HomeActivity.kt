@@ -3,6 +3,7 @@ package com.jjcc.proyectmovil
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.LinearLayout
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -17,18 +18,17 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.layoutHome)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
-        val btnCalendar = findViewById<Button>(R.id.btnCalendar)
+        val btnCalendar = findViewById<LinearLayout>(R.id.btnCalendar)
 
         btnCalendar.setOnClickListener {
             startActivity(Intent(this, Calendar::class.java))
         }
-
 
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNavigation)
 
