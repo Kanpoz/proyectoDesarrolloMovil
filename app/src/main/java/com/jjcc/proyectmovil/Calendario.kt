@@ -22,6 +22,7 @@ class Calendario : AppCompatActivity() {
     private lateinit var layoutEventos: LinearLayout
     private lateinit var calendarView: CalendarView
     private lateinit var tvFechaSeleccionada: TextView
+    val estudianteId: String? = FirebaseAuth.getInstance().currentUser?.uid
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,8 +32,6 @@ class Calendario : AppCompatActivity() {
         layoutEventos = findViewById(R.id.layoutEventos)
         calendarView = findViewById(R.id.calendarView)
         tvFechaSeleccionada = findViewById(R.id.tvFechaSeleccionada)
-
-        val estudianteId = FirebaseAuth.getInstance().currentUser?.uid
 
         if (estudianteId != null) {
             db.collection("cursos")
@@ -68,7 +67,7 @@ class Calendario : AppCompatActivity() {
         layoutEventos.removeAllViews() // Limpiamos la vista anterior
 
         db.collection("cursos")
-            .whereArrayContains("estudiantesInscritos", estudianteId)
+            .whereArrayContains("estudiantesInscritos", estudianteId!!)
             .get()
             .addOnSuccessListener { result ->
                 var hayClases = false
@@ -124,7 +123,7 @@ class Calendario : AppCompatActivity() {
 
     private fun mostrarMensajeSinClases() {
         val mensaje = TextView(this).apply {
-            text = "No tienes clases este día 🎉"
+            text = "No tienes clases este día"
             textSize = 18f
             setTextColor(Color.DKGRAY)
             setPadding(40, 40, 40, 40)

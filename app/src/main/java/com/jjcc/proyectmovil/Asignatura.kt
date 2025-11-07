@@ -1,4 +1,6 @@
-package com.jjcc.proyectmovil.models
+package com.jjcc.proyectmovil
+
+import com.jjcc.proyectmovil.models.Horario
 
 data class Asignatura(
     var id: String = "",
