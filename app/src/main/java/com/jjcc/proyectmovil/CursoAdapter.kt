@@ -24,8 +24,8 @@ class CursoAdapter(private val courseList: List<Curso>) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val course = courseList[position]
-        holder.tvCursoNombre.text = "${curso.grado}° ${curso.seccion}"
-        holder.tvCupo.text = "${curso.estudiantesInscritos.size}/30"
+        holder.tvCursoNombre.text = "${course.grado}° ${course.seccion}"
+        holder.tvCupo.text = "${course.estudiantesInscritos.size}/30"
     }
 
     override fun getItemCount(): Int = courseList.size
