@@ -12,6 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProyectMovil">
         <activity
+            android:name=".HomeAdmin"
+            android:exported="false" />
+        <activity
+            android:name=".HomeDocente"
+            android:exported="false" />
+        <activity
+            android:name=".homeAcudiente"
+            android:exported="false" />
+        <activity
             android:name=".ui.courses.ListaDeCursosActivity"
             android:exported="false" />
         <activity

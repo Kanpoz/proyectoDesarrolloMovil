@@ -8,9 +8,11 @@
     android:elevation="4dp"
     android:foreground="?attr/selectableItemBackground"
     app:cardCornerRadius="12dp"
-    app:cardUseCompatPadding="true">
+    app:cardUseCompatPadding="true"
+    android:layout_marginBottom="20dp">
 
     <LinearLayout
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
