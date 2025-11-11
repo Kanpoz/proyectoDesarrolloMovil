@@ -29,6 +29,7 @@
         android:id="@+id/imgPerfilHome"
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:importantForAccessibility="no"
         android:src="@drawable/colegio"
         android:padding="16dp"
         android:elevation="10dp"

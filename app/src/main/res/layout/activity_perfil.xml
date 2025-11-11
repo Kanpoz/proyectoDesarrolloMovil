@@ -42,6 +42,7 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_gravity="center_horizontal"
+                android:contentDescription="Foto de perfil"
                 android:src="@drawable/ic_person"
                 android:padding="16dp"/>
 
@@ -64,6 +65,7 @@
                     <ImageView
                         android:layout_width="24dp"
                         android:layout_height="24dp"
+                        android:contentDescription="Icono de persona"
                         android:src="@drawable/ic_person"
                         app:tint="@color/AzulInstitucional"/>
 
@@ -99,6 +101,7 @@
                     <ImageView
                         android:layout_width="24dp"
                         android:layout_height="24dp"
+                        android:contentDescription="Icono de correo electrónico"
                         android:src="@drawable/ic_email"
                         app:tint="@color/AzulInstitucional"/>
 
@@ -134,6 +137,7 @@
                     <ImageView
                         android:layout_width="24dp"
                         android:layout_height="24dp"
+                        android:contentDescription="Icono de teléfono"
                         android:src="@drawable/ic_phone"
                         app:tint="@color/AzulInstitucional"/>
 
@@ -169,6 +173,7 @@
                     <ImageView
                         android:layout_width="24dp"
                         android:layout_height="24dp"
+                        android:contentDescription="Icono de ubicación"
                         android:src="@drawable/ic_location"
                         app:tint="@color/AzulInstitucional"/>
 

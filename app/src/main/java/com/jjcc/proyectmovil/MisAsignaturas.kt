@@ -39,7 +39,7 @@ class MisAsignaturas : AppCompatActivity() {
                     val itemCurso = doc.toObject(ItemCurso::class.java)
                     listaItemCursos.add(itemCurso)
                 }
-                adapter.notifyDataSetChanged()
+                adapter.notifyItemRangeInserted(0, listaItemCursos.size)
             }
             .addOnFailureListener { e ->
                 e.printStackTrace()

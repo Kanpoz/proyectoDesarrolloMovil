@@ -39,7 +39,7 @@ android {
 dependencies {
 
 
-    implementation(platform("com.google.firebase:firebase-bom:33.1.0"))
+    implementation(platform("com.google.firebase:firebase-bom:34.5.0"))
     implementation("com.google.firebase:firebase-firestore")
 
     implementation(libs.androidx.core.ktx)
@@ -54,6 +54,6 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    implementation("androidx.recyclerview:recyclerview:1.3.2")
+    implementation(libs.androidx.recyclerview)
     implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
 }

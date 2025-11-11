@@ -39,7 +39,7 @@
             android:name=".HomeDocente"
             android:exported="false" />
         <activity
-            android:name=".ui.courses.ListaDeCursosActivity"
+            android:name=".ListaDeCursosActivity"
             android:exported="false" />
         <activity
             android:name=".ItemAsistencia"

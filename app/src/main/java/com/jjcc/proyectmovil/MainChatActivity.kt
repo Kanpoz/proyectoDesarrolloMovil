@@ -62,7 +62,7 @@ class MainChatActivity : AppCompatActivity() {
         bottomNav.selectedItemId = R.id.nav_messages
 
         // MEJORA: Agregado logs para debug
-        Log.d("ChatMain", "Usuario actual: ${mAuth.currentUser?.uid}")
+        Log.d("ChatMain", "Usuario currente: ${mAuth.currentUser?.uid}")
 
         mDbRef.child("usuarios").addValueEventListener(object: ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -95,7 +95,7 @@ class MainChatActivity : AppCompatActivity() {
                 }
 
                 Log.d("ChatMain", "Total usuarios en lista: ${userList.size}")
-                adapter.notifyDataSetChanged()
+                adapter.notifyItemRangeInserted(0, userList.size)
             }
 
             override fun onCancelled(error: DatabaseError) {

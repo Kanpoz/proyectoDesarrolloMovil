@@ -10,6 +10,7 @@
         android:layout_width="56dp"
         android:layout_height="56dp"
         android:layout_centerVertical="true"
+        android:importantForAccessibility="no"
         android:src="@drawable/colegio"
         android:layout_alignParentStart="true"
         android:background="#ffffff"

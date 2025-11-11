@@ -40,7 +40,7 @@ class MisNotas : AppCompatActivity() {
                     val nota = doc.toObject(ItemNota::class.java)
                     listaNotas.add(nota)
                 }
-                adapter.notifyDataSetChanged()
+                adapter.notifyItemRangeInserted(0, listaNotas.size)
             }
             .addOnFailureListener { e ->
                 Toast.makeText(this, "Error al cargar notas: ${e.message}", Toast.LENGTH_SHORT).show()

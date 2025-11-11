@@ -28,10 +28,14 @@
             android:id="@+id/messageBox"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:layout_marginLeft="20dp"
-            android:paddingLeft="10dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
             android:background="@drawable/message_box_background"
             android:hint="Escriba su Mensaje"
+            android:inputType="text"
+            android:importantForAutofill="no"
             android:layout_weight="80"/>
 
         <ImageView
@@ -40,6 +44,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_weight="22"
+            android:importantForAccessibility="no"
             android:src="@drawable/enviar" />
 
     </LinearLayout>

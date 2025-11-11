@@ -10,29 +10,20 @@
     tools:context=".HomeAcudiente">
 
     <!-- Título superior -->
-    <LinearLayout
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:text="Inicio"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:textColor="@color/black"
         android:gravity="center_vertical"
         android:padding="16dp"
         android:layout_marginTop="25dp"
-        android:layout_marginBottom="125dp">
+        android:layout_marginBottom="125dp"
+        app:drawableEndCompat="@drawable/ic_notificacion"
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Inicio"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:textColor="@color/black" />
-
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/ic_notificacion" />
-    </LinearLayout>
+        />
 
     <!-- Cuadrícula de botones -->
     <GridLayout
@@ -54,13 +45,14 @@
             android:gravity="center"
             android:padding="12dp"
             android:background="@drawable/bg_button_blue"
-            android:layout_marginRight="5dp"
+            android:layout_marginEnd="5dp"
             android:layout_marginBottom="5dp"
             android:elevation="4dp">
 
             <ImageView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:contentDescription="Icono de calificaciones"
                 android:src="@drawable/ic_grades"/>
 
             <TextView
@@ -68,7 +60,7 @@
                 android:layout_height="wrap_content"
                 android:text="CALIFICACIONES"
                 android:textStyle="bold"
-                android:textSize="15dp"
+                android:textSize="15sp"
                 android:textColor="@color/black"
                 android:paddingTop="8dp" />
         </LinearLayout>
@@ -82,7 +74,7 @@
             android:orientation="vertical"
             android:gravity="center"
             android:padding="12dp"
-            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
             android:layout_marginBottom="5dp"
             android:background="@drawable/bg_button_blue"
             android:elevation="4dp">
@@ -90,6 +82,7 @@
             <ImageView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:contentDescription="Icono de materias"
                 android:src="@drawable/ic_curso" />
 
             <TextView
@@ -97,7 +90,7 @@
                 android:layout_height="wrap_content"
                 android:text="MATERIAS"
                 android:textStyle="bold"
-                android:textSize="15dp"
+                android:textSize="15sp"
                 android:textColor="@color/black"
                 android:paddingTop="8dp" />
         </LinearLayout>
@@ -111,7 +104,7 @@
             android:orientation="vertical"
             android:gravity="center"
             android:padding="12dp"
-            android:layout_marginRight="5dp"
+            android:layout_marginEnd="5dp"
             android:layout_marginBottom="5dp"
             android:background="@drawable/bg_button_blue"
             android:elevation="4dp">
@@ -119,6 +112,7 @@
             <ImageView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:contentDescription="Icono de observaciones"
                 android:src="@drawable/ic_observaciones"/>
 
             <TextView
@@ -126,7 +120,7 @@
                 android:layout_height="wrap_content"
                 android:text="OBSERVACIONES"
                 android:textStyle="bold"
-                android:textSize="15dp"
+                android:textSize="15sp"
                 android:textColor="@color/black"
                 android:paddingTop="8dp" />
         </LinearLayout>
@@ -140,7 +134,7 @@
             android:orientation="vertical"
             android:gravity="center"
             android:padding="12dp"
-            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
             android:layout_marginBottom="130dp"
             android:background="@drawable/bg_button_blue"
             android:elevation="4dp">
@@ -148,6 +142,7 @@
             <ImageView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:contentDescription="Icono de tareas"
                 android:src="@drawable/ic_tareas" />
 
             <TextView
@@ -155,7 +150,7 @@
                 android:layout_height="wrap_content"
                 android:text="TAREAS"
                 android:textStyle="bold"
-                android:textSize="15dp"
+                android:textSize="15sp"
                 android:textColor="@color/black"
                 android:paddingTop="8dp" />
         </LinearLayout>

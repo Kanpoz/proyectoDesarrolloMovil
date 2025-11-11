@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.auth.FirebaseAuth
 
 class UserAdapter(val context: Context, val userList: ArrayList<User>): RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
 
@@ -20,11 +19,11 @@ class UserAdapter(val context: Context, val userList: ArrayList<User>): Recycler
         val currentUser = userList[position]
 
         // CAMBIO: Usar los nombres de campos correctos
-        holder.textName.text = currentUser.getNombreCompleto()
+        holder.textName?.text = currentUser.getNombreCompleto()
 
         // Agregar información adicional
         val infoText = "${currentUser.tipoRol ?: "Sin rol"} - ${currentUser.email ?: "Sin email"}"
-        holder.textMessage.text = infoText
+        holder.textMessage?.text = infoText
 
         holder.itemView.setOnClickListener {
             val intent = Intent(context, ChatActivity::class.java)
@@ -42,7 +41,7 @@ class UserAdapter(val context: Context, val userList: ArrayList<User>): Recycler
     }
 
     class UserViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-        val textName = itemView.findViewById<TextView>(R.id.txt_name)
-        val textMessage = itemView.findViewById<TextView>(R.id.txt_last_message)
+        val textName: TextView? = itemView.findViewById(R.id.txt_name)
+        val textMessage: TextView? = itemView.findViewById(R.id.txt_last_message)
     }
 }

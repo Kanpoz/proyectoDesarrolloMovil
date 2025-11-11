@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 class CursoAdapter(private val courseList: List<ItemCurso>) :
     RecyclerView.Adapter<CursoAdapter.ViewHolder>() {
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    open class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tvCursoNombre: TextView = itemView.findViewById(R.id.tvCursoNombre)
         val tvCupo: TextView = itemView.findViewById(R.id.tvCupo)
         val btnInscribir: Button = itemView.findViewById(R.id.btnInscribir)

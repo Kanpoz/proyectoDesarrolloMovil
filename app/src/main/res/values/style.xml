@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Estilo base de los botones del menú principal -->
     <style name="MenuButtonStyle">
@@ -10,7 +10,7 @@
         <item name="android:gravity">center_vertical</item>
         <item name="android:orientation">horizontal</item>
         <item name="android:elevation">4dp</item>
-        <item name="android:clipToOutline">true</item>
+        <item name="android:clipToOutline" tools:targetApi="31">true</item>
     </style>
 
 </resources>

@@ -1,5 +1,6 @@
 package com.jjcc.proyectmovil
 
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.EditText
@@ -24,6 +25,10 @@ class ChatActivity : AppCompatActivity() {
     var receiveRoom: String? = null
     var senderRoom: String? = null
 
+    companion object {
+        private const val TAG = "ChatActivity"
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -33,7 +38,7 @@ class ChatActivity : AppCompatActivity() {
         //val intent = Intent()
         val name = intent.getStringExtra("nombres")
         val receiverUid = intent.getStringExtra("uid")
-        println(name)
+        Log.d(TAG, name ?: "Name is null")
         val senderUid = FirebaseAuth.getInstance().currentUser?.uid
         mDbRef = FirebaseDatabase.getInstance().getReference()
 
@@ -62,7 +67,7 @@ class ChatActivity : AppCompatActivity() {
                         val message = postSnapshot.getValue(Message::class.java)
                         messageList.add(message!!)
                     }
-                    messageAdapter.notifyDataSetChanged()
+                    messageAdapter.notifyItemRangeInserted(0, messageList.size)
                 }
 
                 override fun onCancelled(error: DatabaseError) {

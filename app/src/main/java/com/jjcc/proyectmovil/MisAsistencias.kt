@@ -40,7 +40,7 @@ class MisAsistencias : AppCompatActivity() {
                     val asistencia = doc.toObject(ItemAsistencia::class.java)
                     asistenciasList.add(asistencia)
                 }
-                adapter.notifyDataSetChanged()
+                adapter.notifyItemRangeInserted(0, asistenciasList.size)
             }
             .addOnFailureListener {
                 Toast.makeText(this, "Error al cargar asistencias", Toast.LENGTH_SHORT).show()
