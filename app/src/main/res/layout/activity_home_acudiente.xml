@@ -9,21 +9,33 @@
     android:background="#FFFFFF"
     tools:context=".HomeAcudiente">
 
-    <!-- Título superior -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Inicio"
-        android:textStyle="bold"
-        android:textSize="20sp"
-        android:textColor="@color/black"
+        android:orientation="horizontal"
         android:gravity="center_vertical"
         android:padding="16dp"
         android:layout_marginTop="25dp"
-        android:layout_marginBottom="125dp"
-        app:drawableEndCompat="@drawable/ic_notificacion"
+        android:layout_marginBottom="90dp">
 
-        />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Inicio"
+            android:textStyle="bold"
+            android:textSize="25sp"
+            android:textColor="@color/black"/>
+
+        <!-- Imagen en la punta derecha -->
+        <ImageView
+            android:id="@+id/ivPerfil"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_notificacion"
+            android:contentDescription="Imagen Perfil"
+            android:layout_marginEnd="8dp"/>
+    </LinearLayout>
 
     <!-- Cuadrícula de botones -->
     <GridLayout
@@ -32,127 +44,149 @@
         android:columnCount="2"
         android:rowCount="2"
         android:alignmentMode="alignMargins"
-        android:columnOrderPreserved="false"
-        android:padding="16dp">
+        android:columnOrderPreserved="false">
 
-        <!-- Botón CALIFICACIONES -->
+        <!-- ITEM 1 -->
         <LinearLayout
-            android:id="@+id/btnCalificaciones"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_columnWeight="1"
             android:orientation="vertical"
             android:gravity="center"
-            android:padding="12dp"
-            android:background="@drawable/bg_button_blue"
-            android:layout_marginEnd="5dp"
-            android:layout_marginBottom="5dp"
-            android:elevation="4dp">
+            android:padding="8dp"
+            android:layout_margin="6dp">
 
-            <ImageView
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:contentDescription="Icono de calificaciones"
-                android:src="@drawable/ic_grades"/>
+            <LinearLayout
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:background="@drawable/bg_button_blue"
+                android:gravity="center"
+                android:elevation="4dp">
+
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:src="@drawable/ic_grades"
+                    android:contentDescription="calificaciones" />
+            </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="CALIFICACIONES"
                 android:textStyle="bold"
-                android:textSize="15sp"
+                android:textSize="12sp"
                 android:textColor="@color/black"
-                android:paddingTop="8dp" />
+                android:gravity="center"
+                android:paddingTop="10dp" />
         </LinearLayout>
 
-        <!-- Botón MATERIAS -->
+
+        <!-- ITEM 2 -->
         <LinearLayout
-            android:id="@+id/btnMaterias"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_columnWeight="1"
             android:orientation="vertical"
             android:gravity="center"
-            android:padding="12dp"
-            android:layout_marginStart="5dp"
-            android:layout_marginBottom="5dp"
-            android:background="@drawable/bg_button_blue"
-            android:elevation="4dp">
+            android:padding="8dp"
+            android:layout_margin="6dp">
 
-            <ImageView
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:contentDescription="Icono de materias"
-                android:src="@drawable/ic_curso" />
+            <LinearLayout
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:background="@drawable/bg_button_blue"
+                android:gravity="center"
+                android:elevation="4dp">
+
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:src="@drawable/ic_curso"
+                    android:contentDescription="Curso" />
+            </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="MATERIAS"
+                android:text="CURSO"
                 android:textStyle="bold"
-                android:textSize="15sp"
+                android:textSize="12sp"
                 android:textColor="@color/black"
-                android:paddingTop="8dp" />
+                android:gravity="center"
+                android:paddingTop="10dp" />
         </LinearLayout>
 
-        <!-- Botón OBSERVACIONES -->
+
+        <!-- ITEM 3 -->
         <LinearLayout
-            android:id="@+id/btnObservaciones"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_columnWeight="1"
             android:orientation="vertical"
             android:gravity="center"
-            android:padding="12dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginBottom="5dp"
-            android:background="@drawable/bg_button_blue"
-            android:elevation="4dp">
+            android:padding="8dp"
+            android:layout_margin="6dp">
 
-            <ImageView
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:contentDescription="Icono de observaciones"
-                android:src="@drawable/ic_observaciones"/>
+            <LinearLayout
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:background="@drawable/bg_button_blue"
+                android:gravity="center"
+                android:elevation="4dp">
+
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:src="@drawable/ic_observaciones"
+                    android:contentDescription="Observaciones" />
+            </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="OBSERVACIONES"
                 android:textStyle="bold"
-                android:textSize="15sp"
+                android:textSize="12sp"
                 android:textColor="@color/black"
-                android:paddingTop="8dp" />
+                android:gravity="center"
+                android:paddingTop="10dp" />
         </LinearLayout>
 
-        <!-- Botón TAREAS -->
+
+        <!-- ITEM 4 -->
         <LinearLayout
-            android:id="@+id/btnTareas"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_columnWeight="1"
             android:orientation="vertical"
             android:gravity="center"
-            android:padding="12dp"
-            android:layout_marginStart="5dp"
-            android:layout_marginBottom="130dp"
-            android:background="@drawable/bg_button_blue"
-            android:elevation="4dp">
+            android:padding="8dp"
+            android:layout_margin="6dp">
 
-            <ImageView
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:contentDescription="Icono de tareas"
-                android:src="@drawable/ic_tareas" />
+            <LinearLayout
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:background="@drawable/bg_button_blue"
+                android:gravity="center"
+                android:elevation="4dp">
+
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:src="@drawable/ic_tareas"
+                    android:contentDescription="Tareas" />
+            </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="TAREAS"
                 android:textStyle="bold"
-                android:textSize="15sp"
+                android:textSize="12sp"
                 android:textColor="@color/black"
-                android:paddingTop="8dp" />
+                android:gravity="center"
+                android:paddingTop="10dp" />
         </LinearLayout>
 
     </GridLayout>
@@ -166,6 +200,7 @@
         android:layout_marginBottom="-15dp"
         android:background="#FFFFFF"
         android:paddingTop="-2dp"
+        android:layout_marginTop="95dp"
         app:itemIconSize="50dp"
         app:labelVisibilityMode="labeled"
         app:menu="@menu/bottom_nav_menu" />

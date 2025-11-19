@@ -2,12 +2,196 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeAdmin">
-    
-    <!-- Barra de navegación inferior -->
+    android:orientation="vertical"
+    android:background="#FFFFFF"
+
+    tools:context=".HomeAcudiente">
+
+    <!-- Título + campana -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:padding="16dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="90dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Inicio"
+            android:textStyle="bold"
+            android:textSize="25sp"
+            android:textColor="@color/black"/>
+
+        <!-- Imagen en la punta derecha -->
+        <ImageView
+            android:id="@+id/ivPerfil"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_notificacion"
+            android:contentDescription="Imagen Perfil"
+            android:layout_marginEnd="8dp"/>
+    </LinearLayout>
+
+
+    <!-- Grid estilo 2x2 tipo la imagen -->
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="2"
+        android:rowCount="2"
+        android:alignmentMode="alignMargins"
+        android:columnOrderPreserved="false">
+
+        <!-- ITEM 1 -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="8dp"
+            android:layout_margin="6dp">
+
+            <LinearLayout
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:background="@drawable/bg_button_blue"
+                android:gravity="center"
+                android:elevation="4dp">
+
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:src="@drawable/ic_curso"
+                    android:contentDescription="Cursos" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ASIGNAR Y GESTIONAR CURSOS"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:paddingTop="10dp" />
+        </LinearLayout>
+
+
+        <!-- ITEM 2 -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="8dp"
+            android:layout_margin="6dp">
+
+            <LinearLayout
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:background="@drawable/bg_button_blue"
+                android:gravity="center"
+                android:elevation="4dp">
+
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:src="@drawable/ic_comunicado"
+                    android:contentDescription="Comunicado" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ENVIAR NUEVO COMUNICADO"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:paddingTop="10dp" />
+        </LinearLayout>
+
+
+        <!-- ITEM 3 -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="8dp"
+            android:layout_margin="6dp">
+
+            <LinearLayout
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:background="@drawable/bg_button_blue"
+                android:gravity="center"
+                android:elevation="4dp">
+
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:src="@drawable/ic_grades"
+                    android:contentDescription="Reportes" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CONSULTAR REPORTES"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:paddingTop="10dp" />
+        </LinearLayout>
+
+
+        <!-- ITEM 4 -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="8dp"
+            android:layout_margin="6dp">
+
+            <LinearLayout
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:background="@drawable/bg_button_blue"
+                android:gravity="center"
+                android:elevation="4dp">
+
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:src="@drawable/ic_ingresos"
+                    android:contentDescription="Ingreso" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="GESTIONAR INGRESO Y REGISTRO"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:paddingTop="10dp" />
+        </LinearLayout>
+
+    </GridLayout>
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
@@ -16,6 +200,7 @@
         android:layout_marginBottom="-15dp"
         android:background="#FFFFFF"
         android:paddingTop="-2dp"
+        android:layout_marginTop="66dp"
         app:itemIconSize="50dp"
         app:labelVisibilityMode="labeled"
         app:menu="@menu/bottom_nav_menu" />
