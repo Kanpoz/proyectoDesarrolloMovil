@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F5F6FA"
-    tools:context=".PerfilActivity">
+    tools:context=".profile.PerfilActivity">
 
     <!-- Contenido desplazable -->
     <ScrollView
@@ -23,8 +23,6 @@
             android:padding="16dp">
 
             <!-- Rol de la persona -->
-
-            <!-- Foto de perfil -->
             <TextView
                 android:id="@+id/tvRol"
                 android:layout_width="wrap_content"
@@ -32,18 +30,19 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="20dp"
                 android:paddingBottom="8dp"
-                android:text="Cargando..."
+                android:text="Cargando ROL..."
                 android:textColor="@color/black"
                 android:textSize="14sp"
                 android:textStyle="bold" />
 
+            <!-- Foto de perfil -->
             <ImageView
                 android:id="@+id/imgPerfil"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
                 android:layout_gravity="center_horizontal"
                 android:contentDescription="Foto de perfil"
-                android:src="@drawable/ic_person"
+                android:src="@drawable/avatar"
                 android:padding="16dp"/>
 
             <!-- Contenedor de datos -->
@@ -66,7 +65,7 @@
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:contentDescription="Icono de persona"
-                        android:src="@drawable/ic_person"
+                        android:src="@drawable/avatar"
                         app:tint="@color/AzulInstitucional"/>
 
                     <LinearLayout
@@ -200,16 +199,15 @@
                 </LinearLayout>
             </LinearLayout>
 
-
-            <!-- Botón configuración -->
+            <!-- Nuevo botón editar datos personales -->
             <Button
-                android:id="@+id/btnConfig"
+                android:id="@+id/btnEditarPerfil"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="CONFIGURACIÓN"
-                android:backgroundTint="@color/gris"
-                android:textColor="@color/black"
-                android:layout_marginTop="60dp"/>
+                android:text="EDITAR DATOS PERSONALES"
+                android:backgroundTint="@color/cardview_shadow_start_color"
+                android:textColor="@color/white"
+                android:layout_marginTop="8dp"/>
 
             <!-- Botón cerrar sesión -->
             <Button
@@ -220,6 +218,7 @@
                 android:backgroundTint="@color/AzulInstitucional"
                 android:textColor="@color/white"
                 android:layout_marginTop="8dp"/>
+
         </LinearLayout>
 
     </ScrollView>

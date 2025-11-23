@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:layout_marginBottom="25dp"
     android:background="#E9F0FB"
-    tools:context=".MainActivity">
+    tools:context=".auth.LoginActivity">
 
     <!-- Título -->
     <TextView

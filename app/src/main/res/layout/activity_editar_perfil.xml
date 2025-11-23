@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F6FA"
+    android:layout_marginTop="50dp"
+    tools:context=".profile.EditarPerfilActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/tvTituloEditar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Editar datos personales"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Nombre -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nombre completo"
+            android:textStyle="bold"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/etNombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ingresa tu nombre"
+            android:inputType="textPersonName"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Correo -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Correo electrónico"
+            android:textStyle="bold"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/etCorreo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Contacta con soporte para cambiar el correo"
+            android:enabled="false"
+            android:inputType="textEmailAddress"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Teléfono -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Teléfono"
+            android:textStyle="bold"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/etTelefono"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ingresa tu teléfono"
+            android:inputType="phone"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Dirección -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dirección"
+            android:textStyle="bold"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/etDireccion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ingresa tu dirección"
+            android:inputType="textPostalAddress"
+            android:layout_marginBottom="20dp" />
+
+        <!-- Nuevo botón editar datos personales -->
+        <Button
+            android:id="@+id/btnCancelar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CANCELAR"
+            android:backgroundTint="@color/cardview_shadow_start_color"
+            android:textColor="@color/white"
+            android:layout_marginTop="8dp"/>
+
+        <!-- Botones -->
+        <Button
+            android:id="@+id/btnGuardar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="GUARDAR CAMBIOS"
+            android:backgroundTint="@color/AzulInstitucional"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+</ScrollView>

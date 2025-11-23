@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#FFFFFF"
-    tools:context=".HomeAcudiente">
+    tools:context=".home.HomeAcudiente">
+
 
     <!-- Título + campana -->
     <LinearLayout

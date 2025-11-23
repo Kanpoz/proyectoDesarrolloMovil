@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layoutLogin"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    tools:context=".auth.LoginActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:background="@color/azulFondo">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/bienvenido"
+            android:textColor="@color/black"
+            android:layout_marginTop="115dp"
+            android:textSize="46sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/porfavor_inicia_sesi_n_para_continuar"
+            android:textColor="@color/black"
+            android:layout_marginTop="10dp"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/editEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:hint="  Correo electrónico"
+        android:inputType="textEmailAddress"
+        android:text="estudiante1@escuela.edu.co"
+        android:drawableStart="@android:drawable/ic_dialog_email"
+        android:padding="12dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        tools:ignore="HardcodedText" />
+
+    <EditText
+        android:id="@+id/editPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:hint="   Contraseña"
+        android:inputType="textPassword"
+        android:text="password"
+        android:drawableStart="@android:drawable/ic_lock_idle_lock"
+        android:padding="12dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        tools:ignore="HardcodedText" />
+
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:backgroundTint="@color/AzulInstitucional"
+        android:text="ENTRAR"
+        app:cornerRadius="8dp" />
+
+    <TextView
+        android:id="@+id/txtRecuperar"
+        android:paddingTop="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:text="@string/olvidaste_la_contrase_a"
+        android:layout_marginTop="12dp"
+        android:textStyle="bold"
+        android:textColor="#21005D"
+        android:clickable="true"
+        android:focusable="true" />
+
+    <!-- divisor "¿Necesitas ayuda?" -->
+    <LinearLayout
+        android:layout_marginTop="80dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="16dp">
+
+        <View
+            android:layout_marginStart="40dp"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1"
+            android:background="#000000" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/necesitas_ayuda"
+            android:textColor="#000000"
+            android:textSize="14sp"
+            android:layout_marginHorizontal="5dp" />
+
+        <View
+            android:layout_marginEnd="40dp"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1"
+            android:background="#000000" />
+    </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnSoporte"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        app:iconTint="@null"
+        app:iconGravity="textEnd"
+        app:iconPadding="10dp"
+        app:iconSize="25dp"
+        android:text="CREAR USUARIO"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:textColor="@color/black"
+        app:cornerRadius="8dp"
+        android:backgroundTint="#D9D9D9"/>
+
+</LinearLayout>

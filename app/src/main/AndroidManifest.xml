@@ -12,43 +12,43 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProyectMovil">
         <activity
-            android:name=".AsistenciaAdapter"
+            android:name=".profile.EditarPerfilActivity"
             android:exported="false" />
         <activity
-            android:name=".MisNotas"
+            android:name=".core.adapter.AsistenciaAdapter"
             android:exported="false" />
         <activity
-            android:name=".MisCursos"
+            android:name=".roles.student.MisNotas"
             android:exported="false" />
         <activity
-            android:name=".AsignaturaAdapter"
+            android:name=".roles.student.MisCursos"
             android:exported="false" />
         <activity
-            android:name=".MisAsignaturas"
+            android:name=".core.adapter.AsignaturaAdapter"
             android:exported="false" />
         <activity
-            android:name=".ItemAsignatura"
+            android:name=".roles.student.MisAsignaturas"
             android:exported="false" />
         <activity
-            android:name=".HomeAcudiente"
+            android:name=".core.model.ItemAsignatura"
             android:exported="false" />
         <activity
-            android:name=".HomeAdmin"
+            android:name=".home.HomeAdmin"
             android:exported="false" />
         <activity
-            android:name=".HomeDocente"
+            android:name=".home.HomeDocente"
             android:exported="false" />
         <activity
-            android:name=".ListaDeCursosActivity"
+            android:name=".roles.student.ListaDeCursosActivity"
             android:exported="false" />
         <activity
-            android:name=".ItemAsistencia"
+            android:name=".core.model.ItemAsistencia"
             android:exported="false" />
         <activity
             android:name=".RegistrarAsistenciaActivity"
             android:exported="false" />
         <activity
-            android:name=".MisAsistencias"
+            android:name=".roles.student.MisAsistencias"
             android:exported="false" />
         <activity
             android:name=".Menu"
@@ -57,28 +57,28 @@
             android:name=".GeofenceService"
             android:exported="false" />
         <activity
-            android:name=".MainChatActivity"
+            android:name=".messages.MainChatActivity"
             android:exported="false" />
         <activity
-            android:name=".PerfilActivity"
+            android:name=".profile.PerfilActivity"
             android:exported="false" />
         <activity
-            android:name=".Calendario"
+            android:name=".roles.student.Calendario"
             android:exported="false" />
         <activity
-            android:name=".ChatActivity"
+            android:name=".messages.ChatActivity"
             android:exported="false" />
         <activity
-            android:name=".HomeActivity"
+            android:name=".home.HomeEstudiante"
             android:exported="false" />
         <activity
-            android:name=".NewUserActivity"
+            android:name=".auth.NewUserActivity"
             android:exported="false" />
         <activity
-            android:name=".RecoverPassActivity"
+            android:name=".auth.RecoverPassActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".auth.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

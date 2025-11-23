@@ -1,0 +1,50 @@
+package com.jjcc.proyectmovil.core.adapter
+
+import android.content.Context
+import android.content.Intent
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
+import com.jjcc.proyectmovil.R
+import com.jjcc.proyectmovil.core.model.User
+import com.jjcc.proyectmovil.messages.ChatActivity
+
+class UserAdapter(val context: Context, val userList: ArrayList<User>): RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
+        val view: View = LayoutInflater.from(context).inflate(R.layout.activity_user, parent, false)
+        return UserViewHolder(view)
+    }
+
+    override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
+        val currentUser = userList[position]
+
+        // CAMBIO: Usar los nombres de campos correctos
+        holder.textName?.text = currentUser.getNombreCompleto()
+
+        // Agregar información adicional
+        val infoText = "${currentUser.tipoRol ?: "Sin rol"} - ${currentUser.email ?: "Sin email"}"
+        holder.textMessage?.text = infoText
+
+        holder.itemView.setOnClickListener {
+            val intent = Intent(context, ChatActivity::class.java)
+
+            // CAMBIO: Pasar el nombre completo y el uid
+            intent.putExtra("nombres", currentUser.getNombreCompleto())
+            intent.putExtra("uid", currentUser.uid)
+
+            context.startActivity(intent)
+        }
+    }
+
+    override fun getItemCount(): Int {
+        return userList.size
+    }
+
+    class UserViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+        val textName: TextView? = itemView.findViewById(R.id.txt_name)
+        val textMessage: TextView? = itemView.findViewById(R.id.txt_last_message)
+    }
+}
