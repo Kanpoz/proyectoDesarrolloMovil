@@ -1,218 +1,175 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#FFFFFF"
+    android:background="#FAF7FF"
+    android:padding="16dp"
+    android:layout_marginTop="50dp"
     tools:context=".home.HomeDocente">
 
-
-    <!-- Título + campana -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:padding="16dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginBottom="90dp">
+        android:orientation="vertical">
+
+        <!-- Título -->
+        <TextView
+            android:id="@+id/tvSaludoDocente"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="¡Hola, María González!"
+            android:textColor="#000000"
+            android:textSize="22sp"
+            android:textStyle="bold" />
 
         <TextView
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Inicio"
-            android:textStyle="bold"
-            android:textSize="25sp"
-            android:textColor="@color/black"/>
+            android:text="Resumen de tu actividad académica."
+            android:textColor="#555"
+            android:layout_marginBottom="12dp" />
 
-        <!-- Imagen en la punta derecha -->
-        <ImageView
-            android:id="@+id/ivPerfil"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@drawable/ic_notificacion"
-            android:contentDescription="Imagen Perfil"
-            android:layout_marginEnd="8dp"/>
+        <!-- Tarjetas principales -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginBottom="12dp">
+
+            <!-- Gestionar Asistencia -->
+            <LinearLayout
+                android:id="@+id/cardAsistencia"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_card_lila"
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:gravity="center">
+
+                <TextView
+                    android:text="A"
+                    android:textSize="20sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/white"
+                    android:background="@drawable/bg_circle_dark"
+                    android:padding="12dp"
+                    android:layout_marginBottom="8dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Gestionar Asistencia"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/black" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pasar lista"
+                    android:textSize="12sp"
+                    android:textColor="#888" />
+            </LinearLayout>
+
+            <!-- Calificaciones -->
+            <LinearLayout
+                android:id="@+id/cardCalificaciones"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_card_verde"
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:gravity="center"
+                android:layout_marginStart="12dp">
+
+                <TextView
+                    android:text="C"
+                    android:textSize="20sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/white"
+                    android:background="@drawable/bg_circle_dark"
+                    android:padding="12dp"
+                    android:layout_marginBottom="8dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Calificaciones"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/black" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Registrar notas"
+                    android:textSize="12sp"
+                    android:textColor="#888" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Gráfica o contenedor -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Asistencia (Registros)"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp" />
+
+        <FrameLayout
+            android:id="@+id/containerGrafica"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="#F7F3FF"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Próximas clases -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Próximas Clases"
+            android:textStyle="bold"
+            android:layout_marginBottom="4dp" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#F7F3FF"
+            android:padding="8dp"
+            android:layout_marginBottom="12dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="12:00 - Historia 10° A (Virtual)"
+                android:textColor="#333" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="12:00 - Historia 10° A (Virtual)"
+                android:textColor="#333" />
+        </LinearLayout>
+
+        <!-- Notificaciones -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Notificaciones"
+            android:textStyle="bold"
+            android:layout_marginBottom="4dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sin notificaciones."
+            android:textColor="#777" />
     </LinearLayout>
 
 
-    <!-- CUADRÍCULA 2x2 -->
-    <GridLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:columnCount="2"
-        android:rowCount="2"
-        android:alignmentMode="alignMargins"
-        android:columnOrderPreserved="false">
 
-        <!-- ITEM: CURSOS -->
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:padding="8dp"
-            android:layout_margin="6dp">
-
-            <LinearLayout
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:background="@drawable/bg_button_blue"
-                android:gravity="center"
-                android:elevation="4dp">
-
-                <ImageView
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:src="@drawable/ic_curso"
-                    android:contentDescription="Cursos" />
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="CURSOS"
-                android:textStyle="bold"
-                android:textSize="12sp"
-                android:textColor="@color/black"
-                android:gravity="center"
-                android:paddingTop="10dp" />
-        </LinearLayout>
-
-
-        <!-- ITEM: HORARIO -->
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:padding="8dp"
-            android:layout_margin="6dp">
-
-            <LinearLayout
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:background="@drawable/bg_button_blue"
-                android:gravity="center"
-                android:elevation="4dp">
-
-                <ImageView
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:src="@drawable/ic_book"
-                    android:contentDescription="Horario" />
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="HORARIO"
-                android:textStyle="bold"
-                android:textSize="12sp"
-                android:textColor="@color/black"
-                android:gravity="center"
-                android:paddingTop="10dp" />
-        </LinearLayout>
-
-
-        <!-- ITEM: NOTAS -->
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:padding="8dp"
-            android:layout_margin="6dp">
-
-            <LinearLayout
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:background="@drawable/bg_button_blue"
-                android:gravity="center"
-                android:elevation="4dp">
-
-                <ImageView
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:src="@drawable/ic_grades"
-                    android:contentDescription="Notas" />
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="NOTAS"
-                android:textStyle="bold"
-                android:textSize="12sp"
-                android:textColor="@color/black"
-                android:gravity="center"
-                android:paddingTop="10dp" />
-        </LinearLayout>
-
-
-        <!-- ITEM: ASISTENCIA -->
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:padding="8dp"
-            android:layout_margin="6dp">
-
-            <LinearLayout
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:background="@drawable/bg_button_blue"
-                android:gravity="center"
-                android:elevation="4dp">
-
-                <ImageView
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:src="@drawable/ic_asistencias"
-                    android:contentDescription="Asistencia" />
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="ASISTENCIAS"
-                android:textStyle="bold"
-                android:textSize="12sp"
-                android:textColor="@color/black"
-                android:gravity="center"
-                android:paddingTop="10dp" />
-        </LinearLayout>
-
-    </GridLayout>
-
-    <!-- Barra de navegación inferior -->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <!-- BOTTOM NAV FIJO ABAJO -->
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottomNavigation"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:background="#FFFFFF"
-            app:itemIconSize="50dp"
-            app:labelVisibilityMode="labeled"
-            app:menu="@menu/bottom_nav_menu"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</LinearLayout>
+</ScrollView>
