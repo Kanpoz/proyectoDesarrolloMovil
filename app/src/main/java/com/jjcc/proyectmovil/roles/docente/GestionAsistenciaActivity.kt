@@ -326,16 +326,23 @@ class GestionAsistenciaActivity : AppCompatActivity() {
     }
 
     private fun marcarTodoComo(estado: String) {
+
         val layout = containerEstudiantes.getChildAt(0) as LinearLayout
 
         for (i in 0 until layout.childCount) {
-            val item = layout.getChildAt(i) as LinearLayout
-            val nombre = item.getChildAt(0) as TextView
-            val estudianteId = nombre.tag.toString()
 
-            val p = item.getChildAt(1) as Button
-            val a = item.getChildAt(2) as Button
-            val t = item.getChildAt(3) as Button
+            val card = layout.getChildAt(i) as LinearLayout
+
+            // tvNombre = card.getChildAt(0)
+            val tvNombre = card.getChildAt(0) as TextView
+            val estudianteId = tvNombre.tag.toString()
+
+            // filaBotones = card.getChildAt(1)
+            val filaBotones = card.getChildAt(1) as LinearLayout
+
+            val p = filaBotones.getChildAt(0) as Button
+            val a = filaBotones.getChildAt(1) as Button
+            val t = filaBotones.getChildAt(2) as Button
 
             seleccionar(estudianteId, estado, p, a, t)
         }
