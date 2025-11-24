@@ -11,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.jjcc.proyectmovil.R
-import com.jjcc.proyectmovil.home.HomeEstudiante
 
 class EditarPerfilActivity : AppCompatActivity() {
 

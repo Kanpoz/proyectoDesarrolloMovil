@@ -1,125 +1,50 @@
 package com.jjcc.proyectmovil.messages
 
-import android.Manifest
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
-import androidx.activity.result.contract.ActivityResultContracts
+import com.jjcc.proyectmovil.R
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
-import com.jjcc.proyectmovil.GeofenceService
-import com.jjcc.proyectmovil.profile.PerfilActivity
-import com.jjcc.proyectmovil.R
-import com.jjcc.proyectmovil.core.model.User
+import com.google.firebase.database.*
 import com.jjcc.proyectmovil.core.adapter.UserAdapter
 import com.jjcc.proyectmovil.home.HomeEstudiante
+import com.jjcc.proyectmovil.profile.PerfilActivity
 
 class MainChatActivity : AppCompatActivity() {
 
     private lateinit var userRecyclerView: RecyclerView
-    private lateinit var userList: ArrayList<User>
+    private lateinit var userList: ArrayList<ConversationRow>
     private lateinit var adapter: UserAdapter
     private lateinit var mAuth: FirebaseAuth
     private lateinit var mDbRef: DatabaseReference
     private lateinit var bottomNav: BottomNavigationView
-
-    private val requestPermissionLauncher = registerForActivityResult(
-        ActivityResultContracts.RequestMultiplePermissions()
-    ) { permissions ->
-        if (permissions[Manifest.permission.ACCESS_FINE_LOCATION] == true &&
-            permissions[Manifest.permission.ACCESS_BACKGROUND_LOCATION] == true) {
-            startGeofenceService()
-        }
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_chat)
 
         bottomNav = findViewById(R.id.bottomNavigation)
+        userRecyclerView = findViewById(R.id.userRecyclerview)
+
         mAuth = FirebaseAuth.getInstance()
-        mDbRef = FirebaseDatabase.getInstance().getReference()
+        mDbRef = FirebaseDatabase.getInstance().reference
+
         userList = ArrayList()
         adapter = UserAdapter(this, userList)
-        userRecyclerView = findViewById(R.id.userRecyclerview)
 
         userRecyclerView.layoutManager = LinearLayoutManager(this)
         userRecyclerView.adapter = adapter
 
-        //Desactiva el efecto "ripple" (el círculo que se expande al tocar)
+        // Desactivar ripple y reselección
         bottomNav.itemRippleColor = null
-
-        //Evita la animación o salto brusco al re-seleccionar
         bottomNav.setOnItemReselectedListener {}
-
         bottomNav.selectedItemId = R.id.nav_messages
 
-        // MEJORA: Agregado logs para debug
-        Log.d("ChatMain", "Usuario currente: ${mAuth.currentUser?.uid}")
-
-        mDbRef.child("usuarios").addValueEventListener(object: ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                Log.d("ChatMain", "Total usuarios en Firebase: ${snapshot.childrenCount}")
-
-                userList.clear()
-                for(post in snapshot.children){
-                    Log.d("ChatMain", "Procesando usuario: ${post.key}")
-
-                    // MEJORA: Mejor manejo de errores al convertir datos
-                    try {
-                        val u = post.getValue(User::class.java)
-                        if (u != null) {
-                            u.uid = post.key
-                            Log.d("ChatMain", "Usuario cargado: ${u.nombres} ${u.apellidos}, UID: ${u.uid}")
-
-                            // Solo agregar usuarios que no sean el actual
-                            if (mAuth.currentUser?.uid != u.uid) {
-                                userList.add(u)
-                                Log.d("ChatMain", "Usuario agregado a la lista")
-                            } else {
-                                Log.d("ChatMain", "Usuario actual omitido")
-                            }
-                        } else {
-                            Log.w("ChatMain", "No se pudo convertir usuario: ${post.key}")
-                        }
-                    } catch (e: Exception) {
-                        Log.e("ChatMain", "Error al procesar usuario ${post.key}: ${e.message}")
-                    }
-                }
-
-                Log.d("ChatMain", "Total usuarios en lista: ${userList.size}")
-                adapter.notifyItemRangeInserted(0, userList.size)
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                Log.e("ChatMain", "Error al cargar usuarios: ${error.message}")
-            }
-        })
-
-        // Permisos de ubicación
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
-            ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_BACKGROUND_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            startGeofenceService()
-        } else {
-            requestPermissionLauncher.launch(
-                arrayOf(
-                    Manifest.permission.ACCESS_FINE_LOCATION,
-                    Manifest.permission.ACCESS_BACKGROUND_LOCATION
-                )
-            )
-        }
-
-        // Manejo de clics en el menú
+        // Bottom navigation
         bottomNav.setOnItemSelectedListener { item ->
             bottomNav.animate()
                 .scaleX(1.1f)
@@ -147,10 +72,65 @@ class MainChatActivity : AppCompatActivity() {
                 else -> false
             }
         }
+
+        // 🔹 Escuchar el índice de chats del usuario actual
+        listenToChatIndex()
     }
 
-    private fun startGeofenceService() {
-        val serviceIntent = Intent(this, GeofenceService::class.java)
-        startService(serviceIntent)
+    private fun listenToChatIndex() {
+        val currentUid = mAuth.currentUser?.uid
+        if (currentUid == null) {
+            Log.w("MainChatActivity", "No hay usuario autenticado")
+            return
+        }
+
+        mDbRef.child("chat_index")
+            .child(currentUid)
+            .addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+
+                    userList.clear()
+
+                    for (convSnap in snapshot.children) {
+                        val convId = convSnap.key ?: continue
+
+                        val parts = convId.split("_")
+                        val partnerId = when (parts.size) {
+                            2 if parts[0] == currentUid -> parts[1]
+                            2 if parts[1] == currentUid -> parts[0]
+                            else -> null
+                        }
+
+                        val nombreChat = convSnap.child("nombreChat").getValue(String::class.java)
+                        val lastMessageText = convSnap.child("lastMessageText").getValue(String::class.java)
+                        val lastMessageDate = convSnap.child("lastMessageDate").getValue(Long::class.java)
+                        val unreadCount = convSnap.child("unreadCount").getValue(Long::class.java)
+
+// 🔹 NUEVO
+                        val fotoPerfil = convSnap.child("fotoPerfil").getValue(String::class.java)
+
+                        val row = ConversationRow(
+                            convId = convId,
+                            partnerId = partnerId,
+                            partnerName = nombreChat,
+                            lastMessageText = lastMessageText,
+                            lastMessageDate = lastMessageDate,
+                            unreadCount = unreadCount,
+                            fotoPerfil = fotoPerfil
+                        )
+
+                        userList.add(row)
+                    }
+
+                    // Ordenar por fecha del último mensaje (más recientes arriba)
+                    userList.sortByDescending { it.lastMessageDate ?: 0L }
+
+                    adapter.notifyDataSetChanged()
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    Log.e("MainChatActivity", "Error leyendo chat_index", error.toException())
+                }
+            })
     }
 }
