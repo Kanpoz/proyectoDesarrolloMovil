@@ -15,6 +15,8 @@ import com.jjcc.proyectmovil.home.HomeEstudiante
 import com.jjcc.proyectmovil.messages.MainChatActivity
 import com.google.firebase.firestore.FirebaseFirestore
 import com.bumptech.glide.Glide
+import com.jjcc.proyectmovil.home.HomeAdmin
+import com.jjcc.proyectmovil.home.HomeDocente
 
 class PerfilActivity : AppCompatActivity() {
 
@@ -74,6 +76,8 @@ class PerfilActivity : AppCompatActivity() {
 
         // Manejo de clics en el menú
         bottomNav.setOnItemSelectedListener { item ->
+
+            // ANIMACIÓN EXACTA QUE YA USAS
             bottomNav.animate()
                 .scaleX(1.1f)
                 .scaleY(1.1f)
@@ -83,22 +87,35 @@ class PerfilActivity : AppCompatActivity() {
                 }
                 .start()
 
-            when (item.itemId) {
-                R.id.nav_home -> {
-                    startActivity(Intent(this, HomeEstudiante::class.java))
-                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
-                    true
+            // 🔥 OBTENER ROL DESDE FIRESTORE ANTES DE NAVEGAR
+            obtenerRolUsuario { rol ->
+
+                when (item.itemId) {
+
+                    R.id.nav_home -> {
+                        val intent = when (rol) {
+                            "ADMIN" -> Intent(this, HomeAdmin::class.java)
+                            "DOCENTE" -> Intent(this, HomeDocente::class.java)
+                            "ESTUDIANTE" -> Intent(this, HomeEstudiante::class.java)
+                            else -> Intent(this, HomeEstudiante::class.java)
+                        }
+
+                        startActivity(intent)
+                        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+                    }
+
+                    R.id.nav_messages -> {
+                        startActivity(Intent(this, MainChatActivity::class.java))
+                        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+                    }
+
+                    R.id.nav_profile -> {
+                        true
+                    }
                 }
-                R.id.nav_messages -> {
-                    startActivity(Intent(this, MainChatActivity::class.java))
-                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
-                    true
-                }
-                R.id.nav_profile -> {
-                    true
-                }
-                else -> false
             }
+
+            true
         }
     }
 
@@ -150,6 +167,22 @@ class PerfilActivity : AppCompatActivity() {
             }
             .addOnFailureListener {
                 Toast.makeText(this, "Error al cargar datos: ${it.message}", Toast.LENGTH_SHORT).show()
+            }
+    }
+
+    private fun obtenerRolUsuario(callback: (String) -> Unit) {
+        val uid = FirebaseAuth.getInstance().currentUser?.uid ?: return
+        val db = FirebaseFirestore.getInstance()
+
+        db.collection("users")
+            .document(uid)
+            .get()
+            .addOnSuccessListener { doc ->
+                val rol = doc.getString("rol") ?: "DESCONOCIDO"
+                callback(rol.uppercase())
+            }
+            .addOnFailureListener {
+                callback("DESCONOCIDO")
             }
     }
 }
