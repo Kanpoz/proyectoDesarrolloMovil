@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- ========== BRAND COLORS (GENERIC) ========== -->
+    <!-- Same definitions as light mode, but usage changes -->
+    <color name="brand_primary">#2563EB</color>    <!-- Main Institutional Color -->
+    <color name="brand_secondary">#1E40AF</color>  <!-- Darker/Contrast Color -->
+    <color name="brand_tertiary">#60A5FA</color>   <!-- Lighter/Accent Color -->
+
+    <!-- ========== BASE COLORS ========== -->
+    <color name="black">#0F172A</color>
+    <color name="white">#FFFFFF</color>
+    <color name="transparent">#00000000</color>
+
+    <!-- ========== SEMANTIC MAPPING (DARK MODE) ========== -->
+    <!-- In dark mode, we use lighter colors for primary actions to ensure contrast -->
+    <color name="primary">@color/brand_tertiary</color>
+    <color name="primary_light">@color/brand_primary</color>
+    <color name="primary_lighter">#1E293B</color> <!-- Dark background for "lighter" areas -->
+    <color name="primary_dark">#93C5FD</color>    <!-- Even lighter blue for emphasis -->
+
+    <!-- Secondary -->
+    <color name="secondary">@color/brand_tertiary</color>
+    <color name="secondary_light">@color/brand_primary</color>
+    <color name="secondary_lighter">@color/brand_secondary</color>
+    <color name="secondary_dark">#DBEAFE</color>
+
+    <!-- Accents mapped to brand colors -->
+    <color name="accent_purple">@color/brand_tertiary</color>
+    <color name="accent_pastel_purple">@color/brand_secondary</color>
+    <color name="accent_pastel_pink">@color/brand_secondary</color>
+    <color name="accent_pastel_green">@color/brand_secondary</color>
+    <color name="accent_pastel_blue">@color/brand_secondary</color>
+    <color name="accent_orange">@color/brand_tertiary</color>
+    <color name="accent_amber">@color/brand_primary</color>
+    <color name="accent_lime">@color/brand_primary</color>
+    <color name="accent_slate">@color/brand_tertiary</color>
+    <color name="accent_green_light">@color/brand_tertiary</color>
+    <color name="accent_blue">@color/brand_tertiary</color>
+    <color name="accent_coral">@color/brand_tertiary</color>
+    <color name="accent_coral_light">@color/brand_secondary</color>
+    <color name="accent_coral_dark">@color/brand_primary</color>
+
+    <!-- Hard Accents -->
+    <color name="hard_blue">@color/brand_tertiary</color>
+    <color name="hard_teal">@color/brand_tertiary</color>
+    <color name="hard_orange">@color/brand_tertiary</color>
+
+    <!-- Backgrounds (Dark Mode) -->
+    <color name="background_main">#0F172A</color>          <!-- Slate 900: Dark Background -->
+    <color name="background_light">#1E293B</color>         <!-- Slate 800 -->
+    <color name="background_lighter">#334155</color>       <!-- Slate 700 -->
+    <color name="background_docente">#1E293B</color>
+    <color name="background_card">#1E293B</color>          <!-- Slate 800: Card Background -->
+    <color name="background_card_light">#334155</color>
+
+    <!-- Text (Inverted for Dark Mode) -->
+    <color name="text_primary">#F8FAFC</color>      <!-- Slate 50: White text -->
+    <color name="text_primary_dark">#FFFFFF</color>
+    <color name="text_secondary">#CBD5E1</color>    <!-- Slate 300: Light gray text -->
+    <color name="text_tertiary">#94A3B8</color>     <!-- Slate 400 -->
+    <color name="text_light">#64748B</color>        <!-- Slate 500 -->
+    <color name="text_lighter">#475569</color>      <!-- Slate 600 -->
+    <color name="text_dark">#F1F5F9</color>         <!-- Slate 100 -->
+
+    <!-- Grays -->
+    <color name="gray_light">#334155</color>
+    <color name="gray_medium">#64748B</color>
+    <color name="gray_dark">#CBD5E1</color>
+
+    <!-- States -->
+    <color name="success">#34D399</color>           <!-- Emerald 400: Lighter for dark mode -->
+    <color name="success_light">#064E3B</color>     <!-- Emerald 900 -->
+    <color name="error">#F87171</color>             <!-- Red 400 -->
+    <color name="error_light">#7F1D1D</color>       <!-- Red 900 -->
+    <color name="warning">#FBBF24</color>           <!-- Amber 400 -->
+    <color name="info">@color/brand_tertiary</color>
+
+    <!-- UI Elements -->
+    <color name="divider">#334155</color>
+    <color name="border_light">#1E293B</color>
+    <color name="shadow_light">#80000000</color>
+    <color name="shadow_medium">#B3000000</color>
+
+    <!-- Gradients -->
+    <color name="gradient_purple_start">@color/brand_secondary</color>
+    <color name="gradient_purple_end">@color/brand_primary</color>
+    <color name="gradient_cyan_start">@color/brand_primary</color>
+    <color name="gradient_cyan_end">@color/brand_tertiary</color>
+    <color name="gradient_coral_start">@color/brand_secondary</color>
+    <color name="gradient_coral_end">@color/brand_primary</color>
+    <color name="gradient_yellow_start">@color/brand_primary</color>
+    <color name="gradient_yellow_end">@color/brand_tertiary</color>
+
+    <!-- Legacy Compatibility -->
+    <color name="AzulInstitucional">@color/brand_tertiary</color>
+    <color name="azulFondo">@color/background_main</color>
+    <color name="verde">@color/success</color>
+    <color name="gris">@color/gray_light</color>
+    <color name="grisSecundario">@color/gray_dark</color>
+</resources>

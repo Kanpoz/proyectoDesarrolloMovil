@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FAF7FF"
+    android:background="@color/background_docente"
     tools:context=".home.HomeDocente">
 
     <ScrollView
@@ -28,7 +28,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="¡Hola, ...!"
-                android:textColor="#000000"
+                android:textColor="@color/black"
                 android:textSize="22sp"
                 android:textStyle="bold" />
 
@@ -36,7 +36,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Resumen de tu actividad académica."
-                android:textColor="#555"
+                android:textColor="@color/text_secondary"
                 android:layout_marginBottom="12dp" />
 
             <!-- Tarjetas principales -->
@@ -80,7 +80,7 @@
                         android:layout_height="wrap_content"
                         android:text="Pasar lista"
                         android:textSize="12sp"
-                        android:textColor="#888" />
+                        android:textColor="@color/text_light" />
                 </LinearLayout>
 
                 <!-- Calificaciones -->
@@ -117,7 +117,7 @@
                         android:layout_height="wrap_content"
                         android:text="Registrar notas"
                         android:textSize="12sp"
-                        android:textColor="#888" />
+                        android:textColor="@color/text_light" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -141,7 +141,7 @@
                 android:id="@+id/containerGrafica"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:background="#F7F3FF"
+                android:background="@color/background_card"
                 android:layout_marginBottom="12dp" />
 
 
@@ -157,7 +157,7 @@
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#F7F3FF"
+                android:background="@color/background_card"
                 android:padding="8dp"
                 android:layout_marginBottom="12dp">
 
@@ -165,13 +165,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="12:00 - Historia 10° A (Virtual)"
-                    android:textColor="#333" />
+                    android:textColor="@color/text_dark" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="12:00 - Historia 10° A (Virtual)"
-                    android:textColor="#333" />
+                    android:textColor="@color/text_dark" />
             </LinearLayout>
 
             <!-- Notificaciones -->
@@ -186,7 +186,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Sin notificaciones."
-                android:textColor="#777" />
+                android:textColor="@color/text_lighter" />
 
         </LinearLayout>
     </ScrollView>
@@ -195,7 +195,7 @@
         android:id="@+id/bottomNavigation"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="#FFFFFF"
+        android:background="@color/white"
         app:itemIconSize="50dp"
         app:labelVisibilityMode="labeled"
         app:menu="@menu/bottom_nav_menu"

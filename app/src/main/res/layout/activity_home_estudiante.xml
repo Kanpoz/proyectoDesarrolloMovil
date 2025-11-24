@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/layoutHome"
-    android:background="#F8F9FA"
+    android:background="@color/background_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -13,7 +13,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Bienvenido(a), Usuario"
-        android:textColor="#212121"
+        android:textColor="@color/text_primary"
         android:textSize="22sp"
         android:textStyle="bold"
         android:gravity="center"
@@ -73,7 +73,7 @@
                 android:layout_marginBottom="8dp"
                 app:icon="@drawable/ic_curso"
                 app:iconTint="@android:color/white"
-                app:backgroundTint="#4CAF50"
+                app:backgroundTint="@color/secondary_light"
                 app:iconGravity="textStart"
                 app:iconPadding="16dp" />
 
@@ -90,7 +90,7 @@
                 android:layout_marginBottom="8dp"
                 app:icon="@drawable/ic_book"
                 app:iconTint="@android:color/white"
-                app:backgroundTint="#2196F3"
+                app:backgroundTint="@color/accent_blue"
                 app:iconGravity="textStart"
                 app:iconPadding="16dp" />
 
@@ -107,7 +107,7 @@
                 android:layout_marginBottom="8dp"
                 app:icon="@drawable/ic_grades"
                 app:iconTint="@android:color/white"
-                app:backgroundTint="#FFC107"
+                app:backgroundTint="@color/accent_amber"
                 app:iconGravity="textStart"
                 app:iconPadding="16dp" />
 
@@ -124,7 +124,7 @@
                 android:layout_marginBottom="8dp"
                 app:icon="@drawable/ic_calendar"
                 app:iconTint="@android:color/white"
-                app:backgroundTint="#8BC34A"
+                app:backgroundTint="@color/accent_lime"
                 app:iconGravity="textStart"
                 app:iconPadding="16dp" />
 
@@ -140,7 +140,7 @@
                 android:textAlignment="textStart"
                 app:icon="@drawable/ic_calendar"
                 app:iconTint="@android:color/white"
-                app:backgroundTint="#607D8B"
+                app:backgroundTint="@color/accent_slate"
                 app:iconGravity="textStart"
                 app:iconPadding="16dp" />
 
@@ -151,7 +151,7 @@
     <TextView
         android:id="@+id/tvRolUsuario"
         android:textSize="15sp"
-        android:textColor="#757575"
+        android:textColor="@color/text_tertiary"
         android:gravity="center"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@id/bottomNavigation"
@@ -165,7 +165,7 @@
         android:id="@+id/bottomNavigation"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="#FFFFFF"
+        android:background="@color/white"
         app:itemIconSize="50dp"
         app:labelVisibilityMode="labeled"
         app:menu="@menu/bottom_nav_menu"

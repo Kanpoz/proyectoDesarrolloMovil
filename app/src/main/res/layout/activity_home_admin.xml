@@ -6,7 +6,7 @@
     android:id="@+id/rootAdmin"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F8F9FA"
+    android:background="@color/background_main"
     tools:context=".home.HomeAdmin">
 
     <!-- CONTENIDO SCROLLEABLE (CARDS Y BOTONES) -->
@@ -26,27 +26,24 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="16dp">
-
-            <!-- Título -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+La
                 android:text="DASHBOARD ADMINISTRADOR"
                 android:textSize="25sp"
                 android:textStyle="bold"
-                android:textColor="@color/black"/>
+                android:textColor="@color/text_primary"/>
 
+            <!-- Fila 1: Usuarios Totales / Cursos Activos -->
             <TextView
                 android:id="@+id/tvTituloAdmin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
                 android:text="!Bienvenido user¡"
+                android:textColor="@color/text_primary"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:textColor="@color/black"
-                android:layout_marginBottom="16dp" />
+                tools:text="!Bienvenido Juan!" />
 
-            <!-- Fila 1: Usuarios Totales / Cursos Activos -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -58,6 +55,7 @@
                     android:layout_margin="8dp"
                     app:cardCornerRadius="12dp"
                     app:cardElevation="2dp"
+                    app:cardBackgroundColor="@color/background_card"
                     android:layout_weight="1">
 
                     <LinearLayout
@@ -70,7 +68,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Usuarios Totales"
-                            android:textColor="@color/black"
+                            android:textColor="@color/text_primary"
                             android:textSize="14sp"/>
 
                         <TextView
@@ -78,9 +76,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="0"
+                            tools:text="1,250"
                             android:textSize="26sp"
                             android:textStyle="bold"
-                            android:textColor="#8E44AD"
+                            android:textColor="@color/accent_purple"
                             android:layout_marginTop="8dp"/>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -91,6 +90,7 @@
                     android:layout_margin="8dp"
                     app:cardCornerRadius="12dp"
                     app:cardElevation="2dp"
+                    app:cardBackgroundColor="@color/background_card"
                     android:layout_weight="1">
 
                     <LinearLayout
@@ -103,7 +103,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Cursos Activos"
-                            android:textColor="@color/black"
+                            android:textColor="@color/text_primary"
                             android:textSize="14sp"/>
 
                         <TextView
@@ -111,9 +111,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="0"
+                            tools:text="42"
                             android:textSize="26sp"
                             android:textStyle="bold"
-                            android:textColor="#2ECC71"
+                            android:textColor="@color/accent_green_light"
                             android:layout_marginTop="8dp"/>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -131,6 +132,7 @@
                     android:layout_margin="8dp"
                     app:cardCornerRadius="12dp"
                     app:cardElevation="2dp"
+                    app:cardBackgroundColor="@color/background_card"
                     android:layout_weight="1">
 
                     <LinearLayout
@@ -143,7 +145,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Docentes"
-                            android:textColor="@color/black"
+                            android:textColor="@color/text_primary"
                             android:textSize="14sp"/>
 
                         <TextView
@@ -151,9 +153,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="0"
+                            tools:text="85"
                             android:textSize="26sp"
                             android:textStyle="bold"
-                            android:textColor="#8E44AD"
+                            android:textColor="@color/accent_purple"
                             android:layout_marginTop="8dp"/>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -164,6 +167,7 @@
                     android:layout_margin="8dp"
                     app:cardCornerRadius="12dp"
                     app:cardElevation="2dp"
+                    app:cardBackgroundColor="@color/background_card"
                     android:layout_weight="1">
 
                     <LinearLayout
@@ -176,7 +180,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Estudiantes"
-                            android:textColor="@color/black"
+                            android:textColor="@color/text_primary"
                             android:textSize="14sp"/>
 
                         <TextView
@@ -184,9 +188,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="0"
+                            tools:text="1,165"
                             android:textSize="26sp"
                             android:textStyle="bold"
-                            android:textColor="#8E44AD"
+                            android:textColor="@color/accent_purple"
                             android:layout_marginTop="8dp"/>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -204,6 +209,7 @@
                     android:layout_margin="8dp"
                     app:cardCornerRadius="12dp"
                     app:cardElevation="2dp"
+                    app:cardBackgroundColor="@color/background_card"
                     android:layout_weight="1">
 
                     <LinearLayout
@@ -216,7 +222,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Clases Totales"
-                            android:textColor="@color/black"
+                            android:textColor="@color/text_primary"
                             android:textSize="14sp"/>
 
                         <TextView
@@ -224,9 +230,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="0"
+                            tools:text="320"
                             android:textSize="26sp"
                             android:textStyle="bold"
-                            android:textColor="#F5A623"
+                            android:textColor="@color/accent_orange"
                             android:layout_marginTop="8dp"/>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -237,6 +244,7 @@
                     android:layout_margin="8dp"
                     app:cardCornerRadius="12dp"
                     app:cardElevation="2dp"
+                    app:cardBackgroundColor="@color/background_card"
                     android:layout_weight="1">
 
                     <LinearLayout
@@ -249,7 +257,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Mensajes totales"
-                            android:textColor="@color/black"
+                            android:textColor="@color/text_primary"
                             android:textSize="14sp"/>
 
                         <TextView
@@ -257,9 +265,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="0"
+                            tools:text="5,430"
                             android:textSize="26sp"
                             android:textStyle="bold"
-                            android:textColor="#4A90E2"
+                            android:textColor="@color/primary"
                             android:layout_marginTop="8dp"/>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -272,7 +281,7 @@
                 android:text="Gestión y Accesos Rápidos"
                 android:textSize="25sp"
                 android:textStyle="bold"
-                android:textColor="@color/black"
+                android:textColor="@color/text_primary"
                 android:layout_marginTop="24dp"
                 android:layout_marginBottom="8dp" />
 
@@ -282,7 +291,7 @@
                 android:layout_height="60dp"
                 android:layout_marginTop="16dp"
                 android:text="Gestionar Usuarios"
-                android:backgroundTint="#1EAD69"
+                android:backgroundTint="@color/secondary"
                 android:textColor="@color/white"
                 android:layout_marginHorizontal="8dp"
                 android:layout_marginBottom="8dp" />
@@ -292,10 +301,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:text="Gestión de Cursos"
-                android:backgroundTint="#1EAD69"
+                android:backgroundTint="@color/secondary"
                 android:textColor="@color/white"
                 android:layout_marginHorizontal="8dp" />
 
+        <Button
+            android:id="@+id/btnCalendario"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="Calendario"
+            android:backgroundTint="@color/secondary"
+            android:textColor="@color/white"
+            android:layout_marginHorizontal="8dp"
+            android:layout_marginTop="16dp" />
         </LinearLayout>
     </ScrollView>
 
@@ -304,7 +322,7 @@
         android:id="@+id/bottomNavigation"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="#FFFFFF"
+        android:background="@color/background_card"
         app:itemIconSize="50dp"
         app:labelVisibilityMode="labeled"
         app:menu="@menu/bottom_nav_menu"

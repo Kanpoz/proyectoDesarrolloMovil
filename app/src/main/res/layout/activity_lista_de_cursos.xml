@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#F5F5F5"
+    android:background="@color/background_lighter"
     android:padding="16dp">
 
     <!-- Título -->
@@ -16,7 +16,7 @@
         android:text="Gestión de Cursos"
         android:textSize="22sp"
         android:textStyle="bold"
-        android:textColor="#333333"
+        android:textColor="@color/text_dark"
         android:layout_marginBottom="12dp" />
 
     <!-- Fila superior con spinner y botón -->
@@ -42,7 +42,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Actualizar"
-            android:backgroundTint="#4CAF50"
+            android:backgroundTint="@color/secondary_light"
             android:textColor="@android:color/white"
             android:layout_marginStart="12dp"
             android:paddingHorizontal="16dp"

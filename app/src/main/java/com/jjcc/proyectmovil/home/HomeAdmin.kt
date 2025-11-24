@@ -15,6 +15,7 @@ import com.jjcc.proyectmovil.messages.MainChatActivity
 import com.jjcc.proyectmovil.profile.PerfilActivity
 import com.jjcc.proyectmovil.roles.admin.GestionCursosActivity
 import com.jjcc.proyectmovil.roles.admin.GestionUsuariosActivity
+import com.jjcc.proyectmovil.ui.CalendarActivity
 
 class HomeAdmin : AppCompatActivity() {
 
@@ -27,6 +28,7 @@ class HomeAdmin : AppCompatActivity() {
     private lateinit var tvMensajes: TextView
     private lateinit var btnGestionUsuarios: Button
     private lateinit var btnGestionCursos: Button
+    private lateinit var btnCalendario: Button
     private lateinit var bottomNav: BottomNavigationView
 
     private val auth: FirebaseAuth = FirebaseAuth.getInstance()
@@ -46,6 +48,7 @@ class HomeAdmin : AppCompatActivity() {
         tvMensajes = findViewById(R.id.tvMensajes)
         btnGestionUsuarios = findViewById(R.id.btnGestionUsuarios)
         btnGestionCursos = findViewById(R.id.btnGestionCursos)
+        btnCalendario = findViewById(R.id.btnCalendario)
         bottomNav = findViewById(R.id.bottomNavigation)
 
         cargarNombreAdmin()
@@ -57,6 +60,13 @@ class HomeAdmin : AppCompatActivity() {
 
         btnGestionCursos.setOnClickListener {
             startActivity(Intent(this, GestionCursosActivity::class.java))
+        }
+
+        // Calendar button listener
+        btnCalendario.setOnClickListener {
+            startActivity(Intent(this, CalendarActivity::class.java))
+            // Optional transition animation
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
         }
 
         //Desactiva el efecto "ripple" (el círculo que se expande al tocar)

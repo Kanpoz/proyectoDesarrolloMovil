@@ -87,7 +87,7 @@
             android:name=".profile.PerfilActivity"
             android:exported="false" />
         <activity
-            android:name=".roles.student.Calendario"
+            android:name=".ui.CalendarActivity"
             android:exported="false" />
         <activity
             android:name=".messages.ChatActivity"

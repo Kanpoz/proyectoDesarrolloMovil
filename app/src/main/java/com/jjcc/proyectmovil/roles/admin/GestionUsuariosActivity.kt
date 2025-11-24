@@ -13,11 +13,15 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.firestore.FirebaseFirestore
 import com.jjcc.proyectmovil.R
 import com.jjcc.proyectmovil.auth.NewUserActivity
 import com.jjcc.proyectmovil.core.adapter.UserAdminAdapter
 import com.jjcc.proyectmovil.core.model.ItemUsuarioAdmin
+import com.jjcc.proyectmovil.home.HomeAdmin
+import com.jjcc.proyectmovil.messages.MainChatActivity
+import com.jjcc.proyectmovil.profile.PerfilActivity
 
 class GestionUsuariosActivity : AppCompatActivity() {
 
@@ -34,6 +38,7 @@ class GestionUsuariosActivity : AppCompatActivity() {
     private lateinit var adapter: UserAdminAdapter
     private val listaCompleta = mutableListOf<ItemUsuarioAdmin>()
     private lateinit var btnRegistrarUsuario : Button
+    private lateinit var bottomNav: BottomNavigationView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,13 +58,12 @@ class GestionUsuariosActivity : AppCompatActivity() {
         btnActualizar = findViewById(R.id.btnActualizarLista)
         rvUsuarios = findViewById(R.id.rvUsuarios)
         btnRegistrarUsuario = findViewById(R.id.btnRegistrarUsuario)
+        bottomNav = findViewById(R.id.bottomNavigation)
 
         val root = findViewById<View>(R.id.rootGestionUsuarios)
-        val btnActualizar = findViewById<Button>(R.id.btnActualizarLista)
 
         ViewCompat.setOnApplyWindowInsetsListener(root) { view, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            // añadimos padding abajo igual a la barra de navegación / taskbar
             view.setPadding(
                 view.paddingLeft,
                 view.paddingTop,
@@ -73,9 +77,7 @@ class GestionUsuariosActivity : AppCompatActivity() {
 
         adapter = UserAdminAdapter(
             emptyList(),
-            onVer = { user -> mostrarDetalle(user) },
-            onEditar = { user -> editarUsuario(user) },
-            onEliminar = { user -> eliminarUsuario(user) }
+            onClick = { user -> mostrarDetalle(user) }
         )
 
         rvUsuarios.adapter = adapter
@@ -90,6 +92,32 @@ class GestionUsuariosActivity : AppCompatActivity() {
 
         btnRegistrarUsuario.setOnClickListener {
             startActivity(Intent(this, NewUserActivity::class.java))
+        }
+
+        // Configurar Bottom Navigation
+        bottomNav.itemRippleColor = null
+        bottomNav.setOnItemReselectedListener {}
+        bottomNav.selectedItemId = R.id.nav_home
+
+        bottomNav.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_home -> {
+                    startActivity(Intent(this, HomeAdmin::class.java))
+                    finish()
+                    true
+                }
+                R.id.nav_messages -> {
+                    startActivity(Intent(this, MainChatActivity::class.java))
+                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+                    true
+                }
+                R.id.nav_profile -> {
+                    startActivity(Intent(this, PerfilActivity::class.java))
+                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+                    true
+                }
+                else -> false
+            }
         }
 
         // Cargar por primera vez
@@ -111,7 +139,7 @@ class GestionUsuariosActivity : AppCompatActivity() {
                     val nombre = doc.getString("nombre") ?: ""
                     val email = doc.getString("email") ?: ""
                     val rol = doc.getString("rol") ?: ""
-                    val telefono = doc.getString("telefono") ?: ""      // puede venir con +57
+                    val telefono = doc.getString("telefono") ?: ""
                     val activo = doc.getBoolean("activo") ?: true
 
                     val user = ItemUsuarioAdmin(
@@ -209,6 +237,8 @@ class GestionUsuariosActivity : AppCompatActivity() {
                 val tvTokensFcm = dialogView.findViewById<TextView>(R.id.tvTokensFcm)
 
                 val btnCerrar = dialogView.findViewById<Button>(R.id.btnCerrarDetalle)
+                val btnEditar = dialogView.findViewById<Button>(R.id.btnEditarDetalle)
+                val btnEliminar = dialogView.findViewById<Button>(R.id.btnEliminarDetalle)
 
                 // ---------- LECTURA DE DATOS ----------
                 val nombre = doc.getString("nombre") ?: user.nombre
@@ -276,7 +306,6 @@ class GestionUsuariosActivity : AppCompatActivity() {
 
                 // ---------- MANEJO DE TABS ----------
                 fun selectTab(tab: Int) {
-                    // reset estilos
                     val gris = android.graphics.Color.parseColor("#888888")
                     val negro = android.graphics.Color.parseColor("#000000")
 
@@ -309,6 +338,14 @@ class GestionUsuariosActivity : AppCompatActivity() {
                     .create()
 
                 btnCerrar.setOnClickListener { dialog.dismiss() }
+                btnEditar.setOnClickListener {
+                    dialog.dismiss()
+                    editarUsuario(user)
+                }
+                btnEliminar.setOnClickListener {
+                    dialog.dismiss()
+                    eliminarUsuario(user)
+                }
 
                 dialog.show()
             }
@@ -357,7 +394,6 @@ class GestionUsuariosActivity : AppCompatActivity() {
                 val nuevoActivo = swActivo.isChecked
                 val nuevoRol = spRol.selectedItem.toString().uppercase()
 
-                // 🔐 Validaciones básicas
                 if (nuevoNombre.isEmpty()) {
                     Toast.makeText(this, "El nombre no puede estar vacío", Toast.LENGTH_SHORT).show()
                     return@setPositiveButton
@@ -368,7 +404,6 @@ class GestionUsuariosActivity : AppCompatActivity() {
                     return@setPositiveButton
                 }
 
-                // extraemos solo dígitos (para ignorar +57) y exigimos 10
                 val soloDigitos = nuevoTelefono.filter { it.isDigit() }
                 if (soloDigitos.length != 10) {
                     Toast.makeText(
@@ -379,7 +414,6 @@ class GestionUsuariosActivity : AppCompatActivity() {
                     return@setPositiveButton
                 }
 
-                // 🔄 Actualizar en Firestore
                 val updates = mapOf(
                     "nombre" to nuevoNombre,
                     "telefono" to nuevoTelefono,
@@ -393,7 +427,6 @@ class GestionUsuariosActivity : AppCompatActivity() {
                     .addOnSuccessListener {
                         Toast.makeText(this, "Usuario actualizado", Toast.LENGTH_SHORT).show()
 
-                        // Actualizar en la lista local
                         val idx = listaCompleta.indexOfFirst { it.id == user.id }
                         if (idx != -1) {
                             val actualizado = user.copy(
@@ -405,7 +438,6 @@ class GestionUsuariosActivity : AppCompatActivity() {
                             listaCompleta[idx] = actualizado
                             aplicarFiltros()
 
-                            // Recalcular contadores
                             tvTotalUsuarios.text = listaCompleta.size.toString()
                             tvTotalAdmins.text =
                                 listaCompleta.count { it.rol.equals("ADMIN", ignoreCase = true) }.toString()
@@ -435,11 +467,9 @@ class GestionUsuariosActivity : AppCompatActivity() {
                     .addOnSuccessListener {
                         Toast.makeText(this, "Usuario eliminado", Toast.LENGTH_SHORT).show()
 
-                        // Quitar de la lista local
                         listaCompleta.removeAll { it.id == user.id }
                         aplicarFiltros()
 
-                        // Recalcular contadores
                         tvTotalUsuarios.text = listaCompleta.size.toString()
                         tvTotalAdmins.text =
                             listaCompleta.count { it.rol.equals("ADMIN", ignoreCase = true) }.toString()

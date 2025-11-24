@@ -1,8 +1,41 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.ProyectMovil" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <!-- 💜 Colores primarios (Morado vibrante) -->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimaryContainer">@color/primary_light</item>
+        <item name="colorOnPrimaryContainer">@color/primary_dark</item>
+
+        <!-- 🌊 Colores secundarios (Turquesa) -->
+        <item name="colorSecondary">@color/secondary</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <item name="colorSecondaryContainer">@color/secondary_light</item>
+        <item name="colorOnSecondaryContainer">@color/text_primary</item>
+
+        <!-- 🌸 Colores terciarios (Coral/Rosa) -->
+        <item name="colorTertiary">@color/accent_coral</item>
+        <item name="colorOnTertiary">@color/white</item>
+        <item name="colorTertiaryContainer">@color/accent_coral_light</item>
+        <item name="colorOnTertiaryContainer">@color/accent_coral_dark</item>
+
+        <!-- Fondos y superficies -->
+        <item name="android:colorBackground">@color/background_main</item>
+        <item name="colorSurface">@color/white</item>
+        <item name="colorOnSurface">@color/text_primary</item>
+        <item name="colorSurfaceVariant">@color/background_light</item>
+
+        <!-- Estados de error (Rosa coral suave) -->
+        <item name="colorError">@color/error</item>
+        <item name="colorOnError">@color/white</item>
+
+        <!-- Colores de texto -->
+        <item name="android:textColorPrimary">@color/text_primary</item>
+        <item name="android:textColorSecondary">@color/text_secondary</item>
+        <item name="android:textColorTertiary">@color/text_tertiary</item>
+
+        <!-- Divisores -->
+        <item name="android:listDivider">@color/divider</item>
     </style>
 
     <style name="Theme.ProyectMovil" parent="Base.Theme.ProyectMovil" />

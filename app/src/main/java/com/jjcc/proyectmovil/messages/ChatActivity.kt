@@ -49,6 +49,9 @@ class ChatActivity : AppCompatActivity() {
         messageBox = findViewById(R.id.messageBox)
         sendButton = findViewById(R.id.sendButton)
 
+        val btnBack = findViewById<ImageView>(R.id.btnBack)
+        val chatUserName = findViewById<android.widget.TextView>(R.id.chatUserName)
+
         messageList = ArrayList()
         messageAdapter = MessageAdapter(this, messageList)
 
@@ -65,7 +68,12 @@ class ChatActivity : AppCompatActivity() {
             return
         }
 
-        supportActionBar?.title = partnerName ?: "Chat"
+        // supportActionBar?.title = partnerName ?: "Chat"
+        chatUserName.text = partnerName ?: "Usuario"
+
+        btnBack.setOnClickListener {
+            finish()
+        }
 
         // 1️⃣ Primero cargamos historial desde Firestore
         loadHistoryFromFirestore()

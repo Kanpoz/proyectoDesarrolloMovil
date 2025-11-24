@@ -11,20 +11,16 @@ import com.jjcc.proyectmovil.core.model.ItemUsuarioAdmin
 
 class UserAdminAdapter(
     private var listaUsuarios: List<ItemUsuarioAdmin>,
-    private val onVer: (ItemUsuarioAdmin) -> Unit,
-    private val onEditar: (ItemUsuarioAdmin) -> Unit,
-    private val onEliminar: (ItemUsuarioAdmin) -> Unit
+    private val onClick: (ItemUsuarioAdmin) -> Unit
 ) : RecyclerView.Adapter<UserAdminAdapter.UsuarioViewHolder>() {
 
     inner class UsuarioViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val imgFoto: ImageView = itemView.findViewById(R.id.imgFotoUsuario)
         val tvNombre: TextView = itemView.findViewById(R.id.tvNombreUsuario)
         val tvCorreo: TextView = itemView.findViewById(R.id.tvCorreoUsuario)
         val tvRol: TextView = itemView.findViewById(R.id.tvRolUsuario)
         val tvTelefono: TextView = itemView.findViewById(R.id.tvTelefonoUsuario)
         val tvActivo: TextView = itemView.findViewById(R.id.tvActivoUsuario)
-        val btnVer: ImageView = itemView.findViewById(R.id.btnVerUsuario)
-        val btnEditar: ImageView = itemView.findViewById(R.id.btnEditarUsuario)
-        val btnEliminar: ImageView = itemView.findViewById(R.id.btnEliminarUsuario)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UsuarioViewHolder {
@@ -40,11 +36,20 @@ class UserAdminAdapter(
         holder.tvCorreo.text = user.email
         holder.tvRol.text = user.rol
         holder.tvTelefono.text = user.telefono
-        holder.tvActivo.text = if (user.activo) "Sí" else "No"
 
-        holder.btnVer.setOnClickListener { onVer(user) }
-        holder.btnEditar.setOnClickListener { onEditar(user) }
-        holder.btnEliminar.setOnClickListener { onEliminar(user) }
+        // Configurar badge de estado
+        if (user.activo) {
+            holder.tvActivo.text = "Activo"
+            holder.tvActivo.setBackgroundResource(R.drawable.bg_badge_active)
+        } else {
+            holder.tvActivo.text = "Inactivo"
+            holder.tvActivo.setBackgroundResource(R.drawable.bg_badge_inactive)
+        }
+
+        // Click en toda la card
+        holder.itemView.setOnClickListener {
+            onClick(user)
+        }
     }
 
     override fun getItemCount(): Int = listaUsuarios.size

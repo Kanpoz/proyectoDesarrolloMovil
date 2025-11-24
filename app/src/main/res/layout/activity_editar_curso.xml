@@ -5,7 +5,7 @@
     android:id="@+id/rootEditarCurso"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F6FA"
+    android:background="@color/background_light"
     tools:context=".roles.admin.EditarCursoActivity">
 
     <LinearLayout
@@ -231,7 +231,7 @@
                     android:layout_weight="1"
                     android:layout_marginEnd="10dp"
                     android:text="ELIMINAR ID"
-                    android:backgroundTint="#ff0032"
+                    android:backgroundTint="@color/error"
                     android:layout_marginBottom="8dp" />
 
             </LinearLayout>
@@ -284,7 +284,7 @@
                 android:layout_weight="1"
                 android:text="GUARDAR CAMBIOS"
                 android:layout_marginEnd="20dp"
-                android:backgroundTint="#1EAD69"
+                android:backgroundTint="@color/secondary"
                 android:textColor="@android:color/white"
                 android:layout_marginStart="12dp" />
         </LinearLayout>

@@ -1,10 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
-    <color name="AzulInstitucional">#0B63C6</color>
-    <color name="verde">#1EAD69</color>
-    <color name="gris">#D9D9D9</color>
-    <color name="azulFondo">#E9F2FF</color>
-    <color name="grisSecundario">#555555</color>
+    <!-- ========== BRAND COLORS (GENERIC) ========== -->
+    <color name="brand_primary">#2563EB</color>    <!-- Main Institutional Color -->
+    <color name="brand_secondary">#1E40AF</color>  <!-- Darker/Contrast Color -->
+    <color name="brand_tertiary">#60A5FA</color>   <!-- Lighter/Accent Color -->
+
+    <!-- ========== BASE COLORS ========== -->
+    <color name="black">#0F172A</color>
+    <color name="white">#FFFFFF</color>
+    <color name="transparent">#00000000</color>
+
+    <!-- ========== SEMANTIC MAPPING (LIGHT MODE) ========== -->
+    <color name="primary">@color/brand_primary</color>
+    <color name="primary_light">@color/brand_tertiary</color>
+    <color name="primary_lighter">#EFF6FF</color> <!-- Very light background tint -->
+    <color name="primary_dark">@color/brand_secondary</color>
+
+    <!-- Secondary is now mapped to the Darker Brand Color for consistency -->
+    <color name="secondary">@color/brand_secondary</color>
+    <color name="secondary_light">@color/brand_primary</color>
+    <color name="secondary_lighter">@color/brand_tertiary</color>
+    <color name="secondary_dark">#172554</color>
+
+    <!-- Accents mapped to the 3 brand colors -->
+    <color name="accent_purple">@color/brand_primary</color>
+    <color name="accent_pastel_purple">@color/brand_tertiary</color>
+    <color name="accent_pastel_pink">@color/brand_tertiary</color>
+    <color name="accent_pastel_green">@color/brand_tertiary</color>
+    <color name="accent_pastel_blue">@color/brand_tertiary</color>
+    <color name="accent_orange">@color/brand_secondary</color>
+    <color name="accent_amber">@color/brand_tertiary</color>
+    <color name="accent_lime">@color/brand_tertiary</color>
+    <color name="accent_slate">@color/brand_secondary</color>
+    <color name="accent_green_light">@color/brand_primary</color>
+    <color name="accent_blue">@color/brand_primary</color>
+    <color name="accent_coral">#2563EB</color>
+    <color name="accent_coral_light">@color/brand_tertiary</color>
+    <color name="accent_coral_dark">@color/brand_secondary</color>
+    <color name="accent_red">#EF4444</color>
+
+    <!-- Hard Accents -->
+    <color name="hard_blue">@color/brand_secondary</color>
+    <color name="hard_teal">@color/brand_secondary</color>
+    <color name="hard_orange">@color/brand_secondary</color>
+
+    <!-- Backgrounds -->
+    <color name="background_main">#F8FAFC</color> <!-- Slate 50 -->
+    <color name="background_light">#FFFFFF</color>
+    <color name="background_lighter">#FFFFFF</color>
+    <color name="background_docente">#EFF6FF</color>
+    <color name="background_card">#FFFFFF</color>
+    <color name="background_card_light">#F1F5F9</color>
+
+    <!-- Text -->
+    <color name="text_primary">#0F172A</color>
+    <color name="text_primary_dark">#020617</color>
+    <color name="text_secondary">#475569</color>
+    <color name="text_tertiary">#94A3B8</color>
+    <color name="text_light">#CBD5E1</color>
+    <color name="text_lighter">#E2E8F0</color>
+    <color name="text_dark">#1E293B</color>
+
+    <!-- Grays -->
+    <color name="gray_light">#E2E8F0</color>
+    <color name="gray_medium">#94A3B8</color>
+    <color name="gray_dark">#475569</color>
+
+    <!-- States -->
+    <color name="success">#10B981</color>
+    <color name="success_light">#D1FAE5</color>
+    <color name="error">#EF4444</color>
+    <color name="error_light">#FEE2E2</color>
+    <color name="warning">#F59E0B</color>
+    <color name="info">@color/brand_primary</color>
+
+    <!-- UI Elements -->
+    <color name="divider">#E2E8F0</color>
+    <color name="border_light">#F1F5F9</color>
+    <color name="shadow_light">#0D000000</color>
+    <color name="shadow_medium">#1A000000</color>
+
+    <!-- Gradients (Mapped to brand colors) -->
+    <color name="gradient_purple_start">@color/brand_primary</color>
+    <color name="gradient_purple_end">@color/brand_tertiary</color>
+    <color name="gradient_cyan_start">@color/brand_secondary</color>
+    <color name="gradient_cyan_end">@color/brand_primary</color>
+    <color name="gradient_coral_start">@color/brand_primary</color>
+    <color name="gradient_coral_end">@color/brand_tertiary</color>
+    <color name="gradient_yellow_start">@color/brand_tertiary</color>
+    <color name="gradient_yellow_end">@color/brand_primary</color>
+
+    <!-- Legacy Compatibility -->
+    <color name="AzulInstitucional">@color/brand_primary</color>
+    <color name="azulFondo">@color/primary_lighter</color>
+    <color name="verde">@color/success</color>
+    <color name="gris">@color/gray_light</color>
+    <color name="grisSecundario">@color/gray_dark</color>
 </resources>
