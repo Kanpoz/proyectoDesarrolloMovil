@@ -6,6 +6,7 @@ import android.graphics.Typeface
 import android.os.Bundle
 import android.view.View
 import android.widget.*
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.components.XAxis
@@ -18,8 +19,13 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.jjcc.proyectmovil.R
 import com.jjcc.proyectmovil.messages.MainChatActivity
 import com.jjcc.proyectmovil.profile.PerfilActivity
+import com.jjcc.proyectmovil.roles.admin.GestionCursosActivity
+import com.jjcc.proyectmovil.roles.admin.GestionUsuariosActivity
+import com.jjcc.proyectmovil.roles.docente.CalificacionesActivity
+import com.jjcc.proyectmovil.roles.docente.GestionAsistenciaActivity
 import java.util.*
 import kotlin.collections.ArrayList
+import androidx.core.graphics.toColorInt
 
 class HomeDocente : AppCompatActivity() {
 
@@ -28,6 +34,10 @@ class HomeDocente : AppCompatActivity() {
     private lateinit var container: FrameLayout
     private lateinit var spinnerFiltro: Spinner
 
+    private lateinit var btnAsistencia: LinearLayout
+
+    private lateinit var btnCalificaciones: LinearLayout
+
     private val auth = FirebaseAuth.getInstance()
     private val db = FirebaseFirestore.getInstance()
 
@@ -35,17 +45,28 @@ class HomeDocente : AppCompatActivity() {
     private var asistenciasHoy = ArrayList<Date>()
 
     // Colores para las gráficas
-    private val colorLavanda = Color.parseColor("#C7B3FF")
-    private val colorTexto = Color.parseColor("#666666")
+    private val colorLavanda = "#C7B3FF".toColorInt()
+    private val colorTexto = "#666666".toColorInt()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_docente)
+        enableEdgeToEdge()
 
         tvSaludoDocente = findViewById(R.id.tvSaludoDocente)
         container = findViewById(R.id.containerGrafica)
         spinnerFiltro = findViewById(R.id.spinnerFiltro)
         bottomNav = findViewById(R.id.bottomNavigation)
+        btnAsistencia=findViewById(R.id.cardAsistencia)
+        btnCalificaciones=findViewById(R.id.cardCalificaciones)
+
+        btnAsistencia.setOnClickListener {
+            startActivity(Intent(this, GestionAsistenciaActivity::class.java))
+        }
+
+        btnCalificaciones.setOnClickListener {
+            startActivity(Intent(this, CalificacionesActivity::class.java))
+        }
 
         inicializarSpinner()
         cargarNombreDesdeFirestore()
@@ -61,7 +82,7 @@ class HomeDocente : AppCompatActivity() {
         val opciones = arrayOf("Hoy", "Semana", "Mes")
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, opciones)
         spinnerFiltro.adapter = adapter
-        spinnerFiltro.setSelection(2) // Default MES
+        spinnerFiltro.setSelection(0) // Default HOY
 
         spinnerFiltro.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, pos: Int, id: Long) {
@@ -337,19 +358,12 @@ class HomeDocente : AppCompatActivity() {
                 )
                 val cont = contarSemanaPorDia()
 
-                for (i in dias.indices) {
-                    tabla.addView(texto("${dias[i]}: ${cont[i]} registro(s)"))
-                }
             }
 
             "Mes" -> {
                 val cal = Calendar.getInstance()
                 val max = cal.getActualMaximum(Calendar.DAY_OF_MONTH)
                 val cont = contarMesPorDia(max)
-
-                for (i in 1..max) {
-                    tabla.addView(texto("$i: ${cont[i - 1]} registro(s)"))
-                }
             }
         }
 
