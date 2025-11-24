@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProyectMovil">
         <activity
+            android:name=".roles.docente.GestionAsistenciaActivity"
+            android:exported="false" />
+        <activity
             android:name=".roles.docente.CalificacionesActivity"
             android:exported="false" />
         <activity

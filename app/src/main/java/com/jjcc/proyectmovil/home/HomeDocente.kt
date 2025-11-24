@@ -18,6 +18,10 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.jjcc.proyectmovil.R
 import com.jjcc.proyectmovil.messages.MainChatActivity
 import com.jjcc.proyectmovil.profile.PerfilActivity
+import com.jjcc.proyectmovil.roles.admin.GestionCursosActivity
+import com.jjcc.proyectmovil.roles.admin.GestionUsuariosActivity
+import com.jjcc.proyectmovil.roles.docente.CalificacionesActivity
+import com.jjcc.proyectmovil.roles.docente.GestionAsistenciaActivity
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -27,6 +31,10 @@ class HomeDocente : AppCompatActivity() {
     private lateinit var tvSaludoDocente: TextView
     private lateinit var container: FrameLayout
     private lateinit var spinnerFiltro: Spinner
+
+    private lateinit var btnAsistencia: LinearLayout
+
+    private lateinit var btnCalificaciones: LinearLayout
 
     private val auth = FirebaseAuth.getInstance()
     private val db = FirebaseFirestore.getInstance()
@@ -46,6 +54,16 @@ class HomeDocente : AppCompatActivity() {
         container = findViewById(R.id.containerGrafica)
         spinnerFiltro = findViewById(R.id.spinnerFiltro)
         bottomNav = findViewById(R.id.bottomNavigation)
+        btnAsistencia=findViewById(R.id.cardAsistencia)
+        btnCalificaciones=findViewById(R.id.cardCalificaciones)
+
+        btnAsistencia.setOnClickListener {
+            startActivity(Intent(this, GestionAsistenciaActivity::class.java))
+        }
+
+        btnCalificaciones.setOnClickListener {
+            startActivity(Intent(this, CalificacionesActivity::class.java))
+        }
 
         inicializarSpinner()
         cargarNombreDesdeFirestore()
