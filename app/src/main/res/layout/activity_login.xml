@@ -131,7 +131,7 @@
         app:iconGravity="textEnd"
         app:iconPadding="10dp"
         app:iconSize="25dp"
-        android:text="CREAR USUARIO"
+        android:text="CONTACTAR SOPORTE"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
         android:textColor="@color/black"

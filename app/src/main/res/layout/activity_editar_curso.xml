@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootEditarCurso"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F6FA"
+    tools:context=".roles.admin.EditarCursoActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="25dp"
+        android:padding="16dp">
+
+        <!-- Título -->
+        <TextView
+            android:id="@+id/tvTituloEditarCurso"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="EDICIÓN DEL CURSO"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Card: Datos generales y docente -->
+        <LinearLayout
+            android:id="@+id/cardDatosCurso"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/bg_card_curso_detalle"
+            android:padding="16dp"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Datos Generales y Docente"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Asignatura -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Asignatura:"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/etAsignatura"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Ej: Ciencias Naturales"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Grado y sección -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="4dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Grado:"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/etGrado"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:hint="Ej: 11" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:layout_marginStart="4dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sección:"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/etSeccion"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Ej: A" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Período -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Período:"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/etPeriodo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Ej: 2025-1"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Aula -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Aula:"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/etAula"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Ej: Laboratorio 305"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Docente -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Docente:"
+                android:textStyle="bold" />
+
+            <Spinner
+                android:id="@+id/spDocente"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Activo -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Curso activo"
+                    android:textStyle="bold" />
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/swActivoCurso"
+                    android:layout_marginEnd="5dp"
+                    android:gravity="center"
+                    app:thumbTint="@color/switch_thumb_tint"
+                    app:trackTint="@color/switch_track_tint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.1"
+                    android:checked="true" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- Card: Estudiantes -->
+        <LinearLayout
+            android:id="@+id/cardEstudiantesCurso"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/bg_card_curso_detalle"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Estudiantes"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gestión individual por ID:"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/etIdEstudiante"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:layout_weight="1"
+                android:hint="ID del estudiante"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp">
+
+                <Button
+                    android:id="@+id/btnAddEstudiante"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/AzulInstitucional"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="10dp"
+                    android:text="AÑADIR ID" />
+
+                <Button
+                    android:id="@+id/btnRemoveEstudiante"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="10dp"
+                    android:text="ELIMINAR ID"
+                    android:backgroundTint="#ff0032"
+                    android:layout_marginBottom="8dp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvTituloListaEstudiantesIds"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Estudiantes inscritos (IDs):"
+                android:textStyle="bold"
+                android:layout_marginBottom="4dp" />
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:background="@android:color/white">
+
+                <TextView
+                    android:id="@+id/tvListaEstudiantesIds"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:text="Sin estudiantes inscritos"
+                    android:textSize="13sp" />
+            </ScrollView>
+
+        </LinearLayout>
+
+        <!-- Botones inferiores -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="end"
+            android:layout_marginTop="16dp">
+
+            <Button
+                android:id="@+id/btnCancelarEdicionCurso"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:backgroundTint="@color/AzulInstitucional"
+                android:layout_weight="1"
+                android:text="CANCELAR" />
+
+            <Button
+                android:id="@+id/btnGuardarCurso"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="GUARDAR CAMBIOS"
+                android:layout_marginEnd="20dp"
+                android:backgroundTint="#1EAD69"
+                android:textColor="@android:color/white"
+                android:layout_marginStart="12dp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

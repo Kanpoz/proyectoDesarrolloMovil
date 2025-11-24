@@ -1,215 +1,315 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootAdmin"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#FFFFFF"
+    android:background="#F8F9FA"
     tools:context=".home.HomeAdmin">
 
-    <!-- Título + campana -->
-    <LinearLayout
-        android:layout_width="match_parent"
+    <!-- CONTENIDO SCROLLEABLE (CARDS Y BOTONES) -->
+    <ScrollView
+        android:id="@+id/scrollContent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottomNavigation"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_marginTop="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Título -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="DASHBOARD ADMINISTRADOR"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:id="@+id/tvTituloAdmin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="!Bienvenido user¡"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Fila 1: Usuarios Totales / Cursos Activos -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="110dp"
+                    android:layout_margin="8dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="2dp"
+                    android:layout_weight="1">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:padding="12dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Usuarios Totales"
+                            android:textColor="@color/black"
+                            android:textSize="14sp"/>
+
+                        <TextView
+                            android:id="@+id/tvUsuariosTotales"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textSize="26sp"
+                            android:textStyle="bold"
+                            android:textColor="#8E44AD"
+                            android:layout_marginTop="8dp"/>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="110dp"
+                    android:layout_margin="8dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="2dp"
+                    android:layout_weight="1">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:padding="12dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Cursos Activos"
+                            android:textColor="@color/black"
+                            android:textSize="14sp"/>
+
+                        <TextView
+                            android:id="@+id/tvCursosActivos"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textSize="26sp"
+                            android:textStyle="bold"
+                            android:textColor="#2ECC71"
+                            android:layout_marginTop="8dp"/>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+            <!-- Fila 2: Docentes / Estudiantes -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="110dp"
+                    android:layout_margin="8dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="2dp"
+                    android:layout_weight="1">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:padding="12dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Docentes"
+                            android:textColor="@color/black"
+                            android:textSize="14sp"/>
+
+                        <TextView
+                            android:id="@+id/tvDocentes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textSize="26sp"
+                            android:textStyle="bold"
+                            android:textColor="#8E44AD"
+                            android:layout_marginTop="8dp"/>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="110dp"
+                    android:layout_margin="8dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="2dp"
+                    android:layout_weight="1">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:padding="12dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Estudiantes"
+                            android:textColor="@color/black"
+                            android:textSize="14sp"/>
+
+                        <TextView
+                            android:id="@+id/tvEstudiantes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textSize="26sp"
+                            android:textStyle="bold"
+                            android:textColor="#8E44AD"
+                            android:layout_marginTop="8dp"/>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+            <!-- Fila 3: Clases Totales / Mensajes -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="110dp"
+                    android:layout_margin="8dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="2dp"
+                    android:layout_weight="1">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:padding="12dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Clases Totales"
+                            android:textColor="@color/black"
+                            android:textSize="14sp"/>
+
+                        <TextView
+                            android:id="@+id/tvClasesTotales"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textSize="26sp"
+                            android:textStyle="bold"
+                            android:textColor="#F5A623"
+                            android:layout_marginTop="8dp"/>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="110dp"
+                    android:layout_margin="8dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="2dp"
+                    android:layout_weight="1">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:padding="12dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Mensajes totales"
+                            android:textColor="@color/black"
+                            android:textSize="14sp"/>
+
+                        <TextView
+                            android:id="@+id/tvMensajes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textSize="26sp"
+                            android:textStyle="bold"
+                            android:textColor="#4A90E2"
+                            android:layout_marginTop="8dp"/>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+            <!-- Gestión y accesos rápidos -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gestión y Accesos Rápidos"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="8dp" />
+
+            <Button
+                android:id="@+id/btnGestionUsuarios"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="16dp"
+                android:text="Gestionar Usuarios"
+                android:backgroundTint="#1EAD69"
+                android:textColor="@color/white"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginBottom="8dp" />
+
+            <Button
+                android:id="@+id/btnGestionCursos"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:text="Gestión de Cursos"
+                android:backgroundTint="#1EAD69"
+                android:textColor="@color/white"
+                android:layout_marginHorizontal="8dp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- BOTTOM NAV FIJO ABAJO -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigation"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:padding="16dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginBottom="90dp">
+        android:background="#FFFFFF"
+        app:itemIconSize="50dp"
+        app:labelVisibilityMode="labeled"
+        app:menu="@menu/bottom_nav_menu"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Inicio"
-            android:textStyle="bold"
-            android:textSize="25sp"
-            android:textColor="@color/black"/>
-
-        <!-- Imagen en la punta derecha -->
-        <ImageView
-            android:id="@+id/ivPerfil"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@drawable/ic_notificacion"
-            android:contentDescription="Imagen Perfil"
-            android:layout_marginEnd="8dp"/>
-    </LinearLayout>
-
-
-    <!-- Grid estilo 2x2 tipo la imagen -->
-    <GridLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:columnCount="2"
-        android:rowCount="2"
-        android:alignmentMode="alignMargins"
-        android:columnOrderPreserved="false">
-
-        <!-- ITEM 1 -->
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:padding="8dp"
-            android:layout_margin="6dp">
-
-            <LinearLayout
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:background="@drawable/bg_button_blue"
-                android:gravity="center"
-                android:elevation="4dp">
-
-                <ImageView
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:src="@drawable/ic_curso"
-                    android:contentDescription="Cursos" />
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="ASIGNAR Y GESTIONAR CURSOS"
-                android:textStyle="bold"
-                android:textSize="12sp"
-                android:textColor="@color/black"
-                android:gravity="center"
-                android:paddingTop="10dp" />
-        </LinearLayout>
-
-
-        <!-- ITEM 2 -->
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:padding="8dp"
-            android:layout_margin="6dp">
-
-            <LinearLayout
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:background="@drawable/bg_button_blue"
-                android:gravity="center"
-                android:elevation="4dp">
-
-                <ImageView
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:src="@drawable/ic_comunicado"
-                    android:contentDescription="Comunicado" />
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="ENVIAR NUEVO COMUNICADO"
-                android:textStyle="bold"
-                android:textSize="12sp"
-                android:textColor="@color/black"
-                android:gravity="center"
-                android:paddingTop="10dp" />
-        </LinearLayout>
-
-
-        <!-- ITEM 3 -->
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:padding="8dp"
-            android:layout_margin="6dp">
-
-            <LinearLayout
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:background="@drawable/bg_button_blue"
-                android:gravity="center"
-                android:elevation="4dp">
-
-                <ImageView
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:src="@drawable/ic_grades"
-                    android:contentDescription="Reportes" />
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="CONSULTAR REPORTES"
-                android:textStyle="bold"
-                android:textSize="12sp"
-                android:textColor="@color/black"
-                android:gravity="center"
-                android:paddingTop="10dp" />
-        </LinearLayout>
-
-
-        <!-- ITEM 4 -->
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:padding="8dp"
-            android:layout_margin="6dp">
-
-            <LinearLayout
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:background="@drawable/bg_button_blue"
-                android:gravity="center"
-                android:elevation="4dp">
-
-                <ImageView
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:src="@drawable/ic_ingresos"
-                    android:contentDescription="Ingreso" />
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="GESTIONAR INGRESO Y REGISTRO"
-                android:textStyle="bold"
-                android:textSize="12sp"
-                android:textColor="@color/black"
-                android:gravity="center"
-                android:paddingTop="10dp" />
-        </LinearLayout>
-
-    </GridLayout>
-    <androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <!-- BOTTOM NAV FIJO ABAJO -->
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottomNavigation"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:background="#FFFFFF"
-            app:itemIconSize="50dp"
-            app:labelVisibilityMode="labeled"
-            app:menu="@menu/bottom_nav_menu"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

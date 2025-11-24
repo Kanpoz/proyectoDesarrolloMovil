@@ -101,13 +101,12 @@ class LoginActivity : AppCompatActivity() {
         // BOTÓN RECUPERAR
         linkRecuperar.setOnClickListener {
             startActivity(Intent(this, RecoverPassActivity::class.java))
-            finish()
         }
 
         // BOTÓN SOPORTE / REGISTRO
         btnSoporte.setOnClickListener {
-            startActivity(Intent(this, NewUserActivity::class.java))
-            finish()
+            // TODO: terminar seccion de soporte
+            Toast.makeText(this, "Sección en construcción", Toast.LENGTH_SHORT).show()
         }
     }
 }

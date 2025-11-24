@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingVertical="8dp">
+
+    <TextView
+        android:id="@+id/tvNombreUsuario"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:text="Nombre Apellido"
+        android:textSize="14sp"/>
+
+    <TextView
+        android:id="@+id/tvCorreoUsuario"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:text="correo@escuela.edu.co"
+        android:textSize="12sp"/>
+
+    <TextView
+        android:id="@+id/tvRolUsuario"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="ESTUDIANTE"
+        android:textSize="12sp"/>
+
+    <TextView
+        android:id="@+id/tvTelefonoUsuario"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="+573001234567"
+        android:textSize="12sp"/>
+
+    <TextView
+        android:id="@+id/tvActivoUsuario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sí"
+        android:textSize="12sp"
+        android:layout_marginEnd="4dp"/>
+
+    <!-- Acciones -->
+    <ImageView
+        android:id="@+id/btnVerUsuario"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/ic_eye"
+        android:contentDescription="Ver"/>
+
+    <ImageView
+        android:id="@+id/btnEditarUsuario"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="4dp"
+        android:src="@drawable/ic_edit"
+        android:contentDescription="Editar"/>
+
+    <ImageView
+        android:id="@+id/btnEliminarUsuario"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="4dp"
+        android:src="@drawable/ic_delete"
+        android:contentDescription="Eliminar"/>
+</LinearLayout>

@@ -150,7 +150,6 @@
     <!-- 🔹 Rol del usuario -->
     <TextView
         android:id="@+id/tvRolUsuario"
-        android:text="Rol: Estudiante"
         android:textSize="15sp"
         android:textColor="#757575"
         android:gravity="center"
@@ -161,18 +160,17 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content" />
 
-    <!-- 🔹 Menú inferior -->
+    <!-- BOTTOM NAV FIJO ABAJO -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigation"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:background="#FFFFFF"
-        app:menu="@menu/bottom_nav_menu"
-        app:labelVisibilityMode="selected"
         app:itemIconSize="50dp"
+        app:labelVisibilityMode="labeled"
+        app:menu="@menu/bottom_nav_menu"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="-15dp" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

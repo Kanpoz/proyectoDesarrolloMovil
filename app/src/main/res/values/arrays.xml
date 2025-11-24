@@ -1,0 +1,22 @@
+<resources>
+    <string-array name="opciones_rol">
+        <item>TODOS</item>
+        <item>ADMIN</item>
+        <item>DOCENTE</item>
+        <item>ESTUDIANTE</item>
+        <item>TUTOR</item>
+        <item>RECTOR</item>
+        <item>RUTAS</item>
+        <item>COORDINADORES</item>
+    </string-array>
+
+    <string-array name="roles_usuario_admin">
+        <item>ADMIN</item>
+        <item>DOCENTE</item>
+        <item>ESTUDIANTE</item>
+        <item>TUTOR</item>
+        <item>RECTOR</item>
+        <item>RUTAS</item>
+        <item>COORDINADORES</item>
+    </string-array>
+</resources>

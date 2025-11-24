@@ -12,6 +12,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProyectMovil">
         <activity
+            android:name=".roles.admin.EditarCursoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".roles.admin.DetalleCursoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".roles.admin.GestionCursosActivity"
+            android:exported="false" />
+        <activity
+            android:name=".core.model.ItemCursoAdmin"
+            android:exported="false" />
+        <activity
+            android:name=".core.model.ItemUsuarioAdmin"
+            android:exported="false" />
+        <activity
+            android:name=".roles.admin.GestionUsuariosActivity"
+            android:exported="false" />
+        <activity
             android:name=".profile.EditarPerfilActivity"
             android:exported="false" />
         <activity
@@ -68,7 +86,7 @@
         <activity
             android:name=".messages.ChatActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustResize"/>
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".home.HomeEstudiante"
             android:exported="false" />

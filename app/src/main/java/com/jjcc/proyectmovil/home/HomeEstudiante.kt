@@ -2,6 +2,7 @@ package com.jjcc.proyectmovil.home
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -19,18 +20,29 @@ class HomeEstudiante : AppCompatActivity() {
 
     private lateinit var bottomNav: BottomNavigationView
     private lateinit var btnNotas: MaterialButton
+    private lateinit var btnCalendar: MaterialButton
+    private lateinit var btnAsistencias: MaterialButton
+    private lateinit var btnAsignaturas: MaterialButton
+    private lateinit var btnCursos: MaterialButton
+    private lateinit var tvRol: TextView
+    private lateinit var tvBienvenida: TextView
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home)
+        setContentView(R.layout.activity_home_estudiante)
 
-        val btnCalendar = findViewById<MaterialButton>(R.id.btnCalendar)
-        val btnCursos = findViewById<MaterialButton>(R.id.btnCursos)
-        val btnAsignaturas = findViewById<MaterialButton>(R.id.btnAsignaturas)
-        val btnAsistencias = findViewById<MaterialButton>(R.id.btnAsistencias)
+        btnCalendar = findViewById(R.id.btnCalendar)
+        btnCursos = findViewById(R.id.btnCursos)
+        btnAsignaturas = findViewById(R.id.btnAsignaturas)
+        btnAsistencias = findViewById(R.id.btnAsistencias)
         btnNotas = findViewById(R.id.btnNotas)
         bottomNav = findViewById(R.id.bottomNavigation)
+        tvRol = findViewById(R.id.tvRolUsuario)
+        tvBienvenida = findViewById(R.id.tvBienvenida)
+
+        tvRol.text = "Rol: Estudiante"
 
         //Desactiva el efecto "ripple" (el círculo que se expande al tocar)
         bottomNav.itemRippleColor = null
