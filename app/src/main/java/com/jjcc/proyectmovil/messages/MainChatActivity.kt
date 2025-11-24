@@ -11,7 +11,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import com.google.firebase.firestore.FirebaseFirestore
 import com.jjcc.proyectmovil.core.adapter.UserAdapter
+import com.jjcc.proyectmovil.home.HomeAdmin
+import com.jjcc.proyectmovil.home.HomeDocente
 import com.jjcc.proyectmovil.home.HomeEstudiante
 import com.jjcc.proyectmovil.profile.PerfilActivity
 
@@ -48,6 +51,8 @@ class MainChatActivity : AppCompatActivity() {
 
         // Bottom navigation
         bottomNav.setOnItemSelectedListener { item ->
+
+            // Mantener tu animación
             bottomNav.animate()
                 .scaleX(1.1f)
                 .scaleY(1.1f)
@@ -57,22 +62,34 @@ class MainChatActivity : AppCompatActivity() {
                 }
                 .start()
 
-            when (item.itemId) {
-                R.id.nav_home -> {
-                    startActivity(Intent(this, HomeEstudiante::class.java))
-                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
-                    true
+            // 🔥 Obtener rol desde Firestore
+            obtenerRolUsuario { rol ->
+
+                when (item.itemId) {
+                    
+                    R.id.nav_home -> {
+                        val intent = when (rol) {
+                            "ADMIN" -> Intent(this, HomeAdmin::class.java)
+                            "DOCENTE" -> Intent(this, HomeDocente::class.java)
+                            "ESTUDIANTE" -> Intent(this, HomeEstudiante::class.java)
+                            else -> Intent(this, HomeEstudiante::class.java)
+                        }
+
+                        startActivity(intent)
+                        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+                    }
+
+                    R.id.nav_messages -> {
+                        // Ya está en chat → no hacer nada
+                    }
+                    R.id.nav_profile -> {
+                        startActivity(Intent(this, PerfilActivity::class.java))
+                        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+                    }
                 }
-                R.id.nav_messages -> {
-                    true
-                }
-                R.id.nav_profile -> {
-                    startActivity(Intent(this, PerfilActivity::class.java))
-                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
-                    true
-                }
-                else -> false
             }
+
+            true
         }
 
         // 🔹 Escuchar el índice de chats del usuario actual
@@ -134,5 +151,20 @@ class MainChatActivity : AppCompatActivity() {
                     Log.e("MainChatActivity", "Error leyendo chat_index", error.toException())
                 }
             })
+    }
+
+    private fun obtenerRolUsuario(callback: (String) -> Unit) {
+        val uid = FirebaseAuth.getInstance().currentUser?.uid ?: return
+        val db = FirebaseFirestore.getInstance()
+
+        db.collection("users").document(uid)
+            .get()
+            .addOnSuccessListener { doc ->
+                val rol = doc.getString("rol") ?: "DESCONOCIDO"
+                callback(rol.uppercase())
+            }
+            .addOnFailureListener {
+                callback("DESCONOCIDO")
+            }
     }
 }

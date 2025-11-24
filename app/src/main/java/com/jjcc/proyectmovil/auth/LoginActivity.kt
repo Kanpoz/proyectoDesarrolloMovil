@@ -9,11 +9,11 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.firestore.FirebaseFirestore
 import com.jjcc.proyectmovil.R
-import com.jjcc.proyectmovil.home.HomeEstudiante
 import com.jjcc.proyectmovil.home.HomeAdmin
 import com.jjcc.proyectmovil.home.HomeDocente
+import com.jjcc.proyectmovil.home.HomeEstudiante
 
 class LoginActivity : AppCompatActivity() {
 
@@ -24,80 +24,87 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var linkRecuperar: TextView
     private lateinit var btnSoporte: Button
 
+    private val db = FirebaseFirestore.getInstance()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_login)
 
-        //Instancia la conección a la base de datos
-        conexion= FirebaseAuth.getInstance()
+        conexion = FirebaseAuth.getInstance()
 
-        //Inicializa todos los elementos de la lista
-        editEmail= findViewById(R.id.editEmail)
-        editPassword= findViewById(R.id.editPassword)
-        btnLogin= findViewById(R.id.btnLogin)
-        linkRecuperar= findViewById(R.id.txtRecuperar)
-        btnSoporte= findViewById(R.id.btnSoporte)
+        editEmail = findViewById(R.id.editEmail)
+        editPassword = findViewById(R.id.editPassword)
+        btnLogin = findViewById(R.id.btnLogin)
+        linkRecuperar = findViewById(R.id.txtRecuperar)
+        btnSoporte = findViewById(R.id.btnSoporte)
 
-        //Acción del botón login
-        btnLogin.setOnClickListener{
-            //Validación de email y contraseña
-            val email=editEmail.text.toString().trim()
-            val password=editPassword.text.toString().trim()
+        // BOTÓN LOGIN
+        btnLogin.setOnClickListener {
 
-            if (email.isEmpty() || password.isEmpty()){
-                Toast.makeText(this,"Porfavor complete todos los campos", Toast.LENGTH_SHORT).show()
+            val email = editEmail.text.toString().trim()
+            val password = editPassword.text.toString().trim()
+
+            if (email.isEmpty() || password.isEmpty()) {
+                Toast.makeText(this, "Por favor complete todos los campos", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            //Conexion con la base de datos para validar el inicio de sesion
-            conexion.signInWithEmailAndPassword(email,password).addOnCompleteListener{ task ->
-                if (task.isSuccessful){
-                    val user=conexion.currentUser
+            // AUTENTICACIÓN
+            conexion.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener { task ->
 
-                    //Forma de hallar en que rol en tiempo real
-                    val uid = user!!.uid
-                    val rolRef = FirebaseDatabase.getInstance()
-                        .getReference("usuarios")   // <-- cambia a tu nodo real si es distinto
-                        .child(uid)
-                        .child("rol")
+                    if (task.isSuccessful) {
 
-                    rolRef.get()
-                        .addOnSuccessListener { snap ->
-                            val rol = snap.getValue(String::class.java) ?: ""
-                            Toast.makeText(this, "El rol es: $rol", Toast.LENGTH_SHORT)
-                                .show()
+                        val uid = conexion.currentUser!!.uid
 
-                            val destino = if (rol.equals("DOCENTE", ignoreCase = true)) {
-                                Intent(this, HomeDocente::class.java)
-                            } else if (rol.equals("ADMINISTRADOR", ignoreCase = true)) {
-                                Intent(this, HomeAdmin::class.java)
-                            }else{
-                                Intent(this, HomeEstudiante::class.java)
+                        // 🔥 LEER ROL DESDE FIRESTORE
+                        db.collection("users")
+                            .document(uid)
+                            .get()
+                            .addOnSuccessListener { doc ->
+
+                                if (!doc.exists()) {
+                                    Toast.makeText(this, "No se encontró información del usuario", Toast.LENGTH_SHORT).show()
+                                    return@addOnSuccessListener
+                                }
+
+                                val rol = doc.getString("rol")?.uppercase() ?: ""
+
+                                val destino = when (rol) {
+                                    "ADMIN" -> Intent(this, HomeAdmin::class.java)
+                                    "DOCENTE" -> Intent(this, HomeDocente::class.java)
+                                    "ESTUDIANTE" -> Intent(this, HomeEstudiante::class.java)
+                                    else -> {
+                                        Toast.makeText(this, "Rol no válido en Firestore", Toast.LENGTH_SHORT).show()
+                                        return@addOnSuccessListener
+                                    }
+                                }
+
+                                startActivity(destino)
+                                finish()
+                            }
+                            .addOnFailureListener {
+                                Toast.makeText(this, "Error leyendo Firestore: ${it.message}", Toast.LENGTH_SHORT).show()
                             }
 
-                            startActivity(destino)
-                            finish()
-                        }
-                        .addOnFailureListener { e ->
-                            Toast.makeText(
-                                this,
-                                "No se pudo leer el rol: ${e.message}",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
-                }else{
-                    Toast.makeText(this,"La información que ingresaste no es válida. Revisa el correo o la contraseña e intentalo nuevamente.", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(
+                            this,
+                            "Correo o contraseña incorrectos. Inténtalo nuevamente.",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
                 }
-            }
         }
 
-        //Acción del link ¿Olvidaste la contraseña?
+        // BOTÓN RECUPERAR
         linkRecuperar.setOnClickListener {
             startActivity(Intent(this, RecoverPassActivity::class.java))
             finish()
         }
 
+        // BOTÓN SOPORTE / REGISTRO
         btnSoporte.setOnClickListener {
             startActivity(Intent(this, NewUserActivity::class.java))
             finish()
