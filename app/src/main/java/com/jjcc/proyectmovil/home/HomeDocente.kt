@@ -6,6 +6,7 @@ import android.graphics.Typeface
 import android.os.Bundle
 import android.view.View
 import android.widget.*
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.components.XAxis
@@ -24,6 +25,7 @@ import com.jjcc.proyectmovil.roles.docente.CalificacionesActivity
 import com.jjcc.proyectmovil.roles.docente.GestionAsistenciaActivity
 import java.util.*
 import kotlin.collections.ArrayList
+import androidx.core.graphics.toColorInt
 
 class HomeDocente : AppCompatActivity() {
 
@@ -43,12 +45,13 @@ class HomeDocente : AppCompatActivity() {
     private var asistenciasHoy = ArrayList<Date>()
 
     // Colores para las gráficas
-    private val colorLavanda = Color.parseColor("#C7B3FF")
-    private val colorTexto = Color.parseColor("#666666")
+    private val colorLavanda = "#C7B3FF".toColorInt()
+    private val colorTexto = "#666666".toColorInt()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_docente)
+        enableEdgeToEdge()
 
         tvSaludoDocente = findViewById(R.id.tvSaludoDocente)
         container = findViewById(R.id.containerGrafica)
