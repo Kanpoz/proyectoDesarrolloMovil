@@ -97,28 +97,30 @@
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp">
+            android:layout_marginTop="12dp"
+            android:paddingBottom="6dp">
 
             <Button
                 android:id="@+id/btnMarcarPresentes"
-                android:text="Marcar como Presentes"
-                android:textColor="@color/white"
-                android:background="#EFE3FF"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:padding="10dp" />
+                android:text="Marcar como Presentes"
+                android:textAllCaps="false"
+                android:background="#EFE3FF"
+                android:textColor="@color/white"
+                android:layout_marginEnd="8dp" />
 
             <Button
                 android:id="@+id/btnLimpiar"
-                android:text="Limpiar Selecciones"
-                android:textColor="@color/white"
-                android:background="#EFE3FF"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:padding="10dp"
-                android:layout_marginStart="10dp" />
+                android:text="Limpiar Selecciones"
+                android:textAllCaps="false"
+                android:background="#EFE3FF"
+                android:textColor="@color/white"
+                android:layout_marginStart="8dp" />
         </LinearLayout>
 
         <!-- TITULO -->

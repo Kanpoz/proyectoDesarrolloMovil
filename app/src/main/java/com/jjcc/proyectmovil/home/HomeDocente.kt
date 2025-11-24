@@ -79,7 +79,7 @@ class HomeDocente : AppCompatActivity() {
         val opciones = arrayOf("Hoy", "Semana", "Mes")
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, opciones)
         spinnerFiltro.adapter = adapter
-        spinnerFiltro.setSelection(2) // Default MES
+        spinnerFiltro.setSelection(0) // Default HOY
 
         spinnerFiltro.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, pos: Int, id: Long) {
@@ -355,19 +355,12 @@ class HomeDocente : AppCompatActivity() {
                 )
                 val cont = contarSemanaPorDia()
 
-                for (i in dias.indices) {
-                    tabla.addView(texto("${dias[i]}: ${cont[i]} registro(s)"))
-                }
             }
 
             "Mes" -> {
                 val cal = Calendar.getInstance()
                 val max = cal.getActualMaximum(Calendar.DAY_OF_MONTH)
                 val cont = contarMesPorDia(max)
-
-                for (i in 1..max) {
-                    tabla.addView(texto("$i: ${cont[i - 1]} registro(s)"))
-                }
             }
         }
 

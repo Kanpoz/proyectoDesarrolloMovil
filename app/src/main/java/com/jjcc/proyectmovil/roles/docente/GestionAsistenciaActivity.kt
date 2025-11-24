@@ -1,10 +1,13 @@
 package com.jjcc.proyectmovil.roles.docente
 
+import android.graphics.Color
 import android.os.Bundle
+import android.text.TextUtils
 import android.view.Gravity
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -207,61 +210,87 @@ class GestionAsistenciaActivity : AppCompatActivity() {
     // =========================================================
     private fun agregarItemEstudiante(parent: LinearLayout, estudianteId: String, nombre: String) {
 
-        val item = LinearLayout(this)
-        item.orientation = LinearLayout.HORIZONTAL
-        item.gravity = Gravity.CENTER_VERTICAL
-        item.setPadding(12, 18, 12, 18)
+        // CARD CONTENEDORA
+        val card = LinearLayout(this)
+        card.orientation = LinearLayout.VERTICAL
+        card.setPadding(20, 20, 20, 20)
+        card.background = ContextCompat.getDrawable(this, R.drawable.bg_card_lila)
 
+        val params = LinearLayout.LayoutParams(
+            LinearLayout.LayoutParams.MATCH_PARENT,
+            LinearLayout.LayoutParams.WRAP_CONTENT
+        )
+        params.setMargins(0, 0, 0, 20)
+        card.layoutParams = params
+
+        // NOMBRE (arriba)
         val tvNombre = TextView(this)
         tvNombre.text = nombre
         tvNombre.tag = estudianteId
-        tvNombre.textSize = 16f
-        tvNombre.layoutParams =
-            LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f)
+        tvNombre.textSize = 18f
+        tvNombre.setTextColor(Color.WHITE)
+        tvNombre.maxLines = 1
+        tvNombre.ellipsize = TextUtils.TruncateAt.END
+        tvNombre.setPadding(0, 0, 0, 16)
 
-        val btnP = crearBotonEstado("Presente", "#7C4DFF", "#FFFFFF")
-        val btnA = crearBotonEstado("Ausente", "#EFE3FF", "#7C4DFF")
-        val btnT = crearBotonEstado("Tardanza", "#EFE3FF", "#7C4DFF")
+        card.addView(tvNombre)
 
-        item.addView(tvNombre)
-        item.addView(btnP)
-        item.addView(btnA)
-        item.addView(btnT)
+        // LÍNEA HORIZONTAL CON LOS ESTADOS
+        val filaBotones = LinearLayout(this)
+        filaBotones.orientation = LinearLayout.HORIZONTAL
+        filaBotones.gravity = Gravity.CENTER
+        filaBotones.layoutParams =
+            LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
 
+        // Crea botones reales
+        val btnP = crearBotonChip("Presente", "#EFE3FF", "#7C4DFF")
+        val btnA = crearBotonChip("Ausente", "#EFE3FF", "#7C4DFF")
+        val btnT = crearBotonChip("Tardanza", "#EFE3FF", "#7C4DFF")
+
+        // Clicks
         btnP.setOnClickListener { seleccionar(estudianteId, "P", btnP, btnA, btnT) }
         btnA.setOnClickListener { seleccionar(estudianteId, "A", btnP, btnA, btnT) }
         btnT.setOnClickListener { seleccionar(estudianteId, "T", btnP, btnA, btnT) }
 
-        parent.addView(item)
+        filaBotones.addView(btnP)
+        filaBotones.addView(btnA)
+        filaBotones.addView(btnT)
+
+        card.addView(filaBotones)
+
+        parent.addView(card)
     }
 
-    private fun crearBotonEstado(texto: String, bg: String, color: String): Button {
+    private fun crearBotonChip(texto: String, bg: String, color: String): Button {
         val btn = Button(this)
         btn.text = texto
-        btn.setBackgroundColor(android.graphics.Color.parseColor(bg))
-        btn.setTextColor(android.graphics.Color.parseColor(color))
-        btn.textSize = 12f
-        btn.setPadding(24, 12, 24, 12)
-        val params = LinearLayout.LayoutParams(
-            LinearLayout.LayoutParams.WRAP_CONTENT,
-            LinearLayout.LayoutParams.WRAP_CONTENT
-        )
-        params.setMargins(12, 0, 0, 0)
+        btn.textSize = 14f
+
+        btn.setBackgroundColor(Color.parseColor(bg))
+        btn.setTextColor(Color.parseColor(color))
+
+        val params = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f)
+        params.setMargins(6, 0, 6, 0)
         btn.layoutParams = params
+
+        btn.setPadding(10, 20, 10, 20)
+        btn.background = ContextCompat.getDrawable(this, R.drawable.bg_chip_button)
+
         return btn
     }
+
 
     private fun seleccionar(id: String, estado: String, p: Button, a: Button, t: Button) {
         estados[id] = estado
 
-        p.setBackgroundColor(android.graphics.Color.parseColor(if (estado == "P") "#7C4DFF" else "#EFE3FF"))
-        p.setTextColor(android.graphics.Color.parseColor(if (estado == "P") "#FFFFFF" else "#7C4DFF"))
+        p.setBackgroundColor(Color.parseColor(if (estado == "P") "#7C4DFF" else "#EFE3FF"))
+        p.setTextColor(Color.parseColor(if (estado == "P") "#FFFFFF" else "#7C4DFF"))
 
-        a.setBackgroundColor(android.graphics.Color.parseColor(if (estado == "A") "#7C4DFF" else "#EFE3FF"))
-        a.setTextColor(android.graphics.Color.parseColor(if (estado == "A") "#FFFFFF" else "#7C4DFF"))
+        a.setBackgroundColor(Color.parseColor(if (estado == "A") "#7C4DFF" else "#EFE3FF"))
+        a.setTextColor(Color.parseColor(if (estado == "A") "#FFFFFF" else "#7C4DFF"))
 
-        t.setBackgroundColor(android.graphics.Color.parseColor(if (estado == "T") "#7C4DFF" else "#EFE3FF"))
-        t.setTextColor(android.graphics.Color.parseColor(if (estado == "T") "#FFFFFF" else "#7C4DFF"))
+        t.setBackgroundColor(Color.parseColor(if (estado == "T") "#7C4DFF" else "#EFE3FF"))
+        t.setTextColor(Color.parseColor(if (estado == "T") "#FFFFFF" else "#7C4DFF"))
     }
 
     // =========================================================
