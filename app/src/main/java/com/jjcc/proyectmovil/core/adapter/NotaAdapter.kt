@@ -9,7 +9,6 @@ import com.jjcc.proyectmovil.R
 import com.jjcc.proyectmovil.core.model.ItemNota
 
 class NotaAdapter(private val listaNotas: List<ItemNota>) :
-
     RecyclerView.Adapter<NotaAdapter.NotaViewHolder>() {
 
     class NotaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -26,9 +25,14 @@ class NotaAdapter(private val listaNotas: List<ItemNota>) :
 
     override fun onBindViewHolder(holder: NotaViewHolder, position: Int) {
         val nota = listaNotas[position]
-        holder.tvAsignatura.text = nota.asignatura
-        holder.tvNotaFinal.text = "Nota: ${nota.notaFinal}"
-        holder.tvPeriodo.text = "Periodo: ${nota.periodo}"
+
+        // Si no hay título, mostramos algo genérico
+        holder.tvAsignatura.text = nota.titulo ?: "Evaluación"
+
+        val valorNota = nota.nota ?: 0.0
+        holder.tvNotaFinal.text = "Nota: $valorNota"
+
+        holder.tvPeriodo.text = "Periodo: ${nota.periodo ?: "N/D"}"
     }
 
     override fun getItemCount(): Int = listaNotas.size
