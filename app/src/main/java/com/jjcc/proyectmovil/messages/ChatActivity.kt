@@ -1,15 +1,12 @@
 package com.jjcc.proyectmovil.messages
 
 import android.os.Bundle
-import android.view.View
+import androidx.activity.enableEdgeToEdge
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import com.jjcc.proyectmovil.R
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
@@ -34,6 +31,7 @@ class ChatActivity : AppCompatActivity() {
     private var partnerName: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat)
 

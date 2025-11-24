@@ -3,6 +3,7 @@ package com.jjcc.proyectmovil.messages
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import androidx.activity.enableEdgeToEdge
 import com.jjcc.proyectmovil.R
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -24,6 +25,7 @@ class MainChatActivity : AppCompatActivity() {
     private lateinit var bottomNav: BottomNavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_chat)
 
