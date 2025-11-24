@@ -123,8 +123,10 @@ class GestionAsistenciaActivity : AppCompatActivity() {
     // =========================================================
     private fun cargarClasesParaCurso(cursoId: String) {
 
+        val uid = auth.currentUser?.uid ?: return
+
         db.collection("clases")
-            .whereEqualTo("cursoId", cursoId)
+            .whereEqualTo("docenteId", uid)
             .orderBy("fecha")
             .get()
             .addOnSuccessListener { snap ->
@@ -132,6 +134,10 @@ class GestionAsistenciaActivity : AppCompatActivity() {
                 listaClases.clear()
 
                 for (clase in snap.documents) {
+
+                    // Filtrar manualmente SOLO las clases de ese curso
+                    if (clase.getString("cursoId") != cursoId) continue
+
                     val fecha = clase.getTimestamp("fecha")?.toDate()
                     val tema = clase.getString("tema") ?: "Clase"
 
@@ -150,6 +156,8 @@ class GestionAsistenciaActivity : AppCompatActivity() {
 
                     tvClaseRegistrada.text =
                         "${clase["fecha"]} - ${clase["tema"]} (${clase["hora"]})"
+                } else {
+                    tvClaseRegistrada.text = "Sin clases registradas"
                 }
             }
     }
@@ -158,10 +166,13 @@ class GestionAsistenciaActivity : AppCompatActivity() {
     // MOSTRAR SELECTOR DE CLASES
     // =========================================================
     private fun mostrarSelectorClases() {
-        if (listaClases.isEmpty()) return
+        if (listaClases.isEmpty()) {
+            Toast.makeText(this, "No hay clases disponibles", Toast.LENGTH_SHORT).show()
+            return
+        }
 
         val nombres = listaClases.map {
-            "${it["fecha"]} - ${it["tema"]}"
+            "${it["fecha"]} - ${it["tema"]} (${it["hora"]})"
         }.toTypedArray()
 
         AlertDialog.Builder(this)
@@ -171,6 +182,9 @@ class GestionAsistenciaActivity : AppCompatActivity() {
 
                 claseIdActual = clase["id"] as String
                 tvClaseRegistrada.text = nombres[i]
+
+                // Actualizar contenido después de cambiar clase si lo deseas
+                // cargarEstudiantesDelCurso(cursoIdActual) // ← opcional
             }
             .show()
     }
