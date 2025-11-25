@@ -96,4 +96,9 @@
     <color name="verde">@color/success</color>
     <color name="gris">@color/gray_light</color>
     <color name="grisSecundario">@color/gray_dark</color>
+
+    <color name="verde_nota">#4CAF50</color>
+    <color name="naranja_nota">#FF9800</color>
+    <color name="rojo_nota">#F44336</color>
+
 </resources>

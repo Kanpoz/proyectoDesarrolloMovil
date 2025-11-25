@@ -97,6 +97,9 @@
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
+            android:name=".messages.NewConversationActivity"
+            android:exported="false" />
+        <activity
             android:name=".home.HomeEstudiante"
             android:exported="false" />
         <activity

@@ -44,6 +44,8 @@ class HomeEstudiante : AppCompatActivity() {
 
         tvRol.text = "Rol: Estudiante"
 
+
+
         //Desactiva el efecto "ripple" (el círculo que se expande al tocar)
         bottomNav.itemRippleColor = null
 
@@ -52,7 +54,9 @@ class HomeEstudiante : AppCompatActivity() {
 
         //Botón de calendario
         btnCalendar.setOnClickListener {
-            startActivity(Intent(this, Calendario::class.java))
+            val intent = Intent(this, com.jjcc.proyectmovil.ui.CalendarActivity::class.java)
+            intent.putExtra("USER_ROLE", "ESTUDIANTE")
+            startActivity(intent)
         }
 
         //Botón de cursos
@@ -95,12 +99,19 @@ class HomeEstudiante : AppCompatActivity() {
                 R.id.nav_messages -> {
                     startActivity(Intent(this, MainChatActivity::class.java))
                     overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
-                    true
+                    false
+                }
+                R.id.nav_calendar -> {
+                    val intent = Intent(this, com.jjcc.proyectmovil.ui.CalendarActivity::class.java)
+                    intent.putExtra("USER_ROLE", "ESTUDIANTE")
+                    startActivity(intent)
+                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+                    false
                 }
                 R.id.nav_profile -> {
                     startActivity(Intent(this, PerfilActivity::class.java))
                     overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
-                    true
+                    false
                 }
                 else -> false
             }

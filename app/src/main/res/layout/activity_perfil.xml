@@ -9,20 +9,19 @@
     android:background="#F5F6FA"
     tools:context=".profile.PerfilActivity">
 
-    <!-- Contenido desplazable -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="?attr/actionBarSize"
         android:background="#F5F6FA">
 
         <LinearLayout
-            android:layout_marginTop="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
             android:orientation="vertical"
             android:padding="16dp">
 
-            <!-- Rol de la persona -->
             <TextView
                 android:id="@+id/tvRol"
                 android:layout_width="wrap_content"
@@ -35,26 +34,23 @@
                 android:textSize="14sp"
                 android:textStyle="bold" />
 
-            <!-- Foto de perfil -->
             <ImageView
                 android:id="@+id/imgPerfil"
                 android:layout_width="200dp"
                 android:layout_height="200dp"
                 android:layout_gravity="center_horizontal"
                 android:contentDescription="Foto de perfil"
-                android:src="@drawable/avatar"
-                android:padding="16dp"/>
+                android:padding="16dp"
+                android:src="@drawable/avatar" />
 
-            <!-- Contenedor de datos -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:layout_marginTop="16dp"
                 android:backgroundTint="@color/azulFondo"
-                android:padding="16dp"
-                android:layout_marginTop="16dp">
+                android:orientation="vertical"
+                android:padding="16dp">
 
-                <!-- Nombre -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -66,31 +62,30 @@
                         android:layout_height="24dp"
                         android:contentDescription="Icono de persona"
                         android:src="@drawable/avatar"
-                        app:tint="@color/AzulInstitucional"/>
+                        app:tint="@color/AzulInstitucional" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_marginStart="12dp">
+                        android:layout_marginStart="12dp"
+                        android:orientation="vertical">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Nombre completo"
-                            android:textStyle="bold"
-                            android:textColor="@color/black"/>
+                            android:textColor="@color/black"
+                            android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/tvNombre"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Cargando..."
-                            android:textColor="@color/grisSecundario"/>
+                            android:textColor="@color/grisSecundario" />
                     </LinearLayout>
                 </LinearLayout>
 
-                <!-- Correo -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -102,31 +97,30 @@
                         android:layout_height="24dp"
                         android:contentDescription="Icono de correo electrónico"
                         android:src="@drawable/ic_email"
-                        app:tint="@color/AzulInstitucional"/>
+                        app:tint="@color/AzulInstitucional" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_marginStart="12dp">
+                        android:layout_marginStart="12dp"
+                        android:orientation="vertical">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Correo electrónico"
-                            android:textStyle="bold"
-                            android:textColor="@color/black"/>
+                            android:textColor="@color/black"
+                            android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/tvCorreo"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Cargando..."
-                            android:textColor="@color/grisSecundario"/>
+                            android:textColor="@color/grisSecundario" />
                     </LinearLayout>
                 </LinearLayout>
 
-                <!-- Teléfono -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -138,13 +132,13 @@
                         android:layout_height="24dp"
                         android:contentDescription="Icono de teléfono"
                         android:src="@drawable/ic_phone"
-                        app:tint="@color/AzulInstitucional"/>
+                        app:tint="@color/AzulInstitucional" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_marginStart="12dp">
+                        android:layout_marginStart="12dp"
+                        android:orientation="vertical">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -158,11 +152,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Cargando..."
-                            android:textColor="@color/grisSecundario"/>
+                            android:textColor="@color/grisSecundario" />
                     </LinearLayout>
                 </LinearLayout>
 
-                <!-- Dirección -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -174,76 +167,57 @@
                         android:layout_height="24dp"
                         android:contentDescription="Icono de ubicación"
                         android:src="@drawable/ic_location"
-                        app:tint="@color/AzulInstitucional"/>
+                        app:tint="@color/AzulInstitucional" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_marginStart="12dp">
+                        android:layout_marginStart="12dp"
+                        android:orientation="vertical">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Dirección"
-                            android:textStyle="bold"
-                            android:textColor="@color/black"/>
+                            android:textColor="@color/black"
+                            android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/tvDireccion"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Cargando..."
-                            android:textColor="@color/grisSecundario"/>
+                            android:textColor="@color/grisSecundario" />
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
 
-            <!-- Nuevo botón editar datos personales -->
             <Button
                 android:id="@+id/btnEditarPerfil"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="EDITAR DATOS PERSONALES"
+                android:layout_marginTop="8dp"
                 android:backgroundTint="@color/cardview_shadow_start_color"
-                android:textColor="@color/white"
-                android:layout_marginTop="8dp"/>
+                android:text="EDITAR DATOS PERSONALES"
+                android:textColor="@color/white" />
 
-            <!-- Botón cerrar sesión -->
             <Button
                 android:id="@+id/btnCerrarSesion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="CERRAR SESIÓN"
+                android:layout_marginTop="8dp"
                 android:backgroundTint="@color/AzulInstitucional"
-                android:textColor="@color/white"
-                android:layout_marginTop="8dp"/>
+                android:text="CERRAR SESIÓN"
+                android:textColor="@color/white" />
 
         </LinearLayout>
-
     </ScrollView>
 
-    <!-- Menú de navegación inferior -->
-    <androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <!-- BOTTOM NAV FIJO ABAJO -->
-    <com.google.android.material.bottomnavigation.BottomNavigationView
+    <include
         android:id="@+id/bottomNavigation"
-        android:layout_width="0dp"
+        layout="@layout/component_bottom_nav"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#FFFFFF"
-        app:itemIconSize="50dp"
-        app:labelVisibilityMode="labeled"
-        app:menu="@menu/bottom_nav_menu"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_gravity="bottom" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

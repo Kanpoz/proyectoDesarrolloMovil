@@ -34,12 +34,17 @@ class MainChatActivity : AppCompatActivity() {
 
         bottomNav = findViewById(R.id.bottomNavigation)
         userRecyclerView = findViewById(R.id.userRecyclerview)
+        val fabNewChat = findViewById<com.google.android.material.floatingactionbutton.FloatingActionButton>(R.id.fabNewChat)
 
         mAuth = FirebaseAuth.getInstance()
         mDbRef = FirebaseDatabase.getInstance().reference
 
         userList = ArrayList()
         adapter = UserAdapter(this, userList)
+
+        fabNewChat.setOnClickListener {
+            startActivity(Intent(this, NewConversationActivity::class.java))
+        }
 
         userRecyclerView.layoutManager = LinearLayoutManager(this)
         userRecyclerView.adapter = adapter
@@ -66,7 +71,7 @@ class MainChatActivity : AppCompatActivity() {
             obtenerRolUsuario { rol ->
 
                 when (item.itemId) {
-                    
+
                     R.id.nav_home -> {
                         val intent = when (rol) {
                             "ADMIN" -> Intent(this, HomeAdmin::class.java)
@@ -82,6 +87,14 @@ class MainChatActivity : AppCompatActivity() {
                     R.id.nav_messages -> {
                         // Ya está en chat → no hacer nada
                     }
+
+                    R.id.nav_calendar -> {
+                        val intent = Intent(this, com.jjcc.proyectmovil.ui.CalendarActivity::class.java)
+                        intent.putExtra("USER_ROLE", rol)
+                        startActivity(intent)
+                        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+                    }
+
                     R.id.nav_profile -> {
                         startActivity(Intent(this, PerfilActivity::class.java))
                         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
@@ -89,7 +102,7 @@ class MainChatActivity : AppCompatActivity() {
                 }
             }
 
-            true
+            false // Return false so the item doesn't get selected visually in this activity
         }
 
         // 🔹 Escuchar el índice de chats del usuario actual
@@ -115,8 +128,7 @@ class MainChatActivity : AppCompatActivity() {
 
                         val parts = convId.split("_")
                         val partnerId = when (parts.size) {
-                            2 if parts[0] == currentUid -> parts[1]
-                            2 if parts[1] == currentUid -> parts[0]
+                            2 -> if (parts[0] == currentUid) parts[1] else parts[0]
                             else -> null
                         }
 
@@ -126,7 +138,11 @@ class MainChatActivity : AppCompatActivity() {
                         val unreadCount = convSnap.child("unreadCount").getValue(Long::class.java)
 
 // 🔹 NUEVO
-                        val fotoPerfil = convSnap.child("fotoPerfil").getValue(String::class.java)
+                        var fotoPerfil = convSnap.child("fotoPerfil").getValue(String::class.java)
+                        // Sanitize invalid local paths
+                        if (fotoPerfil != null && fotoPerfil.startsWith("/com/")) {
+                            fotoPerfil = null
+                        }
 
                         val row = ConversationRow(
                             convId = convId,

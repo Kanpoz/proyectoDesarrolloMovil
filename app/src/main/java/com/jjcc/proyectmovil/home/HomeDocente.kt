@@ -2,51 +2,58 @@ package com.jjcc.proyectmovil.home
 
 import android.content.Intent
 import android.graphics.Color
-import android.graphics.Typeface
 import android.os.Bundle
 import android.view.View
 import android.widget.*
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
+import androidx.core.graphics.toColorInt
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.components.XAxis
-import com.github.mikephil.charting.data.*
+import com.github.mikephil.charting.data.BarData
+import com.github.mikephil.charting.data.BarDataSet
+import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.jjcc.proyectmovil.R
+import com.jjcc.proyectmovil.core.model.ItemCurso
 import com.jjcc.proyectmovil.messages.MainChatActivity
 import com.jjcc.proyectmovil.profile.PerfilActivity
-import com.jjcc.proyectmovil.roles.admin.GestionCursosActivity
-import com.jjcc.proyectmovil.roles.admin.GestionUsuariosActivity
 import com.jjcc.proyectmovil.roles.docente.CalificacionesActivity
 import com.jjcc.proyectmovil.roles.docente.GestionAsistenciaActivity
 import java.util.*
 import kotlin.collections.ArrayList
-import androidx.core.graphics.toColorInt
 
 class HomeDocente : AppCompatActivity() {
 
     private lateinit var bottomNav: BottomNavigationView
     private lateinit var tvSaludoDocente: TextView
+    private lateinit var rvProximasClases: RecyclerView
+    private lateinit var tvSinClases: TextView
+    private lateinit var tvNotificacionesEmpty: TextView
+
+    private lateinit var cardAsistencia: CardView
+    private lateinit var cardCalificaciones: CardView
+
+    // Chart components
     private lateinit var container: FrameLayout
     private lateinit var spinnerFiltro: Spinner
-
-    private lateinit var btnAsistencia: LinearLayout
-
-    private lateinit var btnCalificaciones: LinearLayout
+    private var asistenciasFechas = ArrayList<Date>()
+    private var asistenciasHoy = ArrayList<Date>()
+    private val colorLavanda = "#C7B3FF".toColorInt()
+    private val colorTexto = "#666666".toColorInt()
 
     private val auth = FirebaseAuth.getInstance()
     private val db = FirebaseFirestore.getInstance()
 
-    private var asistenciasFechas = ArrayList<Date>()
-    private var asistenciasHoy = ArrayList<Date>()
-
-    // Colores para las gráficas
-    private val colorLavanda = "#C7B3FF".toColorInt()
-    private val colorTexto = "#666666".toColorInt()
+    private lateinit var adapterClases: ProximasClasesAdapter
+    private val listaClases = mutableListOf<ItemCurso>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,42 +61,41 @@ class HomeDocente : AppCompatActivity() {
         enableEdgeToEdge()
 
         tvSaludoDocente = findViewById(R.id.tvSaludoDocente)
+        rvProximasClases = findViewById(R.id.rvProximasClases)
+        tvSinClases = findViewById(R.id.tvSinClases)
+        tvNotificacionesEmpty = findViewById(R.id.tvNotificacionesEmpty)
+        bottomNav = findViewById(R.id.bottomNavigation)
+        cardAsistencia = findViewById(R.id.cardAsistencia)
+        cardCalificaciones = findViewById(R.id.cardCalificaciones)
+
+        // Chart init
         container = findViewById(R.id.containerGrafica)
         spinnerFiltro = findViewById(R.id.spinnerFiltro)
-        bottomNav = findViewById(R.id.bottomNavigation)
-        btnAsistencia=findViewById(R.id.cardAsistencia)
-        btnCalificaciones=findViewById(R.id.cardCalificaciones)
 
-        btnAsistencia.setOnClickListener {
+        cardAsistencia.setOnClickListener {
             startActivity(Intent(this, GestionAsistenciaActivity::class.java))
         }
 
-        btnCalificaciones.setOnClickListener {
+        cardCalificaciones.setOnClickListener {
             startActivity(Intent(this, CalificacionesActivity::class.java))
         }
 
-        inicializarSpinner()
+        configurarRecyclerView()
         cargarNombreDesdeFirestore()
+        cargarCursosDocente()
+        cargarNotificaciones()
+
+        // Chart logic
+        inicializarSpinner()
         cargarAsistenciasDocente()
 
         configurarBottomNav()
     }
 
-    // ============================================================
-    // SPINNER
-    // ============================================================
-    private fun inicializarSpinner() {
-        val opciones = arrayOf("Hoy", "Semana", "Mes")
-        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, opciones)
-        spinnerFiltro.adapter = adapter
-        spinnerFiltro.setSelection(0) // Default HOY
-
-        spinnerFiltro.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>, view: View?, pos: Int, id: Long) {
-                actualizarVistaContainer(spinnerFiltro.selectedItem.toString())
-            }
-            override fun onNothingSelected(parent: AdapterView<*>?) {}
-        }
+    private fun configurarRecyclerView() {
+        adapterClases = ProximasClasesAdapter(listaClases)
+        rvProximasClases.layoutManager = LinearLayoutManager(this)
+        rvProximasClases.adapter = adapterClases
     }
 
     // ============================================================
@@ -107,17 +113,73 @@ class HomeDocente : AppCompatActivity() {
     }
 
     // ============================================================
-    // CARGAR ASISTENCIAS DEL DOCENTE
+    // CARGAR CURSOS (PRÓXIMAS CLASES)
     // ============================================================
+    private fun cargarCursosDocente() {
+        val uid = auth.currentUser?.uid ?: return
+
+        db.collection("cursos")
+            .whereEqualTo("docenteId", uid)
+            .get()
+            .addOnSuccessListener { result ->
+                listaClases.clear()
+                for (document in result) {
+                    val curso = ItemCurso(
+                        id = document.id,
+                        nombre = document.getString("nombre"),
+                        grado = document.getString("grado"),
+                        seccion = document.getString("seccion"),
+                        aula = document.getString("aula")
+                    )
+                    listaClases.add(curso)
+                }
+
+                if (listaClases.isEmpty()) {
+                    rvProximasClases.visibility = View.GONE
+                    tvSinClases.visibility = View.VISIBLE
+                } else {
+                    rvProximasClases.visibility = View.VISIBLE
+                    tvSinClases.visibility = View.GONE
+                    adapterClases.actualizarLista(listaClases)
+                }
+            }
+            .addOnFailureListener {
+                // Manejar error
+            }
+    }
+
+    // ============================================================
+    // CARGAR NOTIFICACIONES
+    // ============================================================
+    private fun cargarNotificaciones() {
+        // Implementar lógica de notificaciones si existe la colección
+        // Por ahora dejamos el estado por defecto "Sin notificaciones"
+    }
+
+    // ============================================================
+    // CHART LOGIC
+    // ============================================================
+    private fun inicializarSpinner() {
+        val opciones = arrayOf("Hoy", "Semana", "Mes")
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, opciones)
+        spinnerFiltro.adapter = adapter
+        spinnerFiltro.setSelection(0) // Default HOY
+
+        spinnerFiltro.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View?, pos: Int, id: Long) {
+                actualizarVistaContainer(spinnerFiltro.selectedItem.toString())
+            }
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
+        }
+    }
+
     private fun cargarAsistenciasDocente() {
         val uid = auth.currentUser?.uid ?: return
 
-        // Obtener cursos donde docenteId == uid
         db.collection("cursos")
             .whereEqualTo("docenteId", uid)
             .get()
             .addOnSuccessListener { cursosSnap ->
-
                 val cursosIds = cursosSnap.documents.map { it.id }
 
                 if (cursosIds.isEmpty()) {
@@ -128,7 +190,6 @@ class HomeDocente : AppCompatActivity() {
                 }
 
                 val inicioMes = obtenerInicioMesTimestamp()
-
                 val chunks = cursosIds.chunked(10)
                 asistenciasFechas.clear()
                 asistenciasHoy.clear()
@@ -141,12 +202,10 @@ class HomeDocente : AppCompatActivity() {
                         .whereGreaterThanOrEqualTo("fecha", inicioMes)
                         .get()
                         .addOnSuccessListener { snap ->
-
                             for (doc in snap.documents) {
                                 val fecha = doc.getTimestamp("fecha")?.toDate() ?: continue
                                 asistenciasFechas.add(fecha)
 
-                                // Guardar asistencias HOY
                                 val cal = Calendar.getInstance()
                                 cal.set(Calendar.HOUR_OF_DAY, 0)
                                 cal.set(Calendar.MINUTE, 0)
@@ -156,7 +215,6 @@ class HomeDocente : AppCompatActivity() {
                                     asistenciasHoy.add(fecha)
                                 }
                             }
-
                             pendientes--
                             if (pendientes == 0) {
                                 actualizarVistaContainer(spinnerFiltro.selectedItem.toString())
@@ -172,54 +230,27 @@ class HomeDocente : AppCompatActivity() {
             }
     }
 
-    // ============================================================
-    // ACTUALIZAR VISTA DEL CONTAINER
-    // ============================================================
     private fun actualizarVistaContainer(filtro: String) {
-
         container.removeAllViews()
 
-        val layout = LinearLayout(this)
-        layout.orientation = LinearLayout.VERTICAL
-        layout.setPadding(16, 16, 16, 16)
-
-        // ---------------- TITULO ----------------
-        val tvTitulo = TextView(this)
-        tvTitulo.text = "Asistencia (Registros)"
-        tvTitulo.textSize = 18f
-        tvTitulo.setTypeface(null, Typeface.BOLD)
-        tvTitulo.setTextColor(Color.BLACK)
-        layout.addView(tvTitulo)
-
-        // ---------------- GRÁFICA ----------------
         val chart = BarChart(this)
-        chart.layoutParams = LinearLayout.LayoutParams(
-            LinearLayout.LayoutParams.MATCH_PARENT,
-            250
+        chart.layoutParams = FrameLayout.LayoutParams(
+            FrameLayout.LayoutParams.MATCH_PARENT,
+            FrameLayout.LayoutParams.MATCH_PARENT
         )
-        layout.addView(chart)
+        container.addView(chart)
 
         when (filtro) {
             "Hoy" -> dibujarGraficaHoy(chart)
             "Semana" -> dibujarGraficaSemana(chart)
             "Mes" -> dibujarGraficaMes(chart)
         }
-
-        // ---------------- TABLA / DETALLE ----------------
-        val tabla = crearTablaSegunFiltro(filtro)
-        layout.addView(tabla)
-
-        container.addView(layout)
     }
 
-    // ============================================================
-    // CONFIGURACIÓN GENERAL DEL CHART
-    // ============================================================
     private fun configurarChart(chart: BarChart) {
         chart.setDrawGridBackground(false)
         chart.description.isEnabled = false
         chart.legend.isEnabled = false
-
         chart.setTouchEnabled(false)
         chart.setScaleEnabled(false)
         chart.setPinchZoom(false)
@@ -244,16 +275,10 @@ class HomeDocente : AppCompatActivity() {
         right.axisLineColor = Color.TRANSPARENT
     }
 
-    // ============================================================
-    // GRÁFICAS
-    // ============================================================
     private fun dibujarGraficaHoy(chart: BarChart) {
         configurarChart(chart)
-
         val total = asistenciasHoy.size
-        // para que no desaparezca cuando es 0
         val value = if (total == 0) 0.2f else total.toFloat()
-
         val entries = listOf(BarEntry(0f, value))
         val labels = listOf("Hoy")
 
@@ -263,125 +288,54 @@ class HomeDocente : AppCompatActivity() {
 
         val data = BarData(dataSet)
         data.barWidth = 0.4f
-
         chart.data = data
         chart.xAxis.valueFormatter = IndexAxisValueFormatter(labels)
-
         chart.invalidate()
     }
 
     private fun dibujarGraficaSemana(chart: BarChart) {
-
         configurarChart(chart)
-
         val dias = listOf("L", "M", "M", "J", "V", "S", "D")
         val valores = contarSemanaPorDia()
-
         val entries = ArrayList<BarEntry>()
         for (i in valores.indices) {
             val v = if (valores[i] == 0) 0.2f else valores[i].toFloat()
             entries.add(BarEntry(i.toFloat(), v))
         }
-
         val dataSet = BarDataSet(entries, "")
         dataSet.color = colorLavanda
         dataSet.valueTextColor = Color.TRANSPARENT
-
         val data = BarData(dataSet)
         data.barWidth = 0.4f
-
         chart.data = data
         chart.xAxis.valueFormatter = IndexAxisValueFormatter(dias)
         chart.invalidate()
     }
 
     private fun dibujarGraficaMes(chart: BarChart) {
-
         configurarChart(chart)
-
         val cal = Calendar.getInstance()
         val max = cal.getActualMaximum(Calendar.DAY_OF_MONTH)
         val valores = contarMesPorDia(max)
-
         val entries = ArrayList<BarEntry>()
         val labels = ArrayList<String>()
-
         for (i in 1..max) {
             val v = if (valores[i - 1] == 0) 0.2f else valores[i - 1].toFloat()
             entries.add(BarEntry(i.toFloat(), v))
             labels.add(i.toString())
         }
-
         val dataSet = BarDataSet(entries, "")
         dataSet.color = colorLavanda
         dataSet.valueTextColor = Color.TRANSPARENT
-
         val data = BarData(dataSet)
         data.barWidth = 0.4f
-
         chart.data = data
         chart.xAxis.valueFormatter = IndexAxisValueFormatter(labels)
         chart.invalidate()
     }
 
-    // ============================================================
-    // TABLA DETALLADA
-    // ============================================================
-    private fun crearTablaSegunFiltro(filtro: String): LinearLayout {
-
-        val tabla = LinearLayout(this)
-        tabla.orientation = LinearLayout.VERTICAL
-        tabla.setPadding(4, 20, 4, 4)
-
-        when (filtro) {
-
-            "Hoy" -> {
-                if (asistenciasHoy.isEmpty()) {
-                    val tv = TextView(this)
-                    tv.text = "No hay registros para este periodo."
-                    tv.textSize = 14f
-                    tv.setTextColor(colorTexto)
-                    tv.setTypeface(null, Typeface.ITALIC)
-                    tabla.addView(tv)
-                } else {
-                    asistenciasHoy.forEach {
-                        val hora = android.text.format.DateFormat.format("hh:mm a", it)
-                        tabla.addView(texto("- $hora"))
-                    }
-                }
-            }
-
-            "Semana" -> {
-                val dias = arrayOf(
-                    "Lunes", "Martes", "Miércoles",
-                    "Jueves", "Viernes", "Sábado", "Domingo"
-                )
-                val cont = contarSemanaPorDia()
-
-            }
-
-            "Mes" -> {
-                val cal = Calendar.getInstance()
-                val max = cal.getActualMaximum(Calendar.DAY_OF_MONTH)
-                val cont = contarMesPorDia(max)
-            }
-        }
-
-        return tabla
-    }
-
-    // ============================================================
-    // CONTADORES
-    // ============================================================
-    private fun contarHoy(): Int = asistenciasHoy.size
-
-    private fun obtenerAsistenciasHoy(): List<Date> = asistenciasHoy
-
-    private fun contarSemana(): Int = contarSemanaPorDia().sum()
-
     private fun contarSemanaPorDia(): IntArray {
         val cont = IntArray(7)
-
         val cal = Calendar.getInstance()
         cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY)
         cal.set(Calendar.HOUR_OF_DAY, 0)
@@ -398,26 +352,20 @@ class HomeDocente : AppCompatActivity() {
                 cont[index]++
             }
         }
-
         return cont
     }
 
     private fun contarMesPorDia(max: Int): IntArray {
         val cont = IntArray(max)
-
         asistenciasFechas.forEach {
             val c = Calendar.getInstance()
             c.time = it
             val dia = c.get(Calendar.DAY_OF_MONTH)
             cont[dia - 1]++
         }
-
         return cont
     }
 
-    // ============================================================
-    // UTILS
-    // ============================================================
     private fun obtenerInicioMesTimestamp(): Timestamp {
         val cal = Calendar.getInstance()
         cal.set(Calendar.DAY_OF_MONTH, 1)
@@ -426,14 +374,6 @@ class HomeDocente : AppCompatActivity() {
         cal.set(Calendar.SECOND, 0)
         cal.set(Calendar.MILLISECOND, 0)
         return Timestamp(cal.time)
-    }
-
-    private fun texto(t: String): TextView {
-        val tv = TextView(this)
-        tv.text = t
-        tv.textSize = 14f
-        tv.setTextColor(Color.BLACK)
-        return tv
     }
 
     // ============================================================
@@ -445,16 +385,21 @@ class HomeDocente : AppCompatActivity() {
         bottomNav.selectedItemId = R.id.nav_home
 
         bottomNav.setOnItemSelectedListener { item ->
-
             when (item.itemId) {
                 R.id.nav_home -> true
                 R.id.nav_messages -> {
                     startActivity(Intent(this, MainChatActivity::class.java))
-                    true
+                    false
+                }
+                R.id.nav_calendar -> {
+                    val intent = Intent(this, com.jjcc.proyectmovil.ui.CalendarActivity::class.java)
+                    intent.putExtra("USER_ROLE", "DOCENTE")
+                    startActivity(intent)
+                    false
                 }
                 R.id.nav_profile -> {
                     startActivity(Intent(this, PerfilActivity::class.java))
-                    true
+                    false
                 }
                 else -> false
             }

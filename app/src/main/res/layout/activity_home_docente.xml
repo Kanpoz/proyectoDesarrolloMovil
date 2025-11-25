@@ -27,9 +27,9 @@
                 android:id="@+id/tvSaludoDocente"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="¡Hola, ...!"
-                android:textColor="@color/black"
-                android:textSize="22sp"
+                android:text="¡Hola, Docente!"
+                android:textColor="@color/brand_primary"
+                android:textSize="26sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -37,171 +37,244 @@
                 android:layout_height="wrap_content"
                 android:text="Resumen de tu actividad académica."
                 android:textColor="@color/text_secondary"
-                android:layout_marginBottom="12dp" />
+                android:textSize="16sp"
+                android:layout_marginBottom="24dp" />
 
             <!-- Tarjetas principales -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:gravity="center"
-                android:layout_marginBottom="12dp">
+                android:baselineAligned="false"
+                android:layout_marginBottom="24dp">
 
                 <!-- Gestionar Asistencia -->
-                <LinearLayout
+                <androidx.cardview.widget.CardView
                     android:id="@+id/cardAsistencia"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/bg_card_lila"
-                    android:orientation="vertical"
-                    android:padding="16dp"
-                    android:gravity="center">
+                    android:layout_weight="1"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="2dp"
+                    app:cardBackgroundColor="@color/white"
+                    android:layout_marginEnd="8dp">
 
-                    <TextView
-                        android:text="A"
-                        android:textSize="20sp"
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@android:color/white"
-                        android:background="@drawable/bg_circle_dark"
-                        android:padding="12dp"
-                        android:layout_marginBottom="8dp" />
+                        android:orientation="vertical"
+                        android:padding="16dp">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Gestionar Asistencia"
-                        android:textStyle="bold"
-                        android:textColor="@android:color/black" />
+                        <ImageView
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:src="@drawable/ic_asistencias"
+                            android:background="@drawable/bg_circle"
+                            android:backgroundTint="@color/primary_lighter"
+                            android:padding="10dp"
+                            app:tint="@color/brand_primary"
+                            android:layout_marginBottom="16dp" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Pasar lista"
-                        android:textSize="12sp"
-                        android:textColor="@color/text_light" />
-                </LinearLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Gestionar\nAsistencia"
+                            android:textStyle="bold"
+                            android:textSize="16sp"
+                            android:textColor="@color/text_primary"
+                            android:layout_marginBottom="4dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Pasar lista"
+                            android:textSize="14sp"
+                            android:textColor="@color/text_secondary" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
 
                 <!-- Calificaciones -->
-                <LinearLayout
+                <androidx.cardview.widget.CardView
                     android:id="@+id/cardCalificaciones"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/bg_card_verde"
-                    android:orientation="vertical"
-                    android:padding="16dp"
-                    android:gravity="center"
-                    android:layout_marginStart="12dp">
+                    android:layout_weight="1"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="2dp"
+                    app:cardBackgroundColor="@color/white"
+                    android:layout_marginStart="8dp">
 
-                    <TextView
-                        android:text="C"
-                        android:textSize="20sp"
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@android:color/white"
-                        android:background="@drawable/bg_circle_dark"
-                        android:padding="12dp"
-                        android:layout_marginBottom="8dp" />
+                        android:orientation="vertical"
+                        android:padding="16dp">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Calificaciones"
-                        android:textStyle="bold"
-                        android:textColor="@android:color/black" />
+                        <ImageView
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:src="@drawable/ic_grades"
+                            android:background="@drawable/bg_circle"
+                            android:backgroundTint="@color/success_light"
+                            android:padding="10dp"
+                            app:tint="@color/success"
+                            android:layout_marginBottom="16dp" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Registrar notas"
-                        android:textSize="12sp"
-                        android:textColor="@color/text_light" />
-                </LinearLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Calificaciones"
+                            android:textStyle="bold"
+                            android:textSize="16sp"
+                            android:textColor="@color/text_primary"
+                            android:layout_marginBottom="4dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Registrar notas"
+                            android:textSize="14sp"
+                            android:textColor="@color/text_secondary" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
             </LinearLayout>
 
-            <!-- Gráfica o contenedor -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Asistencia (Registros)"
-                android:textStyle="bold"
-                android:layout_marginBottom="8dp" />
-
-            <Spinner
-                android:id="@+id/spinnerFiltro"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:padding="6dp"
-                android:spinnerMode="dropdown" />
-
-            <FrameLayout
-                android:id="@+id/containerGrafica"
+            <!-- Gráfico de Asistencia -->
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:background="@color/background_card"
-                android:layout_marginBottom="12dp" />
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="@color/white"
+                android:layout_marginBottom="24dp">
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="12dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Asistencia"
+                            android:textStyle="bold"
+                            android:textSize="18sp"
+                            android:textColor="@color/text_primary" />
+
+                        <Spinner
+                            android:id="@+id/spinnerFiltro"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:spinnerMode="dropdown" />
+                    </LinearLayout>
+
+                    <FrameLayout
+                        android:id="@+id/containerGrafica"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
             <!-- Próximas clases -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Próximas Clases"
-                android:textStyle="bold"
-                android:layout_marginBottom="4dp" />
-
-            <LinearLayout
-                android:orientation="vertical"
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/background_card"
-                android:padding="8dp"
-                android:layout_marginBottom="12dp">
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="@color/white"
+                android:layout_marginBottom="24dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="12:00 - Historia 10° A (Virtual)"
-                    android:textColor="@color/text_dark" />
+                    android:orientation="vertical"
+                    android:padding="16dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="12:00 - Historia 10° A (Virtual)"
-                    android:textColor="@color/text_dark" />
-            </LinearLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Próximas Clases"
+                        android:textStyle="bold"
+                        android:textSize="18sp"
+                        android:textColor="@color/text_primary"
+                        android:layout_marginBottom="12dp" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvProximasClases"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:listitem="@layout/item_proxima_clase"
+                        tools:itemCount="2" />
+
+                    <TextView
+                        android:id="@+id/tvSinClases"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="No hay clases programadas para hoy."
+                        android:textColor="@color/text_secondary"
+                        android:gravity="center"
+                        android:padding="16dp"
+                        android:visibility="gone"/>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
             <!-- Notificaciones -->
-            <TextView
-                android:layout_width="wrap_content"
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Notificaciones"
-                android:textStyle="bold"
-                android:layout_marginBottom="4dp" />
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="@color/white"
+                android:layout_marginBottom="24dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Sin notificaciones."
-                android:textColor="@color/text_lighter" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Notificaciones"
+                        android:textStyle="bold"
+                        android:textSize="18sp"
+                        android:textColor="@color/text_primary"
+                        android:layout_marginBottom="12dp" />
+
+                    <TextView
+                        android:id="@+id/tvNotificacionesEmpty"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Sin notificaciones."
+                        android:textColor="@color/text_secondary"
+                        android:gravity="center"
+                        android:padding="24dp" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
         </LinearLayout>
     </ScrollView>
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
+    <include
         android:id="@+id/bottomNavigation"
+        layout="@layout/component_bottom_nav"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        app:itemIconSize="50dp"
-        app:labelVisibilityMode="labeled"
-        app:menu="@menu/bottom_nav_menu"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-

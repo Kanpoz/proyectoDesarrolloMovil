@@ -17,15 +17,14 @@ class DayAdapter(
 ) : RecyclerView.Adapter<DayAdapter.DayViewHolder>() {
 
     private var days: List<DayItem> = emptyList()
+    private var selectedDate: LocalDate? = null
 
-    fun submitList(newDays: List<DayItem>) {
+    fun submitList(newDays: List<DayItem>, selected: LocalDate?) {
         days = newDays
+        selectedDate = selected
         notifyDataSetChanged()
     }
 
-    /**
-     * Update which days have events based on a list of dates.
-     */
     fun updateEventDays(eventDates: List<LocalDate>) {
         days = days.map { dayItem ->
             if (dayItem.date != null && eventDates.contains(dayItem.date)) {
@@ -45,7 +44,7 @@ class DayAdapter(
 
     override fun onBindViewHolder(holder: DayViewHolder, position: Int) {
         val item = days[position]
-        holder.bind(item)
+        holder.bind(item, selectedDate)
     }
 
     override fun getItemCount(): Int = days.size
@@ -54,15 +53,30 @@ class DayAdapter(
         private val dayNumber: TextView = itemView.findViewById(R.id.day_number)
         private val eventIndicator: View = itemView.findViewById(R.id.event_indicator)
 
-        fun bind(item: DayItem) {
+        fun bind(item: DayItem, selected: LocalDate?) {
             if (item.date == null) {
                 dayNumber.text = ""
                 itemView.isClickable = false
                 eventIndicator.visibility = View.GONE
+                dayNumber.backgroundTintList = null
             } else {
                 dayNumber.text = item.date.dayOfMonth.toString()
                 itemView.isClickable = true
                 eventIndicator.visibility = if (item.hasEvent) View.VISIBLE else View.GONE
+
+                val isSelected = item.date == selected
+                if (isSelected) {
+                    dayNumber.setTextColor(itemView.context.getColor(R.color.white))
+                    dayNumber.backgroundTintList = android.content.res.ColorStateList.valueOf(
+                        itemView.context.getColor(R.color.brand_primary)
+                    )
+                } else {
+                    dayNumber.setTextColor(itemView.context.getColor(R.color.text_primary))
+                    dayNumber.backgroundTintList = android.content.res.ColorStateList.valueOf(
+                        itemView.context.getColor(android.R.color.transparent)
+                    )
+                }
+
                 itemView.setOnClickListener {
                     onDayClick(item.date)
                 }

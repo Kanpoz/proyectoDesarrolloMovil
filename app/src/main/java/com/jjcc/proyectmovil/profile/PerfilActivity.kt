@@ -109,13 +109,20 @@ class PerfilActivity : AppCompatActivity() {
                         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
                     }
 
+                    R.id.nav_calendar -> {
+                        val intent = Intent(this, com.jjcc.proyectmovil.ui.CalendarActivity::class.java)
+                        intent.putExtra("USER_ROLE", rol)
+                        startActivity(intent)
+                        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+                    }
+
                     R.id.nav_profile -> {
-                        true
+                        // Ya estamos aquí
                     }
                 }
             }
 
-            true
+            false // Return false to prevent reselection issues
         }
     }
 
@@ -141,13 +148,18 @@ class PerfilActivity : AppCompatActivity() {
                     val correo = doc.getString("email") ?: "No registrado"
                     val telefono = doc.getString("telefono") ?: "No registrado"
                     val direccion = doc.getString("direccion") ?: "No registrado"
-                    val fotoPerfilUrl = doc.getString("fotoPerfil")
+                    var fotoPerfilUrl = doc.getString("fotoPerfil")
 
                     tvNombre.text = nombre
                     tvRol.text = rol
                     tvCorreo.text = correo
                     tvTelefono.text = telefono
                     tvDireccion.text = direccion
+
+                    // Sanitize invalid local paths
+                    if (fotoPerfilUrl != null && fotoPerfilUrl.startsWith("/com/")) {
+                        fotoPerfilUrl = null
+                    }
 
                     // Foto de perfil: si hay URL en Firestore, la carga; si no, usa ic_person
                     if (!fotoPerfilUrl.isNullOrBlank()) {
