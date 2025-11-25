@@ -1,155 +1,174 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FAF7FF">
 
     <LinearLayout
-        android:layout_margin="24dp"
-        android:orientation="vertical"
-        android:padding="16dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
 
-        <!-- ENCABEZADO SUPERIOR -->
-        <LinearLayout
+        <!-- HEADER: CURSO ACTUAL -->
+        <androidx.cardview.widget.CardView
             android:id="@+id/layoutCursoSpinner"
-            android:orientation="horizontal"
-            android:padding="14dp"
-            android:background="#F2EBFF"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical">
-
-            <ImageView
-                android:src="@drawable/ic_school"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginEnd="12dp" />
+            android:layout_marginBottom="16dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="2dp">
 
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
+                android:gravity="center_vertical"
+                android:padding="16dp">
 
-                <TextView
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:id="@+id/tvCursoActual"
-                    android:text="Curso Actual"
-                    android:textColor="#777"
-                    android:textSize="12sp" />
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="12dp"
+                    android:src="@drawable/ic_school"
+                    app:tint="@color/primary" />
 
-                <TextView
-                    android:id="@+id/tvCursoNombre"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Historia 10° A"
-                    android:textSize="18sp"
-                    android:textColor="#000"
-                    android:textStyle="bold" />
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Curso Actual"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/tvCursoNombre"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Historia 10° A"
+                        android:textColor="@color/text_primary"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/arrow_down"
+                    app:tint="@color/text_secondary" />
             </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
-            <ImageView
-                android:src="@drawable/arrow_down"
-                android:layout_width="24dp"
-                android:layout_height="24dp" />
-        </LinearLayout>
+        <!-- TITLE -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="Registro de Asistencia"
+            android:textColor="@color/text_primary_dark"
+            android:textSize="24sp"
+            android:textStyle="bold" />
 
-        <!-- CLASE REGISTRADA -->
+        <!-- CLASE REGISTRADA INFO -->
         <LinearLayout
             android:id="@+id/layoutClaseSpinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#FFFFFF"
-            android:padding="14dp"
-            android:layout_marginTop="12dp"
-            android:elevation="4dp">
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/bg_attendance_option_unselected"
+            android:orientation="horizontal"
+            android:padding="16dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginEnd="12dp"
+                android:src="@drawable/ic_calendar"
+                app:tint="@color/primary" />
 
             <LinearLayout
-                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
                 <TextView
-                    android:text="Clase Registrada"
-                    android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
-                    android:textColor="#777"
-                    android:textSize="11sp" />
+                    android:layout_height="wrap_content"
+                    android:text="Clase Registrada"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="12sp" />
 
                 <TextView
                     android:id="@+id/tvClaseRegistrada"
-                    android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
-                    android:text="26/11/2025 - Historia de Roma (12:00)"
-                    android:textColor="#000"
-                    android:textStyle="bold"
-                    android:textSize="16sp" />
+                    android:layout_height="wrap_content"
+                    android:text="26/11/2025 - Historia de Roma"
+                    android:textColor="@color/text_primary"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
             </LinearLayout>
-
         </LinearLayout>
 
-        <!-- BOTONES DE ACCIONES -->
+        <!-- ACTIONS: MARCAR TODOS / LIMPIAR -->
         <LinearLayout
-            android:orientation="horizontal"
-            android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:paddingBottom="6dp">
+            android:layout_marginBottom="24dp"
+            android:orientation="horizontal">
 
             <Button
                 android:id="@+id/btnMarcarPresentes"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
                 android:layout_weight="1"
-                android:text="Marcar como Presentes"
+                android:backgroundTint="#E8F0FE"
+                android:text="Marcar todos"
                 android:textAllCaps="false"
-                android:background="#EFE3FF"
-                android:textColor="@color/white"
-                android:layout_marginEnd="8dp" />
+                android:textColor="@color/primary"
+                app:cornerRadius="8dp"
+                app:elevation="0dp" />
 
             <Button
                 android:id="@+id/btnLimpiar"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
                 android:layout_weight="1"
-                android:text="Limpiar Selecciones"
+                android:backgroundTint="#F1F3F4"
+                android:text="Limpiar"
                 android:textAllCaps="false"
-                android:background="#EFE3FF"
-                android:textColor="@color/white"
-                android:layout_marginStart="8dp" />
+                android:textColor="@color/text_secondary"
+                app:cornerRadius="8dp"
+                app:elevation="0dp" />
         </LinearLayout>
 
-        <!-- TITULO -->
-        <TextView
-            android:text="Registro de Asistencia"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:textSize="26sp"
-            android:textStyle="bold"
-            android:textColor="#000"
-            android:layout_marginTop="24dp" />
-
-        <!-- LISTA DE ESTUDIANTES -->
-        <FrameLayout
-            android:id="@+id/containerEstudiantes"
+        <!-- STUDENTS LIST -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvEstudiantes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#F7F3FF"
-            android:layout_marginBottom="12dp" />
+            android:nestedScrollingEnabled="false" />
 
-        <!-- BOTÓN GUARDAR -->
+        <!-- SAVE BUTTON -->
         <Button
             android:id="@+id/btnGuardar"
-            android:text="GUARDAR ASISTENCIA"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#FFFFFF"
-            android:background="#7C4DFF"
-            android:padding="14dp"
-            android:layout_marginTop="40dp" />
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="24dp"
+            android:backgroundTint="@color/primary"
+            android:padding="16dp"
+            android:text="GUARDAR ASISTENCIA"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:cornerRadius="12dp" />
+
     </LinearLayout>
 </ScrollView>

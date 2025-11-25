@@ -1,6 +1,7 @@
 package com.jjcc.proyectmovil.core.model
 
 data class User(
+    var nombre: String? = null,
     var nombres: String? = null,
     var apellidos: String? = null,
     var tipoDocumento: String? = null,
@@ -14,9 +15,12 @@ data class User(
 ) {
     // Función para obtener el nombre completo
     fun getNombreCompleto(): String {
+        if (!nombre.isNullOrBlank()) {
+            return nombre!!
+        }
         return "${nombres ?: ""} ${apellidos ?: ""}".trim()
     }
 
     // Constructor sin parámetros requerido por Firebase
-    constructor() : this(null, null, null, null, null, null, null, null, null, null)
+    constructor() : this(null, null, null, null, null, null, null, null, null, null, null)
 }

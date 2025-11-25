@@ -77,7 +77,7 @@ class HomeDocente : AppCompatActivity() {
         }
 
         cardCalificaciones.setOnClickListener {
-            startActivity(Intent(this, CalificacionesActivity::class.java))
+            startActivity(Intent(this, com.jjcc.proyectmovil.roles.docente.EvaluationsListActivity::class.java))
         }
 
         configurarRecyclerView()

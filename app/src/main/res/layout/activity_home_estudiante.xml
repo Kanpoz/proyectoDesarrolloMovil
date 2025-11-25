@@ -2,175 +2,265 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/layoutHome"
     android:background="@color/background_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- 🔹 Título superior -->
-    <TextView
-        android:id="@+id/tvBienvenida"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Bienvenido(a), Usuario"
-        android:textColor="@color/text_primary"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:paddingTop="15dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="16dp" />
-
-    <!-- 🔹 Imagen de perfil -->
-    <ImageView
-        android:id="@+id/imgPerfilHome"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:importantForAccessibility="no"
-        android:src="@drawable/colegio"
-        android:padding="16dp"
-        android:elevation="10dp"
-        android:layout_marginTop="12dp"
-        app:layout_constraintTop_toBottomOf="@id/tvBienvenida"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <!-- 🔹 Scroll con botones -->
-    <ScrollView
-        android:id="@+id/scrollBotones"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fillViewport="true"
-        android:overScrollMode="never"
-        android:padding="25dp"
-        app:layout_constraintTop_toBottomOf="@id/imgPerfilHome"
-        app:layout_constraintBottom_toTopOf="@id/tvRolUsuario"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottomNavigation"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <!-- Contenedor interno para los botones -->
-        <LinearLayout
-            android:id="@+id/containerBotones"
-            android:orientation="vertical"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal">
+            android:padding="24dp">
 
-            <!-- 🔹 BOTONES REALES -->
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnCursos"
-                style="@style/Widget.MaterialComponents.Button"
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:text="Cursos"
-                android:textAllCaps="false"
+            <!-- Header -->
+            <TextView
+                android:id="@+id/tvWelcomeLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bienvenida de vuelta,"
+                android:textColor="@color/text_secondary"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvBienvenida"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="¡Hola, Estudiante!"
+                android:textColor="@color/text_primary"
+                android:textSize="28sp"
                 android:textStyle="bold"
-                android:textColor="@android:color/white"
-                android:textAlignment="textStart"
-                android:layout_marginBottom="8dp"
-                app:icon="@drawable/ic_curso"
-                app:iconTint="@android:color/white"
-                app:backgroundTint="@color/secondary_light"
-                app:iconGravity="textStart"
-                app:iconPadding="16dp" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btnNotification"
+                app:layout_constraintTop_toBottomOf="@id/tvWelcomeLabel" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnAsignaturas"
-                style="@style/Widget.MaterialComponents.Button"
+            <TextView
+                android:id="@+id/tvHint"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Presiona sobre los botones para redirigirte a su página"
+                android:textColor="@color/text_tertiary"
+                android:textSize="12sp"
+                android:layout_marginTop="4dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btnNotification"
+                app:layout_constraintTop_toBottomOf="@id/tvBienvenida" />
+
+            <ImageView
+                android:id="@+id/btnNotification"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_notification"
+                app:tint="@color/text_primary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tvWelcomeLabel"
+                app:layout_constraintBottom_toBottomOf="@id/tvBienvenida" />
+
+            <!-- Stats Cards Row -->
+            <LinearLayout
+                android:id="@+id/layoutStats"
                 android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:text="Asignaturas"
-                android:textAllCaps="false"
-                android:textStyle="bold"
-                android:textColor="@android:color/white"
-                android:textAlignment="textStart"
-                android:layout_marginBottom="8dp"
-                app:icon="@drawable/ic_book"
-                app:iconTint="@android:color/white"
-                app:backgroundTint="@color/accent_blue"
-                app:iconGravity="textStart"
-                app:iconPadding="16dp" />
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="24dp"
+                android:baselineAligned="false"
+                app:layout_constraintTop_toBottomOf="@id/tvHint">
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnNotas"
-                style="@style/Widget.MaterialComponents.Button"
+                <!-- Promedio Card -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardPromedio"
+                    android:layout_width="0dp"
+                    android:layout_height="80dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="8dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="0dp"
+                    app:strokeWidth="1dp"
+                    app:strokeColor="#E0E0E0"
+                    android:clickable="true"
+                    android:focusable="true">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:padding="16dp">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_star"
+                            app:tint="@color/primary"
+                            android:layout_marginBottom="8dp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Promedio"
+                            android:textSize="12sp"
+                            android:textColor="@color/text_secondary"/>
+
+
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Asistencia Card -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardAsistencia"
+                    android:layout_width="0dp"
+                    android:layout_height="80dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="8dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="0dp"
+                    app:strokeWidth="1dp"
+                    app:strokeColor="#E0E0E0"
+                    android:clickable="true"
+                    android:focusable="true">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:padding="16dp">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_calendar"
+                            app:tint="@color/primary"
+                            android:layout_marginBottom="8dp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Asistencia"
+                            android:textSize="12sp"
+                            android:textColor="@color/text_secondary"/>
+
+
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Próxima Card -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardProxima"
+                    android:layout_width="0dp"
+                    android:layout_height="80dp"
+                    android:layout_weight="1"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="0dp"
+                    app:strokeWidth="1dp"
+                    app:strokeColor="#E0E0E0"
+                    android:clickable="true"
+                    android:focusable="true">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:padding="16dp">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_book"
+                            app:tint="@color/primary"
+                            android:layout_marginBottom="8dp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Próxima"
+                            android:textSize="12sp"
+                            android:textColor="@color/text_secondary"/>
+
+
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+            </LinearLayout>
+
+            <!-- Next Assignment Banner -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardNextAssignment"
                 android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:text="Notas"
-                android:textAllCaps="false"
-                android:textStyle="bold"
-                android:textColor="@android:color/white"
-                android:textAlignment="textStart"
-                android:layout_marginBottom="8dp"
-                app:icon="@drawable/ic_grades"
-                app:iconTint="@android:color/white"
-                app:backgroundTint="@color/accent_amber"
-                app:iconGravity="textStart"
-                app:iconPadding="16dp" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                app:cardCornerRadius="12dp"
+                app:cardBackgroundColor="#E3F2FD"
+                app:cardElevation="0dp"
+                app:layout_constraintTop_toBottomOf="@id/layoutStats">
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnAsistencias"
-                style="@style/Widget.MaterialComponents.Button"
+                <TextView
+                    android:id="@+id/tvNextAssignment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:text="Próxima Entrega: Taller Historia 10° A"
+                    android:textColor="@color/primary"
+                    android:textStyle="bold"
+                    android:gravity="center_vertical" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- My Courses Section -->
+            <TextView
+                android:id="@+id/tvMyCoursesTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mis Cursos"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@color/text_primary"
+                android:layout_marginTop="24dp"
+                app:layout_constraintTop_toBottomOf="@id/cardNextAssignment"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <TextView
+                android:id="@+id/tvSeeAllCourses"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ver todos"
+                android:textColor="@color/primary"
+                android:textStyle="bold"
+                app:layout_constraintBaseline_toBaselineOf="@id/tvMyCoursesTitle"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvCourses"
                 android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:text="Asistencias"
-                android:textAllCaps="false"
-                android:textStyle="bold"
-                android:textColor="@android:color/white"
-                android:textAlignment="textStart"
-                android:layout_marginBottom="8dp"
-                app:icon="@drawable/ic_calendar"
-                app:iconTint="@android:color/white"
-                app:backgroundTint="@color/accent_lime"
-                app:iconGravity="textStart"
-                app:iconPadding="16dp" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:nestedScrollingEnabled="false"
+                app:layout_constraintTop_toBottomOf="@id/tvMyCoursesTitle"
+                tools:listitem="@layout/item_course_card"/>
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnCalendar"
-                style="@style/Widget.MaterialComponents.Button"
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:text="Calendario"
-                android:textAllCaps="false"
-                android:textStyle="bold"
-                android:textColor="@android:color/white"
-                android:textAlignment="textStart"
-                app:icon="@drawable/ic_calendar"
-                app:iconTint="@android:color/white"
-                app:backgroundTint="@color/accent_slate"
-                app:iconGravity="textStart"
-                app:iconPadding="16dp" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </LinearLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
-    <!-- 🔹 Rol del usuario -->
-    <TextView
-        android:id="@+id/tvRolUsuario"
-        android:textSize="15sp"
-        android:textColor="@color/text_tertiary"
-        android:gravity="center"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@id/bottomNavigation"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content" />
-
-    <!-- BOTTOM NAV FIJO ABAJO -->
-    <com.google.android.material.bottomnavigation.BottomNavigationView
+    <include
         android:id="@+id/bottomNavigation"
+        layout="@layout/component_bottom_nav"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        app:itemIconSize="50dp"
-        app:labelVisibilityMode="labeled"
-        app:menu="@menu/bottom_nav_menu"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

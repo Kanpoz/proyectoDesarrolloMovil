@@ -183,7 +183,19 @@ class CalendarActivity : AppCompatActivity() {
                 allEvents = merged.sortedWith(compareBy({ it.fecha }, { it.horaInicio }))
 
                 // Update day cells that have events
-                dayAdapter.updateEventDays(allEvents.map { it.fecha }.distinct())
+                val eventDates = allEvents.map { it.fecha }.distinct()
+
+                // Update the local list so onDaySelected uses the correct state
+                currentMonthDays = currentMonthDays.map { dayItem ->
+                    if (dayItem.date != null && eventDates.contains(dayItem.date)) {
+                        dayItem.copy(hasEvent = true)
+                    } else {
+                        dayItem.copy(hasEvent = false)
+                    }
+                }
+
+                // Submit the updated list to the adapter
+                dayAdapter.submitList(currentMonthDays, selectedDate)
 
                 // Refresh view for selected date
                 showEventsForDate(selectedDate)
