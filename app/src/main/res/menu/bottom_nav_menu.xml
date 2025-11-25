@@ -12,7 +12,7 @@
 
     <item
         android:id="@+id/nav_calendar"
-        android:icon="@drawable/ic_person" android:title="CALENDARIO" />
+        android:icon="@drawable/ic_calendar_mini" android:title="CALENDARIO" />
 
     <item
         android:id="@+id/nav_profile"
