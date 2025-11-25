@@ -26,6 +26,7 @@ class MainChatActivity : AppCompatActivity() {
     private lateinit var mAuth: FirebaseAuth
     private lateinit var mDbRef: DatabaseReference
     private lateinit var bottomNav: BottomNavigationView
+    private var userRole: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()
@@ -38,6 +39,14 @@ class MainChatActivity : AppCompatActivity() {
 
         mAuth = FirebaseAuth.getInstance()
         mDbRef = FirebaseDatabase.getInstance().reference
+
+        // Obtener rol desde Intent o Firestore
+        userRole = intent.getStringExtra("USER_ROLE")
+        if (userRole == null) {
+            obtenerRolUsuario { rol ->
+                userRole = rol
+            }
+        }
 
         userList = ArrayList()
         adapter = UserAdapter(this, userList)
@@ -67,41 +76,44 @@ class MainChatActivity : AppCompatActivity() {
                 }
                 .start()
 
-            // 🔥 Obtener rol desde Firestore
-            obtenerRolUsuario { rol ->
+            val rol = userRole ?: "ESTUDIANTE" // Fallback seguro
 
-                when (item.itemId) {
+            when (item.itemId) {
 
-                    R.id.nav_home -> {
-                        val intent = when (rol) {
-                            "ADMIN" -> Intent(this, HomeAdmin::class.java)
-                            "DOCENTE" -> Intent(this, HomeDocente::class.java)
-                            "ESTUDIANTE" -> Intent(this, HomeEstudiante::class.java)
-                            else -> Intent(this, HomeEstudiante::class.java)
-                        }
-
-                        startActivity(intent)
-                        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+                R.id.nav_home -> {
+                    val intent = when (rol) {
+                        "ADMIN" -> Intent(this, HomeAdmin::class.java)
+                        "DOCENTE" -> Intent(this, HomeDocente::class.java)
+                        "ESTUDIANTE" -> Intent(this, HomeEstudiante::class.java)
+                        else -> Intent(this, HomeEstudiante::class.java)
                     }
+                    // Si venimos de Home, lo mejor es finalizar esta activity
+                    // pero como tenemos diferentes Homes, iniciamos la correcta.
+                    // Idealmente usaríamos FLAG_ACTIVITY_CLEAR_TOP si supiéramos cuál es.
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
+                    startActivity(intent)
+                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+                    finish() // Finalizar chat para no apilar
+                }
 
-                    R.id.nav_messages -> {
-                        // Ya está en chat → no hacer nada
-                    }
+                R.id.nav_messages -> {
+                    // Ya está en chat → no hacer nada
+                }
 
-                    R.id.nav_calendar -> {
-                        val intent = Intent(this, com.jjcc.proyectmovil.ui.CalendarActivity::class.java)
-                        intent.putExtra("USER_ROLE", rol)
-                        startActivity(intent)
-                        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
-                    }
+                R.id.nav_calendar -> {
+                    val intent = Intent(this, com.jjcc.proyectmovil.ui.CalendarActivity::class.java)
+                    intent.putExtra("USER_ROLE", rol)
+                    startActivity(intent)
+                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+                    finish() // Finalizar chat para no apilar
+                }
 
-                    R.id.nav_profile -> {
-                        startActivity(Intent(this, PerfilActivity::class.java))
-                        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
-                    }
+                R.id.nav_profile -> {
+                    startActivity(Intent(this, PerfilActivity::class.java))
+                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+                    finish() // Finalizar chat para no apilar
                 }
             }
-
             false // Return false so the item doesn't get selected visually in this activity
         }
 

@@ -97,7 +97,9 @@ class HomeEstudiante : AppCompatActivity() {
                     true
                 }
                 R.id.nav_messages -> {
-                    startActivity(Intent(this, MainChatActivity::class.java))
+                    val intent = Intent(this, MainChatActivity::class.java)
+                    intent.putExtra("USER_ROLE", "ESTUDIANTE")
+                    startActivity(intent)
                     overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
                     false
                 }
@@ -109,7 +111,9 @@ class HomeEstudiante : AppCompatActivity() {
                     false
                 }
                 R.id.nav_profile -> {
-                    startActivity(Intent(this, PerfilActivity::class.java))
+                    val intent = Intent(this, PerfilActivity::class.java)
+                    intent.putExtra("USER_ROLE", "ESTUDIANTE")
+                    startActivity(intent)
                     overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
                     false
                 }

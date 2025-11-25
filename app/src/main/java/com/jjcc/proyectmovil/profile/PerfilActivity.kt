@@ -30,6 +30,7 @@ class PerfilActivity : AppCompatActivity() {
     private lateinit var btnEditarPerfil: Button
     private lateinit var mAuth: FirebaseAuth
     private lateinit var bottomNav: BottomNavigationView
+    private var userRole: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,6 +47,14 @@ class PerfilActivity : AppCompatActivity() {
         btnLogout = findViewById(R.id.btnCerrarSesion)
         btnEditarPerfil = findViewById(R.id.btnEditarPerfil)
         bottomNav = findViewById(R.id.bottomNavigation)
+
+        // Obtener rol desde Intent o Firestore
+        userRole = intent.getStringExtra("USER_ROLE")
+        if (userRole == null) {
+            obtenerRolUsuario { rol ->
+                userRole = rol
+            }
+        }
 
         cargarDatosUsuario()
 
@@ -87,38 +96,43 @@ class PerfilActivity : AppCompatActivity() {
                 }
                 .start()
 
-            // 🔥 OBTENER ROL DESDE FIRESTORE ANTES DE NAVEGAR
-            obtenerRolUsuario { rol ->
+            // 🔥 OBTENER ROL DESDE VARIABLE CACHEADA
+            val rol = userRole ?: "ESTUDIANTE" // Fallback seguro
 
-                when (item.itemId) {
+            when (item.itemId) {
 
-                    R.id.nav_home -> {
-                        val intent = when (rol) {
-                            "ADMIN" -> Intent(this, HomeAdmin::class.java)
-                            "DOCENTE" -> Intent(this, HomeDocente::class.java)
-                            "ESTUDIANTE" -> Intent(this, HomeEstudiante::class.java)
-                            else -> Intent(this, HomeEstudiante::class.java)
-                        }
-
-                        startActivity(intent)
-                        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+                R.id.nav_home -> {
+                    val intent = when (rol) {
+                        "ADMIN" -> Intent(this, HomeAdmin::class.java)
+                        "DOCENTE" -> Intent(this, HomeDocente::class.java)
+                        "ESTUDIANTE" -> Intent(this, HomeEstudiante::class.java)
+                        else -> Intent(this, HomeEstudiante::class.java)
                     }
 
-                    R.id.nav_messages -> {
-                        startActivity(Intent(this, MainChatActivity::class.java))
-                        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
-                    }
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
+                    startActivity(intent)
+                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+                    finish()
+                }
 
-                    R.id.nav_calendar -> {
-                        val intent = Intent(this, com.jjcc.proyectmovil.ui.CalendarActivity::class.java)
-                        intent.putExtra("USER_ROLE", rol)
-                        startActivity(intent)
-                        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
-                    }
+                R.id.nav_messages -> {
+                    val intent = Intent(this, MainChatActivity::class.java)
+                    intent.putExtra("USER_ROLE", rol)
+                    startActivity(intent)
+                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+                    finish()
+                }
 
-                    R.id.nav_profile -> {
-                        // Ya estamos aquí
-                    }
+                R.id.nav_calendar -> {
+                    val intent = Intent(this, com.jjcc.proyectmovil.ui.CalendarActivity::class.java)
+                    intent.putExtra("USER_ROLE", rol)
+                    startActivity(intent)
+                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+                    finish()
+                }
+
+                R.id.nav_profile -> {
+                    // Ya estamos aquí
                 }
             }
 

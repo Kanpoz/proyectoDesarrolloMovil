@@ -32,7 +32,7 @@ class CalendarActivity : AppCompatActivity() {
 
     // These would normally be provided by authentication / intent extras
     private val userId: String = "USER_ID_PLACEHOLDER" // TODO: Get actual user ID
-    private val userRole: String = "DOCENTE" // TODO: Get actual role
+    private lateinit var userRole: String
 
     private val firestore = FirebaseFirestore.getInstance()
 
@@ -72,6 +72,7 @@ class CalendarActivity : AppCompatActivity() {
         }
 
         setupBottomNavigation()
+        userRole = intent.getStringExtra("USER_ROLE") ?: "DOCENTE"
         loadCalendar()
     }
 
@@ -88,12 +89,16 @@ class CalendarActivity : AppCompatActivity() {
                     true
                 }
                 R.id.nav_messages -> {
-                    startActivity(android.content.Intent(this, com.jjcc.proyectmovil.messages.MainChatActivity::class.java))
+                    val intent = android.content.Intent(this, com.jjcc.proyectmovil.messages.MainChatActivity::class.java)
+                    intent.putExtra("USER_ROLE", userRole)
+                    startActivity(intent)
+                    finish()
                     false
                 }
                 R.id.nav_calendar -> true
                 R.id.nav_profile -> {
                     startActivity(android.content.Intent(this, com.jjcc.proyectmovil.profile.PerfilActivity::class.java))
+                    finish()
                     false
                 }
                 else -> false
@@ -146,7 +151,7 @@ class CalendarActivity : AppCompatActivity() {
         val startTs = com.google.firebase.Timestamp(java.util.Date.from(start.atZone(java.time.ZoneId.systemDefault()).toInstant()))
         val endTs = com.google.firebase.Timestamp(java.util.Date.from(end.atZone(java.time.ZoneId.systemDefault()).toInstant()))
 
-        val role = intent.getStringExtra("USER_ROLE") ?: "DOCENTE"
+        val role = userRole
 
         // Query clases collection based on role
         val clasesQuery = when (role) {

@@ -64,7 +64,9 @@ class HomeAdmin : AppCompatActivity() {
 
         // Calendar button listener
         btnCalendario.setOnClickListener {
-            startActivity(Intent(this, CalendarActivity::class.java))
+            val intent = Intent(this, CalendarActivity::class.java)
+            intent.putExtra("USER_ROLE", "ADMIN")
+            startActivity(intent)
             // Optional transition animation
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
         }
@@ -94,12 +96,16 @@ class HomeAdmin : AppCompatActivity() {
                     true
                 }
                 R.id.nav_messages -> {
-                    startActivity(Intent(this, MainChatActivity::class.java))
+                    val intent = Intent(this, MainChatActivity::class.java)
+                    intent.putExtra("USER_ROLE", "ADMIN")
+                    startActivity(intent)
                     overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
                     true
                 }
                 R.id.nav_profile -> {
-                    startActivity(Intent(this, PerfilActivity::class.java))
+                    val intent = Intent(this, PerfilActivity::class.java)
+                    intent.putExtra("USER_ROLE", "ADMIN")
+                    startActivity(intent)
                     overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
                     true
                 }
